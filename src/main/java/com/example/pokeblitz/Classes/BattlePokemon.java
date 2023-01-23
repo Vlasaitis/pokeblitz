@@ -1,5 +1,10 @@
-package Classes;
+package com.example.pokeblitz.Classes;
 
+import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
+import com.github.oscar0812.pokeapi.models.pokemon.PokemonType;
+import com.github.oscar0812.pokeapi.utils.Client;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class BattlePokemon {
@@ -19,17 +24,43 @@ public class BattlePokemon {
     public BattlePokemon() {
     }
 
-    public BattlePokemon(int id, String name, int hp, int attack, int defense, int speed, String image, List<String> types, List<String> doubleDamage, List<String> halfDamage) {
+    public BattlePokemon(int id, String name) {
+        Pokemon poke = Client.getPokemonByName(name);
         this.id = id;
         this.name = name;
-        this.hp = hp;
-        this.attack = attack;
-        this.defense = defense;
-        this.speed = speed;
-        this.image = image;
-        this.types = types;
-        this.doubleDamage = doubleDamage;
-        this.halfDamage = halfDamage;
+        this.hp = poke.getStats().get(0).getBaseStat();
+        this.attack = poke.getStats().get(1).getBaseStat();
+        this.defense = poke.getStats().get(2).getBaseStat();
+        this.speed = poke.getStats().get(5).getBaseStat();
+        this.image = poke.getSprites().getFrontDefault();
+        this.types = setPokeTypes(poke);
+        this.doubleDamage = setDblDmg(types);
+        this.halfDamage = setHalfDmg(types);
+    }
+
+    private List<String> setHalfDmg(List<String> types) {
+        List<String> halfDamage = new ArrayList<>();
+        for (int i = 0; i < types.size(); i++) {
+            String type = types.get(i);
+            Client.getTypeByName(type).getDamageRelations().getHalfDamageTo().stream().forEach(type1 -> halfDamage.add(type1.getName()));
+        }
+        return halfDamage;
+    }
+
+    private List<String> setDblDmg(List<String> types) {
+        List<String> doubleDamage = new ArrayList<>();
+        for (int i = 0; i < types.size(); i++) {
+            String type = types.get(i);
+            Client.getTypeByName(type).getDamageRelations().getDoubleDamageTo().stream().forEach(type1 -> doubleDamage.add(type1.getName()));
+        }
+        return doubleDamage;
+    }
+
+    private List<String> setPokeTypes(Pokemon poke) {
+        List<PokemonType> types = poke.getTypes();
+        List<String> returnTypes = new ArrayList<>();
+        types.stream().forEach(pokemonType -> returnTypes.add(pokemonType.getType().getName()));
+        return returnTypes;
     }
 
     public int getId() {
