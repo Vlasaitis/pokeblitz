@@ -19,5 +19,6 @@ class PokeblitzApplicationTests {
 		Pokemon grabPokemon = Client.getPokemonByName("Pikachu");
 		BattlePokemon attacker = new BattlePokemon();
 
+
 	}
 }
