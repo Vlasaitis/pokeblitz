@@ -27,7 +27,7 @@ public class BattlePokemon {
     public BattlePokemon(int id, String name) {
         Pokemon poke = Client.getPokemonByName(name);
         this.id = id;
-        this.name = name;
+        this.name = poke.getName();
         this.hp = poke.getStats().get(0).getBaseStat();
         this.attack = poke.getStats().get(1).getBaseStat();
         this.defense = poke.getStats().get(2).getBaseStat();

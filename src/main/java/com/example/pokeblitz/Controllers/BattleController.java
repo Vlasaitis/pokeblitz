@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class BattleController {
 
-    @GetMapping("/")
-    String test() {
-        System.out.println(Client.getPokemonByName("bulbasaur"));
-        return "test";
-    }
+//    @GetMapping("/")
+//    String test() {
+//        System.out.println(Client.getPokemonByName("bulbasaur"));
+//        return "test";
+//    }
 }
