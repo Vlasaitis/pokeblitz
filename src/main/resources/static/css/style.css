@@ -1,0 +1,51 @@
+.nav{
+    --bs-nav-link-hover-color: black;
+     opacity: 1;
+}
+
+.nav-link {
+  font-weight: bold;
+  font-size: 50px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+  padding: 20px 0px;
+  margin: 0px 20px;
+  display: inline-block;
+  position: relative;
+  opacity: 0.8;
+}
+
+
+.nav-link:hover {
+opacity: 1;
+}
+
+.nav-link::before {
+  transition: 150ms;
+  height: 5px;
+  content: "";
+  position: absolute;
+  background-color: black;
+}
+
+.nav-link-grow-up::before {
+  height: 0%;
+  width: 100%;
+  bottom: 0px;
+}
+
+.nav-link-grow-up:hover::before {
+  height: 5px;
+}
+
+
+.navLogo{
+  width: 40px;
+  height: auto;
+  margin-inline-start: 10px;
+}
+
+
+
+
