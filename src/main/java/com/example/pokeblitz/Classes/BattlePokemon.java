@@ -18,6 +18,7 @@ public class BattlePokemon {
     private List<String> types;
     private List<String> doubleDamage;
     private List<String> halfDamage;
+    private Boolean turnConsumed;
     // player class here
 
 
@@ -36,6 +37,7 @@ public class BattlePokemon {
         this.types = setPokeTypes(poke);
         this.doubleDamage = setDblDmg(types);
         this.halfDamage = setHalfDmg(types);
+        this.turnConsumed = false;
     }
 
     private List<String> setHalfDmg(List<String> types) {
