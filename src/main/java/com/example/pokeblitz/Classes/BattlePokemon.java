@@ -23,7 +23,7 @@ public class BattlePokemon {
 
     public BattlePokemon() {
     }
-
+    // hej
     public BattlePokemon(int id, String name) {
         Pokemon poke = Client.getPokemonByName(name);
         this.id = id;
