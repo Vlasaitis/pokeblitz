@@ -47,7 +47,7 @@ public class BattlePokemon {
     public BattlePokemon(int id, String name) {
         Pokemon poke = Client.getPokemonByName(name);
         this.id = id;
-        this.name = poke.getName();
+        this.name = poke.getName().toUpperCase();
         this.maxHp = poke.getStats().get(0).getBaseStat();
         this.currentHp = maxHp;
         this.attack = poke.getStats().get(1).getBaseStat();
@@ -178,6 +178,9 @@ public class BattlePokemon {
 
     public void setCurrentHp(int currentHp) {
         this.currentHp = currentHp;
+        if (this.currentHp < 0) {
+            this.currentHp = 0;
+        }
     }
 }
 

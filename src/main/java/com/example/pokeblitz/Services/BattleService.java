@@ -59,8 +59,8 @@ public class BattleService {
         BattlePokemon attackingPokemon = fastestWithTurn(attacker.getStarters());
         int randomIndex = random.nextInt(defender.getStarters().size());
         BattlePokemon offer = defender.getStarters().get(randomIndex);
-        int damage = damageDone(attackingPokemon, offer, battleLog);
-        offer.setCurrentHp(offer.getCurrentHp() - damage);
+        dealAndLogDamage(attackingPokemon, offer, battleLog);
+
         if (offer.getCurrentHp() <= 0) {
             battleLog.add(offer.getName() + " has fainted.");
             defender.getKo().add(offer);
@@ -69,26 +69,24 @@ public class BattleService {
 
     }
 
-        public int damageDone (BattlePokemon attackingPokemon, BattlePokemon offer, List <String> battleLog){
+        public void dealAndLogDamage (BattlePokemon attackingPokemon, BattlePokemon offer, List <String> battleLog){
             double damageMultiplier = damageMultiplier(attackingPokemon, offer);
             int critDamage = checkIfCrit();
             int totalDamage = (int) (damageMultiplier * critDamage * ((10 * (1 + ((double)attackingPokemon.getAttack() / 100))) * (1 - ((double)offer.getDefense() / 300))));
-
+            offer.setCurrentHp(offer.getCurrentHp() - totalDamage);
             if (critDamage == 2 && damageMultiplier == 2.0) {
-                battleLog.add(String.format("%s attacks %s. The attack type is super effective & it's a critical hit! %s takes %d damage.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage));
+                battleLog.add(String.format("%s attacks %s. The attack type is super effective & it's a critical hit! %s takes %d damage. %s's HP: %d/%d.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage, offer.getName(),offer.getCurrentHp(), offer.getMaxHp()));
             } else if (critDamage == 1 && damageMultiplier == 2.0) {
-                battleLog.add(String.format("%s attacks %s. The attack type is super effective! %s takes %d damage.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage));
+                battleLog.add(String.format("%s attacks %s. The attack type is super effective! %s takes %d damage. %s's HP: %d/%d.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage, offer.getName(),offer.getCurrentHp(), offer.getMaxHp()));
             } else if (critDamage == 2 && damageMultiplier == 1.0) {
-                battleLog.add(String.format("%s attacks %s. The attack is a critical hit! %s takes %d damage.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage));
+                battleLog.add(String.format("%s attacks %s. The attack is a critical hit! %s takes %d damage. %s's HP: %d/%d.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage, offer.getName(),offer.getCurrentHp(), offer.getMaxHp()));
             } else if (critDamage == 2 && damageMultiplier == 0.5) {
-                battleLog.add(String.format("%s attacks %s. The attack is not very effective... But it's a critical hit! %s takes %d damage.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage));
+                battleLog.add(String.format("%s attacks %s. The attack is not very effective... But it's a critical hit! %s takes %d damage. %s's HP: %d/%d.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage, offer.getName(),offer.getCurrentHp(), offer.getMaxHp()));
             } else if (critDamage == 1 && damageMultiplier == 0.5) {
-                battleLog.add(String.format("%s attacks %s. The attack is not very effective... %s takes %d damage.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage));
+                battleLog.add(String.format("%s attacks %s. The attack is not very effective... %s takes %d damage. %s's HP: %d/%d.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage, offer.getName(),offer.getCurrentHp(), offer.getMaxHp()));
             } else {
-                battleLog.add(String.format("%s attacks %s. %s takes %d damage.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage));
+                battleLog.add(String.format("%s attacks %s. %s takes %d damage. %s's HP: %d/%d.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage, offer.getName(),offer.getCurrentHp(), offer.getMaxHp()));
             }
-
-            return totalDamage;
         }
 
         private int checkIfCrit () {
