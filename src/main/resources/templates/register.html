@@ -3,12 +3,12 @@
 <div th:insert="~{fragments :: head}"></div>
 <div th:insert="~{fragments :: navigation}"></div>
 <body>
-
+<img src="../images/pokemon.jpg" width="100px" class="card-img-top center" alt="...">
 
 <div class="backgroundImage">
 <form>
     <h1> Register new user</h1>
-    <!--<img src="../images/pixabay.webp" alt="image" class="small-image">-->
+    <img src="../images/pixabay.webp" alt="image" class="small-image">
     <div>
         <div>
             <div>
@@ -17,14 +17,15 @@
             </div>
             <div>
                 <label>Password</label>
-                <input type="text" name="firstName">
+                <input type="password" name="firstName">
             </div>
             <div>
                 <button type="button">Register</button>
+                <button><a href="/">Go to login</a></button>
             </div>
         </div>
     </div>
-    <!-- <img src="../images/pokemon.jpg" width="100px" class="card-img-top center" alt="...">-->
+
 </form>
 </div>
 </body>

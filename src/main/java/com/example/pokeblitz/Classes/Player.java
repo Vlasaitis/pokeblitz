@@ -8,6 +8,7 @@ import java.util.List;
 public class Player {
     private int id;
     private String username;
+    private String password;
     private List<BattlePokemon> starters;
     private List<BattlePokemon> ko;
 
@@ -15,11 +16,13 @@ public class Player {
     public Player() {
     }
 
-    public Player(int id, String username, List<BattlePokemon> starters) {
+
+    public Player(int id, String username, String password, List<BattlePokemon> starters) {
         this.id = id;
         this.username = username;
         this.starters = starters;
         this.ko = new ArrayList<>();
+        this.password = password;
     }
 
     public int getId() {
@@ -52,6 +55,14 @@ public class Player {
 
     public void setKo(List<BattlePokemon> ko) {
         this.ko = ko;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

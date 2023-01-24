@@ -1,3 +1,11 @@
+  .center {
+       background-image: url("../images/pokemon.jpg");
+       background-attachment: fixed;
+       background-repeat: no-repeat;
+       background-color: black;
+       overflow-y: scroll;
+  }
+
 .nav{
     --bs-nav-link-hover-color: black;
      opacity: 1;
@@ -41,7 +49,6 @@ opacity: 1;
 .backgroundImage {
     background-image: url("../images/pokemon.jpg");
     background-attachment: fixed;
-    background-position: bottom right;
     background-repeat: no-repeat;
     background-color: black;
     overflow-y: scroll;
@@ -142,12 +149,7 @@ button[type="button"] {
     cursor: pointer;
 }
 
-  .center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+}
 
 
 
