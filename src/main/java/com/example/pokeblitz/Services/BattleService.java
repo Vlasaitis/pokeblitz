@@ -12,26 +12,44 @@ import java.util.Random;
 public class BattleService {
     public List<String> simulateBattle(Player attacker, Player defender) {
         Random random = new Random();
+        boolean gameNotOver = true;
         List<String> battleLog = new ArrayList<>();
         boolean attackerTurn = doesAttackerStart(attacker, defender);
-        while (true) {
+        while (gameNotOver) {
             if(attackerTurn) {
-                battleLog.add(simulateAttack(attacker, defender, random, battleLog)); // first pokemon argument attacks, second defends
+                simulateAttack(attacker, defender, random, battleLog); // first pokemon argument attacks, second defends
+                attackerTurn = false;
             } else {
-                battleLog.add(simulateAttack(defender, attacker, random, battleLog));
+                simulateAttack(defender, attacker, random, battleLog);
+                attackerTurn = true;
             }
+            checkIfGameOver(attacker, defender, gameNotOver, battleLog);
         }
+        return battleLog;
 
-//        return
     }
-    public String simulateAttack(Player attacker, Player defender, Random random, List<String> battleLog) {
+
+    public void checkIfGameOver(Player attacker, Player defender, boolean gameNotOver, List<String> battleLog) {
+        if (attacker.getStarters().isEmpty()) {
+            battleLog.add(defender.getUsername() + " WINS!");
+            gameNotOver = false;
+        } else if (defender.getStarters().isEmpty()) {
+            battleLog.add(attacker.getUsername() + " WINS!");
+            gameNotOver = false;
+        }
+    }
+
+    public void simulateAttack(Player attacker, Player defender, Random random, List<String> battleLog) {
         BattlePokemon attackingPokemon = fastestWithTurn(attacker.getStarters());
         int randomIndex = random.nextInt(defender.getStarters().size());
         BattlePokemon offer = defender.getStarters().get(randomIndex);
         offer.setHp(offer.getHp()-10);
         battleLog.add(attackingPokemon.getName() + " attacks " + offer.getName() + " for 10 damage"); /// kommer ändra damage systemet här, kommer vara variabel
-
-        return "hi";
+        if (offer.getHp() <= 0) {
+            battleLog.add(offer.getName() + " has fainted.");
+            defender.getKo().add(offer);
+            defender.getStarters().remove(offer);
+        }
     }
 
     public BattlePokemon fastestWithTurn(List<BattlePokemon> starters) {
