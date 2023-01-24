@@ -23,21 +23,27 @@ public class BattleService {
                 simulateAttack(defender, attacker, random, battleLog);
                 attackerTurn = true;
             }
-            checkIfGameOver(attacker, defender, gameNotOver, battleLog);
+            if (attacker.getStarters().isEmpty()) {
+                battleLog.add(defender.getUsername() + " WINS!");
+                gameNotOver = false;
+            } else if (defender.getStarters().isEmpty()) {
+                battleLog.add(attacker.getUsername() + " WINS!");
+                gameNotOver = false;
+            }
         }
         return battleLog;
 
     }
 
-    public void checkIfGameOver(Player attacker, Player defender, boolean gameNotOver, List<String> battleLog) {
-        if (attacker.getStarters().isEmpty()) {
-            battleLog.add(defender.getUsername() + " WINS!");
-            gameNotOver = false;
-        } else if (defender.getStarters().isEmpty()) {
-            battleLog.add(attacker.getUsername() + " WINS!");
-            gameNotOver = false;
-        }
-    }
+//    public void checkIfGameOver(Player attacker, Player defender, boolean gameNotOver, List<String> battleLog) {
+//        if (attacker.getStarters().isEmpty()) {
+//            battleLog.add(defender.getUsername() + " WINS!");
+//            gameNotOver = false;
+//        } else if (defender.getStarters().isEmpty()) {
+//            battleLog.add(attacker.getUsername() + " WINS!");
+//            gameNotOver = false;
+//        }
+//    }
 
     public void simulateAttack(Player attacker, Player defender, Random random, List<String> battleLog) {
         BattlePokemon attackingPokemon = fastestWithTurn(attacker.getStarters());
@@ -50,6 +56,7 @@ public class BattleService {
             defender.getKo().add(offer);
             defender.getStarters().remove(offer);
         }
+
     }
 
     public BattlePokemon fastestWithTurn(List<BattlePokemon> starters) {
