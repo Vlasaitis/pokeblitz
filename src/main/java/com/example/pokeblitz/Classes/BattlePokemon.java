@@ -15,7 +15,10 @@ public class BattlePokemon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    private int hp;
+
+    private int maxHp;
+    @Transient
+    private int currentHp;
     private int attack;
     private int defense;
     private int speed;
@@ -45,7 +48,8 @@ public class BattlePokemon {
         Pokemon poke = Client.getPokemonByName(name);
         this.id = id;
         this.name = poke.getName();
-        this.hp = poke.getStats().get(0).getBaseStat();
+        this.maxHp = poke.getStats().get(0).getBaseStat();
+        this.currentHp = maxHp;
         this.attack = poke.getStats().get(1).getBaseStat();
         this.defense = poke.getStats().get(2).getBaseStat();
         this.speed = poke.getStats().get(5).getBaseStat();
@@ -97,12 +101,12 @@ public class BattlePokemon {
         this.name = name;
     }
 
-    public int getHp() {
-        return hp;
+    public int getMaxHp() {
+        return maxHp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
+    public void setMaxHp(int baseHp) {
+        this.maxHp = baseHp;
     }
 
     public int getAttack() {
@@ -167,6 +171,13 @@ public class BattlePokemon {
 
     public void setHasTurn(Boolean hasTurn) {
         this.hasTurn = hasTurn;
+    }
+    public int getCurrentHp() {
+        return currentHp;
+    }
+
+    public void setCurrentHp(int currentHp) {
+        this.currentHp = currentHp;
     }
 }
 

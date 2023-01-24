@@ -4,12 +4,10 @@ package com.example.pokeblitz;
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Services.BattleService;
-import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.example.pokeblitz.Controllers.BattleController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,11 +29,11 @@ class PokeBlitzTests {
 	public void battlePokemonConstructorTest() {
 		BattlePokemon testPokemon = new BattlePokemon(1, "bulbasaur");
 
-		assertEquals(45, testPokemon.getHp());
+		assertEquals(45, testPokemon.getMaxHp());
 		assertEquals(49, testPokemon.getAttack());
 		assertEquals(49, testPokemon.getDefense());
 		assertEquals(45, testPokemon.getSpeed());
-		assertEquals(45, testPokemon.getHp());
+		assertEquals(45, testPokemon.getMaxHp());
 
 		assertEquals("grass", testPokemon.getTypes().get(0));
 		assertEquals("poison", testPokemon.getTypes().get(1));
@@ -100,5 +98,20 @@ class PokeBlitzTests {
 			System.out.println();
 		}
 
+	}
+
+	@Test
+	public void healAllPokemontest() {
+		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "pikachu"), new BattlePokemon(2, "wartortle"), new BattlePokemon(3, "butterfree")));
+		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "blastoise"), new BattlePokemon(2, "caterpie"), new BattlePokemon(3, "mew")));
+		Player player1 = new Player(1, "tony", pokemons1);
+		Player player2 = new Player(2, "vytis", pokemons2);
+
+		pokemons2.get(2).setCurrentHp(50);
+
+		assertEquals(50, pokemons2.get(2).getCurrentHp());
+		assertEquals(100, pokemons2.get(2).getMaxHp());
+		battleService.healAllPokemon(player1, player2);
+		assertEquals(100, pokemons2.get(2).getCurrentHp());
 	}
 }

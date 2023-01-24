@@ -25,16 +25,28 @@ public class BattleService {
             }
             gameNotOver = shouldGameContinue(attacker, defender, battleLog);
         }
-        return battleLog;
+        healAllPokemon(attacker, defender);
 
+        return battleLog;
+    }
+
+    public void healAllPokemon(Player attacker, Player defender) {
+        attacker.getStarters().addAll(attacker.getKo());
+        attacker.getStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
+        attacker.getKo().clear();
+        defender.getStarters().addAll(attacker.getKo());
+        defender.getStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
+        defender.getKo().clear();
     }
 
     public boolean shouldGameContinue(Player attacker, Player defender, List<String> battleLog) {
         if (attacker.getStarters().isEmpty()) {
             battleLog.add(defender.getUsername() + " WINS!");
+            //lägg tillbaka pokemon i starter
             return false;
         } else if (defender.getStarters().isEmpty()) {
             battleLog.add(attacker.getUsername() + " WINS!");
+            //lägg tillbaka pokemon i starter
             return false;
         }
         return true;
@@ -44,14 +56,13 @@ public class BattleService {
         BattlePokemon attackingPokemon = fastestWithTurn(attacker.getStarters());
         int randomIndex = random.nextInt(defender.getStarters().size());
         BattlePokemon offer = defender.getStarters().get(randomIndex);
-        offer.setHp(offer.getHp()-10);
+        offer.setMaxHp(offer.getCurrentHp()-10);
         battleLog.add(attackingPokemon.getName() + " attacks " + offer.getName() + " for 10 damage"); /// kommer ändra damage systemet här, kommer vara variabel
-        if (offer.getHp() <= 0) {
+        if (offer.getMaxHp() <= 0) {
             battleLog.add(offer.getName() + " has fainted.");
             defender.getKo().add(offer);
             defender.getStarters().remove(offer);
         }
-
     }
 
     public BattlePokemon fastestWithTurn(List<BattlePokemon> starters) {
@@ -63,7 +74,7 @@ public class BattleService {
         }
         if (unconsumedTurns.isEmpty()) {
             starters.stream().forEach(battlePokemon -> battlePokemon.setHasTurn(true));
-            starters.stream().forEach(battlePokemon -> unconsumedTurns.add(battlePokemon));
+            unconsumedTurns.addAll(starters);
         }
 
         BattlePokemon fastestWithTurn = unconsumedTurns.get(0);
@@ -86,11 +97,9 @@ public class BattleService {
 
             if (currentAtkPokemonSpeed > attackerHighestSpeed) {
                 attackerHighestSpeed = currentAtkPokemonSpeed;
-
             }
             if (currentDefPokemonSpeed > defenderHighestSpeed) {
                 defenderHighestSpeed = currentDefPokemonSpeed;
-
             }
         }
         return (attackerHighestSpeed >= defenderHighestSpeed);
