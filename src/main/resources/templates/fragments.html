@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:font-size="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:font-size="http://www.w3.org/1999/xhtml" xmlns:border="">
 <head th:fragment="head">
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,13 +10,13 @@
   <link rel="icon" href="">
 </head>
 <body>
-<nav class="navbar navbar-light sticky-top" style="background-color: yellow" th:fragment="navigation">
+<nav class="navbar navbar-light sticky-top" th:fragment="navigation" style="border: 10px solid yellow; border-radius: 10px;">
 
   <ul class="navbar nav">
-    <a class="navbar-brand" href="/"><img class="navLogo" src="logo.jpg"></a>
-    <li class="nav-item"><a class="nav-link nav-link-grow-up" href="">Login</a></li>
-    <li class="nav-item"><a class="nav-link nav-link-grow-up" href="">Register</a></li>
-    <li class="nav-item align-right"><a class="nav-link nav-link-grow-up" href="">About</a></li>
+    <a href="/"><img class="navLogo" src="logo.jpg"></a> //Fixa loggan!
+    <li class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="">Login</a></li>
+    <li class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="">Register</a></li>
+    <li class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="">About</a></li>
   </ul>
 
 </nav>

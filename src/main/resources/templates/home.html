@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:insert="~{fragments :: head}"></div>
-<div th:insert="~{fragments :: navigation}"></div>
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: navigation"></nav>
 <body>
-
-
 <div class="backgroundImage">
 <form>
-    <h1> Register new user</h1>
+    <h1>Login to start battle!</h1>
     <!--<img src="../images/pixabay.webp" alt="image" class="small-image">-->
     <div>
         <div>
@@ -20,15 +18,13 @@
                 <input type="text" name="firstName">
             </div>
             <div>
-                <button type="button">Register</button>
+                <button type="button">Login</button>
+                <a  href="/register">Register</a>
             </div>
         </div>
     </div>
     <!-- <img src="../images/pokemon.jpg" width="100px" class="card-img-top center" alt="...">-->
 </form>
 </div>
-</body>
-</html>
-
 </body>
 </html>
