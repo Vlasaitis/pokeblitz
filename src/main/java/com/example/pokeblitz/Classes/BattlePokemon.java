@@ -24,6 +24,18 @@ public class BattlePokemon {
     private List<String> doubleDamage;
     private List<String> halfDamage;
     private Boolean hasTurn;
+
+    @ManyToOne
+    @JoinColumn(name = "player_id")
+    private Player player;
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
     // player class here
 
     public BattlePokemon() {

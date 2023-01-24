@@ -1,9 +1,6 @@
 package com.example.pokeblitz.Classes;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,11 @@ public class Player {
 
     private String username;
     private String password;
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
+    private List<BattlePokemon> allPokemon;
+    @Transient
     private List<BattlePokemon> starters;
+    @Transient
     private List<BattlePokemon> ko;
 
     public Player() {
