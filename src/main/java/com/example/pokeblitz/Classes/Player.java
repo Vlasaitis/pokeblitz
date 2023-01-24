@@ -27,6 +27,7 @@ public class Player {
     public Player(int id, String username, String password, List<BattlePokemon> starters) {
         this.id = id;
         this.username = username;
+//        this.allPokemon = allPokemon;
         this.starters = starters;
         this.ko = new ArrayList<>();
         this.password = password;
