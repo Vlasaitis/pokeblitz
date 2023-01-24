@@ -3,7 +3,9 @@
 <head th:replace="fragments :: head"></head>
 <nav th:replace="fragments :: navigation"></nav>
 <body>
-<h1>Profil</h1>
+<main>
+  <h1 th:text="${session.username}">Profil</h1>
+</main>
 <header>
   <nav>
     <a href="#">Pokemons</a>
@@ -11,9 +13,6 @@
     <a href="#">blabla</a>
   </nav>
 </header>
-<main>
-  <h1>Profil</h1>
-  <h2>Username:  <li th:text="${session.username}"></li></h2>
-</main>
+
 </body>
 </html>
