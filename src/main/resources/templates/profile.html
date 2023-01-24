@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: navigation"></nav>
+<body>
+<h1>Profil</h1>
+<header>
+  <nav>
+    <a href="#">Pokemons</a>
+    <a href="#">Highscore</a>
+    <a href="#">blabla</a>
+  </nav>
+</header>
+<main>
+  <h1>Profil</h1>
+  <h2>Username:  <li th:text="${session.username}"></li></h2>
+</main>
+</body>
+</html>

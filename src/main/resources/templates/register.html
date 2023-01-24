@@ -3,7 +3,7 @@
 <div th:insert="~{fragments :: head}"></div>
 <div th:insert="~{fragments :: navigation}"></div>
 <body>
-<img src="../images/pokemon.jpg" width="100px" class="card-img-top center" alt="...">
+<!--<img src="../images/pokemon.jpg" width="100px" class="card-img-top center" alt="...">-->
 
 <div class="backgroundImage">
 <form>
@@ -12,15 +12,16 @@
     <div>
         <div>
             <div>
+                <form action="register.php" method="post"></form>
                 <label>Username</label>
-                <input type="text" name="firstName">
+                <input type="text" id="username" name="firstName">
             </div>
             <div>
                 <label>Password</label>
-                <input type="password" name="firstName">
+                <input type="password" id="password" name="password">
             </div>
             <div>
-                <button type="button">Register</button>
+                <button><input type="submit" value="Register"></button>
                 <button><a href="/">Go to login</a></button>
             </div>
         </div>

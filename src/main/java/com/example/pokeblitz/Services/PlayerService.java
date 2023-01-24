@@ -22,7 +22,7 @@ public class PlayerService {
         playerRepository.save(player);
     }
 
-    Player findUser(String username) {
+    public static Player findUser(String username) {
         Player player = playerRepository.findByusername(username);
         return player;
     }
