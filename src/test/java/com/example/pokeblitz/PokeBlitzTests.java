@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class PokeBlitzTests {
@@ -93,6 +94,9 @@ class PokeBlitzTests {
 		Player player1 = new Player(1, "tony", pokemons1);
 		Player player2 = new Player(2, "vytis", pokemons2);
 		List<String> battleLog = battleService.simulateBattle(player1, player2);
+
+		Assertions.assertFalse(battleLog.isEmpty());
+
 		for (int i = 0; i < battleLog.size(); i++) {
 			System.out.println(battleLog.get(i));
 			System.out.println();
@@ -113,5 +117,19 @@ class PokeBlitzTests {
 		assertEquals(100, pokemons2.get(2).getMaxHp());
 		battleService.healAllPokemon(player1, player2);
 		assertEquals(100, pokemons2.get(2).getCurrentHp());
+	}
+	@Test
+	public void damageMultiplierTest (){
+		BattlePokemon charizard = new BattlePokemon(1, "charizard");
+		BattlePokemon caterpie = new BattlePokemon(2, "caterpie");
+		BattlePokemon blastoise = new BattlePokemon(3, "blastoise");
+		BattlePokemon graveler = new BattlePokemon(3, "graveler");
+		BattlePokemon snorlax = new BattlePokemon(3, "snorlax");
+
+		assertEquals(2.0, battleService.damageMultiplier(charizard, caterpie));
+		assertEquals(0.5, battleService.damageMultiplier(charizard, blastoise));
+		assertEquals(0.5, battleService.damageMultiplier(charizard, graveler));
+		assertEquals(1.0, battleService.damageMultiplier(charizard, snorlax));
+
 	}
 }
