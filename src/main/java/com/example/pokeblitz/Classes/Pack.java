@@ -1,9 +1,16 @@
 package com.example.pokeblitz.Classes;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Pack {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int pokemonAmount;
     private int price;
+    @ManyToOne
+    @JoinColumn(name = "player_id")
     private Player player;
     private boolean used;
 
