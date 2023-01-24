@@ -24,23 +24,35 @@ public class BattleService {
             }
         }
 
-//        return battleLog;
+//        return
     }
-    private String simulateAttack(Player attacker, Player defender) {
-        BattlePokemon attackingPokemon = fastestWithoutTurnConsumed(attacker.getStarters());
+    public String simulateAttack(Player attacker, Player defender) {
+        BattlePokemon attackingPokemon = fastestWithTurn(attacker.getStarters());
+
         return "hi";
     }
 
-    private BattlePokemon fastestWithoutTurnConsumed(List<BattlePokemon> starters) {
-        int HighestSpeed = starters.get(0).getSpeed();
+    public BattlePokemon fastestWithTurn(List<BattlePokemon> starters) {
+        List<BattlePokemon> unconsumedTurns = new ArrayList<>();
         for (int i = 0; i < starters.size(); i++) {
-            int currentSpeed = starters.get(i).getSpeed();
-            if(!starters.get(i).getTurnConsumed() && currentSpeed > HighestSpeed){
-                return starters.get(i);
+            if (starters.get(i).hasTurn()) {
+                unconsumedTurns.add(starters.get(i));
             }
         }
+        if (unconsumedTurns.isEmpty()) {
+            starters.stream().forEach(battlePokemon -> battlePokemon.setHasTurn(true));
+            starters.stream().forEach(battlePokemon -> unconsumedTurns.add(battlePokemon));
+        }
 
-        return null;
+        BattlePokemon fastestWithTurn = unconsumedTurns.get(0);
+        for (int i = 0; i < unconsumedTurns.size(); i++) {
+            if (unconsumedTurns.get(i).getSpeed() > fastestWithTurn.getSpeed()) {
+                fastestWithTurn = unconsumedTurns.get(i);
+            }
+        }
+        fastestWithTurn.setHasTurn(false);
+
+        return fastestWithTurn;
     }
 
     public boolean doesAttackerStart(Player attacker, Player defender) {

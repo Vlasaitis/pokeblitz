@@ -4,6 +4,7 @@ package com.example.pokeblitz;
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Services.BattleService;
+import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,25 @@ class PokeBlitzTests {
 		boolean attackStarts2 = battleService.doesAttackerStart(attacker, defender);
 
 		assertEquals(true, attackStarts2);
+
+	}
+	@Test public void findFastestWithTurnTest() {
+		BattlePokemon blastoise = new BattlePokemon(1, "blastoise");
+		BattlePokemon caterpie = new BattlePokemon(1, "caterpie");
+		BattlePokemon mew = new BattlePokemon(1, "mew");
+		List<BattlePokemon> pokemons = Arrays.asList(blastoise, caterpie, mew);
+
+		BattlePokemon fastestWithTurn = battleService.fastestWithTurn(pokemons);
+		assertEquals(mew, fastestWithTurn);
+
+		mew.setHasTurn(false);
+		assertEquals(blastoise, battleService.fastestWithTurn(pokemons));
+
+		blastoise.setHasTurn(false);
+		assertEquals(caterpie, battleService.fastestWithTurn(pokemons));
+
+		caterpie.setHasTurn(false);
+		assertEquals(mew, battleService.fastestWithTurn(pokemons));
 
 	}
 }
