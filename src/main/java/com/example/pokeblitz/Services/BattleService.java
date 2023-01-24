@@ -33,6 +33,15 @@ public class BattleService {
     }
 
     private BattlePokemon fastestWithoutTurnConsumed(List<BattlePokemon> starters) {
+        int HighestSpeed = starters.get(0).getSpeed();
+        for (int i = 0; i < starters.size(); i++) {
+            int currentSpeed = starters.get(i).getSpeed();
+            if(!starters.get(i).getTurnConsumed() && currentSpeed > HighestSpeed){
+                return starters.get(i);
+            }
+        }
+
+        return null;
     }
 
     public boolean doesAttackerStart(Player attacker, Player defender) {
