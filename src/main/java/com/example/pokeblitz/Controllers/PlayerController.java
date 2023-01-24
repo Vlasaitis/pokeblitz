@@ -6,10 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class PlayerController {
     public String home(HttpSession session) {
         boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
         if (loggedIn) {
-            return "redirect:/profile";
+            return "redirect:/home";
         }
         return "home";
 
@@ -36,7 +33,7 @@ public class PlayerController {
                 session.setAttribute("password", password);
                 session.setAttribute("loggedIn", Boolean.TRUE);
                 session.setAttribute("player", player);
-                return "redirect:/profile";
+                return "redirect:/home";
             }
         }
         return "redirect:/";
@@ -61,6 +58,16 @@ public class PlayerController {
         session.setAttribute("loggedIn", Boolean.TRUE);
         PlayerService.savePlayer(player);
         return "redirect:/profile";
+    }
+
+    @GetMapping("/profile/{username}")
+    public String profile(Model model, @PathVariable String username, HttpSession session) {
+        Player player = PlayerService.findUser(username);
+        model.addAttribute("player", player);
+        if (session.getAttribute("username").equals(username)) {
+            return "redirect:/profile";
+        }
+        return "profile";
     }
 
 }
