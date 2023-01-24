@@ -4,11 +4,15 @@
 <nav th:replace="~{fragments :: navigation}"></nav>
 <body>
 <main>
+  <div style="text-align: center;">
+    <div style="margin: 0 auto;">
   <div width="150px">
-    <img src="../images/profile.png" width="100px" alt="...">
+    <img src="../images/profilbild.png" width="300px" alt="...">
     <ul>
       <h1 th:text=" 'Welcome ' + ${session.username}"></h1>
     </ul>
+  </div>
+  </div>
   </div>
 </main>
 <header>
@@ -16,6 +20,8 @@
     <a href="#">Pokemons</a>
     <a href="#">Highscore</a>
     <a href="#">blabla</a>
+    </div>
+    </div>
   </nav>
 </header>
 
