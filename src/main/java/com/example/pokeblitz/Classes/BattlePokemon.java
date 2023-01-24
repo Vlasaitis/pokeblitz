@@ -28,6 +28,8 @@ public class BattlePokemon {
     private List<String> halfDamage;
     private Boolean hasTurn;
 
+    private int damageDone;
+
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
@@ -58,6 +60,7 @@ public class BattlePokemon {
         this.doubleDamage = setDblDmg(types);
         this.halfDamage = setHalfDmg(types);
         this.hasTurn = true;
+        this.damageDone = 0;
     }
 
     private List<String> setHalfDmg(List<String> types) {
@@ -68,6 +71,9 @@ public class BattlePokemon {
         }
         return halfDamage;
     }
+
+
+
 
     private List<String> setDblDmg(List<String> types) {
         List<String> doubleDamage = new ArrayList<>();
@@ -181,6 +187,13 @@ public class BattlePokemon {
         if (this.currentHp < 0) {
             this.currentHp = 0;
         }
+    }
+    public int getDamageDone() {
+        return damageDone;
+    }
+
+    public void setDamageDone(int damageDone) {
+        this.damageDone = damageDone;
     }
 }
 

@@ -2,7 +2,6 @@ package com.example.pokeblitz.Services;
 
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
-import com.github.oscar0812.pokeapi.utils.Client;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,29 +25,53 @@ public class BattleService {
                 simulateAttack(defender, attacker, random, battleLog);
                 attackerTurn = true;
             }
-            gameNotOver = shouldGameContinue(attacker, defender, battleLog);
+            gameNotOver = shouldGameContinue(attacker, defender);
         }
-        healAllPokemon(attacker, defender);
+        addBattleSummaryToLog(attacker, defender, battleLog);
+        healAllPokemonAndResetDamageDone(attacker, defender);
 
         return battleLog;
     }
 
-    public void healAllPokemon(Player attacker, Player defender) {
+    public void addBattleSummaryToLog(Player attacker, Player defender, List<String> battleLog) {
+        battleLog.add("-------------------");
+        if (attacker.getStarters().isEmpty()) { // means defender won
+            battleLog.add(defender.getUsername() + " won the battle! Fight summary below:");
+            battleLog.add("-------------------");
+        } else {
+            battleLog.add(attacker.getUsername() + " won the battle! Fight summary:");
+            battleLog.add("-------------------");
+        }
+        battleLog.add(defender.getUsername() + "'s Pokemon:");
+        defender.getStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
+        defender.getKo().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
+        battleLog.add("-------------------");
+        battleLog.add(attacker.getUsername() + "'s Pokemon:");
+        attacker.getStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
+        attacker.getKo().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
+        battleLog.add("-------------------");
+//        for (int i = 0; i < defender.getStarters().size(); i++) {
+////            battleLog.add(String.format("%s's %s (HP:%d/%d): Total damage: %d", defender.getUsername(),defender.getStarters().get(i).getName(), defender.getStarters().get(i).getCurrentHp(), defender.getStarters().get(i).getMaxHp(), defender.getStarters().get(i).getDamageDone()));
+//        }
+    }
+
+    public void healAllPokemonAndResetDamageDone(Player attacker, Player defender) {
         attacker.getStarters().addAll(attacker.getKo());
         attacker.getStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
         attacker.getKo().clear();
         defender.getStarters().addAll(attacker.getKo());
         defender.getStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
         defender.getKo().clear();
+        //reset damage done, log already holds the info
+        attacker.getStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
+        defender.getStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
     }
 
-    public boolean shouldGameContinue(Player attacker, Player defender, List<String> battleLog) {
+    public boolean shouldGameContinue(Player attacker, Player defender) {
         if (attacker.getStarters().isEmpty()) {
-            battleLog.add(defender.getUsername() + " WINS!");
             //lägg tillbaka pokemon i starter
             return false;
         } else if (defender.getStarters().isEmpty()) {
-            battleLog.add(attacker.getUsername() + " WINS!");
             //lägg tillbaka pokemon i starter
             return false;
         }
@@ -74,6 +97,7 @@ public class BattleService {
             int critDamage = checkIfCrit();
             int totalDamage = (int) (damageMultiplier * critDamage * ((10 * (1 + ((double)attackingPokemon.getAttack() / 100))) * (1 - ((double)offer.getDefense() / 300))));
             offer.setCurrentHp(offer.getCurrentHp() - totalDamage);
+            attackingPokemon.setDamageDone(attackingPokemon.getDamageDone() + totalDamage);
             if (critDamage == 2 && damageMultiplier == 2.0) {
                 battleLog.add(String.format("%s attacks %s. The attack type is super effective & it's a critical hit! %s takes %d damage. %s's HP: %d/%d.", attackingPokemon.getName(), offer.getName(), offer.getName(), totalDamage, offer.getName(),offer.getCurrentHp(), offer.getMaxHp()));
             } else if (critDamage == 1 && damageMultiplier == 2.0) {

@@ -99,7 +99,6 @@ class PokeBlitzTests {
 
 		for (int i = 0; i < battleLog.size(); i++) {
 			System.out.println(battleLog.get(i));
-			System.out.println();
 		}
 
 	}
@@ -115,7 +114,7 @@ class PokeBlitzTests {
 
 		assertEquals(50, pokemons2.get(2).getCurrentHp());
 		assertEquals(100, pokemons2.get(2).getMaxHp());
-		battleService.healAllPokemon(player1, player2);
+		battleService.healAllPokemonAndResetDamageDone(player1, player2);
 		assertEquals(100, pokemons2.get(2).getCurrentHp());
 	}
 	@Test
