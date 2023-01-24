@@ -2,7 +2,6 @@ package com.example.pokeblitz.Services;
 
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
-import org.apache.tomcat.util.digester.ArrayStack;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class BattleService {
             }
         }
 
-        return battleLog;
+//        return battleLog;
     }
     private String simulateAttack(Player attacker, Player defender) {
         BattlePokemon attackingPokemon = fastestWithoutTurnConsumed(attacker.getStarters());

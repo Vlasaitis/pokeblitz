@@ -3,12 +3,18 @@ package com.example.pokeblitz.Classes;
 import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
 import com.github.oscar0812.pokeapi.models.pokemon.PokemonType;
 import com.github.oscar0812.pokeapi.utils.Client;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "BattlePokemons")
 public class BattlePokemon {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String name;
     private int hp;
     private int attack;
@@ -20,7 +26,6 @@ public class BattlePokemon {
     private List<String> halfDamage;
     private Boolean turnConsumed;
     // player class here
-
 
     public BattlePokemon() {
     }
