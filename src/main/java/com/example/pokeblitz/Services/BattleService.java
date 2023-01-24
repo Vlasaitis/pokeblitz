@@ -5,6 +5,7 @@ import com.example.pokeblitz.Classes.Player;
 import org.apache.tomcat.util.digester.ArrayStack;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -12,23 +13,26 @@ import java.util.Random;
 public class BattleService {
     public List<String> simulateBattle(Player attacker, Player defender) {
         Random random = new Random();
-        List<String> battleLog = new ArrayStack<>();
-        List<BattlePokemon> attackerPokemon = attacker.getStarters();
-        List<BattlePokemon> defenderPokemon = defender.getStarters();
+        List<String> battleLog = new ArrayList<>();
+//        List<BattlePokemon> attackerPokemon = attacker.getStarters();
+//        List<BattlePokemon> defenderPokemon = defender.getStarters();
         boolean attackerTurn = doesAttackerStart(attacker, defender);
+        while (true) {
+            if(attackerTurn) {
+                battleLog.add(simulateAttack(attacker, defender)); // first pokemon argument attacks, second defends
+            } else {
+                battleLog.add(simulateAttack(defender, attacker));
+            }
+        }
 
-
-//        while (true) {
-//            if(attackerTurn) {
-//                battleLog.add(simulateAttack(attackerPokemon, defenderPokemon));
-//            }
-//        }
-//
         return battleLog;
     }
-
-    private String simulateAttack(List<BattlePokemon> attackerPokemon, List<BattlePokemon> defenderPokemon) {
+    private String simulateAttack(Player attacker, Player defender) {
+        BattlePokemon attackingPokemon = fastestWithoutTurnConsumed(attacker.getStarters());
         return "hi";
+    }
+
+    private BattlePokemon fastestWithoutTurnConsumed(List<BattlePokemon> starters) {
     }
 
     public boolean doesAttackerStart(Player attacker, Player defender) {
