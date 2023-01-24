@@ -69,5 +69,9 @@ public class PlayerController {
         }
         return "profile";
     }
+    @GetMapping("/profile")
+    public String userProfile() {
+            return "profile";
+    }
 
 }
