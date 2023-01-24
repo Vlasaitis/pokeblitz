@@ -28,7 +28,7 @@ class PokeBlitzTests {
 	}
 
 	@Test
-	public void battlePokemonConstructorTest(){
+	public void battlePokemonConstructorTest() {
 		BattlePokemon testPokemon = new BattlePokemon(1, "bulbasaur");
 
 		assertEquals(45, testPokemon.getHp());
@@ -40,18 +40,19 @@ class PokeBlitzTests {
 		assertEquals("grass", testPokemon.getTypes().get(0));
 		assertEquals("poison", testPokemon.getTypes().get(1));
 
-        String[] doubleDmg = {"ground", "rock", "water", "grass", "fairy"};
-        String[] testDbl = testPokemon.getDoubleDamage().toArray(new String[5]);
-        Assertions.assertArrayEquals(doubleDmg, testDbl);
+		String[] doubleDmg = {"ground", "rock", "water", "grass", "fairy"};
+		String[] testDbl = testPokemon.getDoubleDamage().toArray(new String[5]);
+		Assertions.assertArrayEquals(doubleDmg, testDbl);
 
 		String[] halfDmg = {"flying", "poison", "bug", "steel", "fire", "grass", "dragon", "poison", "ground", "rock", "ghost"};
 		String[] testHalf = testPokemon.getHalfDamage().toArray(new String[11]);
 		Assertions.assertArrayEquals(halfDmg, testHalf);
 	}
+
 	@Test
 	public void battleDetermineOrderTest() {
-		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "pikachu"),new BattlePokemon(2, "wartortle"),new BattlePokemon(3, "butterfree")));
-		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "blastoise"),new BattlePokemon(2, "caterpie"),new BattlePokemon(3, "mew")));
+		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "pikachu"), new BattlePokemon(2, "wartortle"), new BattlePokemon(3, "butterfree")));
+		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "blastoise"), new BattlePokemon(2, "caterpie"), new BattlePokemon(3, "mew")));
 		Player attacker = new Player(1, "tony", pokemons1);
 		Player defender = new Player(2, "vytis", pokemons2);
 
@@ -65,7 +66,9 @@ class PokeBlitzTests {
 		assertEquals(true, attackStarts2);
 
 	}
-	@Test public void findFastestWithTurnTest() {
+
+	@Test
+	public void findFastestWithTurnTest() {
 		BattlePokemon blastoise = new BattlePokemon(1, "blastoise");
 		BattlePokemon caterpie = new BattlePokemon(1, "caterpie");
 		BattlePokemon mew = new BattlePokemon(1, "mew");
@@ -84,11 +87,18 @@ class PokeBlitzTests {
 		assertEquals(mew, battleService.fastestWithTurn(pokemons));
 
 	}
-	@Test public void simulateBattleTest() {
-		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "pikachu"),new BattlePokemon(2, "wartortle"),new BattlePokemon(3, "butterfree")));
-		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "blastoise"),new BattlePokemon(2, "caterpie"),new BattlePokemon(3, "mew")));
+
+	@Test
+	public void simulateBattleTest() {
+		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "pikachu"), new BattlePokemon(2, "wartortle"), new BattlePokemon(3, "butterfree")));
+		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "blastoise"), new BattlePokemon(2, "caterpie"), new BattlePokemon(3, "mew")));
 		Player player1 = new Player(1, "tony", pokemons1);
 		Player player2 = new Player(2, "vytis", pokemons2);
 		List<String> battleLog = battleService.simulateBattle(player1, player2);
-		System.out.println(battleLog);}
+		for (int i = 0; i < battleLog.size(); i++) {
+			System.out.println(battleLog.get(i));
+			System.out.println();
+		}
+
+	}
 }
