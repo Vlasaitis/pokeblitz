@@ -84,4 +84,11 @@ class PokeBlitzTests {
 		assertEquals(mew, battleService.fastestWithTurn(pokemons));
 
 	}
+	@Test public void simulateBattleTest() {
+		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "pikachu"),new BattlePokemon(2, "wartortle"),new BattlePokemon(3, "butterfree")));
+		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(new BattlePokemon(1, "blastoise"),new BattlePokemon(2, "caterpie"),new BattlePokemon(3, "mew")));
+		Player player1 = new Player(1, "tony", pokemons1);
+		Player player2 = new Player(2, "vytis", pokemons2);
+		List<String> battleLog = battleService.simulateBattle(player1, player2);
+		System.out.println(battleLog);}
 }
