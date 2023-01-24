@@ -12,6 +12,11 @@ public class SiteController {
     @GetMapping("/")
     String getAll(Model model){
 
+        return "home";
+    }
+    @GetMapping("/register")
+    String register(Model model){
+
         return "register";
     }
 
