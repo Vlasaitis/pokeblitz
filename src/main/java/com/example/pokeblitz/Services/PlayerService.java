@@ -23,7 +23,7 @@ public class PlayerService {
     }
 
     Player findUser(String username) {
-        Player player = playerRepository.findByUserName(username);
+        Player player = playerRepository.findByusername(username);
         return player;
     }
 

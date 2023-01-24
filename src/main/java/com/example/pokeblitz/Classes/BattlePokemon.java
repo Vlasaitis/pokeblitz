@@ -14,26 +14,15 @@ public class BattlePokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
-    @Column
     private String name;
-    @Column
     private int hp;
-    @Column
     private int attack;
-    @Column
     private int defense;
-    @Column
     private int speed;
-    @Column
     private String image;
-
     private List<String> types;
-
     private List<String> doubleDamage;
-
     private List<String> halfDamage;
-    @Column
     private Boolean hasTurn;
     // player class here
 
