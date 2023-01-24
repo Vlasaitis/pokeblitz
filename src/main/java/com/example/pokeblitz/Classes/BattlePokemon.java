@@ -144,6 +144,14 @@ public class BattlePokemon {
     public void setHalfDamage(List<String> halfDamage) {
         this.halfDamage = halfDamage;
     }
+
+    public Boolean getTurnConsumed() {
+        return turnConsumed;
+    }
+
+    public void setTurnConsumed(Boolean turnConsumed) {
+        this.turnConsumed = turnConsumed;
+    }
 }
 
 
