@@ -70,4 +70,10 @@ public class PlayerController {
         return "profile";
     }
 
+    @GetMapping("/profile")
+    public String profiles() {
+
+        return "profile";
+    }
+
 }
