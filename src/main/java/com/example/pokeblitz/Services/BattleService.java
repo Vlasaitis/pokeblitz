@@ -13,21 +13,23 @@ public class BattleService {
     public List<String> simulateBattle(Player attacker, Player defender) {
         Random random = new Random();
         List<String> battleLog = new ArrayList<>();
-//        List<BattlePokemon> attackerPokemon = attacker.getStarters();
-//        List<BattlePokemon> defenderPokemon = defender.getStarters();
         boolean attackerTurn = doesAttackerStart(attacker, defender);
         while (true) {
             if(attackerTurn) {
-                battleLog.add(simulateAttack(attacker, defender)); // first pokemon argument attacks, second defends
+                battleLog.add(simulateAttack(attacker, defender, random, battleLog)); // first pokemon argument attacks, second defends
             } else {
-                battleLog.add(simulateAttack(defender, attacker));
+                battleLog.add(simulateAttack(defender, attacker, random, battleLog));
             }
         }
 
 //        return
     }
-    public String simulateAttack(Player attacker, Player defender) {
+    public String simulateAttack(Player attacker, Player defender, Random random, List<String> battleLog) {
         BattlePokemon attackingPokemon = fastestWithTurn(attacker.getStarters());
+        int randomIndex = random.nextInt(defender.getStarters().size());
+        BattlePokemon offer = defender.getStarters().get(randomIndex);
+        offer.setHp(offer.getHp()-10);
+        battleLog.add(attackingPokemon.getName() + " attacks " + offer.getName() + " for 10 damage"); /// kommer ändra damage systemet här, kommer vara variabel
 
         return "hi";
     }

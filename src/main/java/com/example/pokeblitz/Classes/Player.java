@@ -24,6 +24,12 @@ public class Player {
         this.ko = new ArrayList<>();
         this.password = password;
     }
+    public Player(int id, String username, List<BattlePokemon> starters) {
+        this.id = id;
+        this.username = username;
+        this.starters = starters;
+        this.ko = new ArrayList<>();
+    }
 
     public int getId() {
         return id;
