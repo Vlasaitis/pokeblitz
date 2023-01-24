@@ -1,13 +1,19 @@
 package com.example.pokeblitz.Classes;
 
+import jakarta.persistence.*;
 import org.apache.tomcat.util.digester.ArrayStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Player {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column
     private String username;
+    @Column
     private String password;
     private List<BattlePokemon> starters;
     private List<BattlePokemon> ko;
