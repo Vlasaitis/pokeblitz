@@ -4,7 +4,12 @@
 <nav th:replace="fragments :: navigation"></nav>
 <body>
 <main>
-  <h1 th:text="${session.username}">Profil</h1>
+  <div width="150px">
+    <img src="../images/profile.png" width="100px" alt="...">
+    <ul>
+      <li th:text=" 'Welcome ' + ${session.username}"></li> //HJÄLP
+    </ul>
+  </div>
 </main>
 <header>
   <nav>
