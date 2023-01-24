@@ -10,7 +10,7 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String username;
     private String password;
@@ -24,7 +24,7 @@ public class Player {
     public Player() {
     }
 
-    public Player(int id, String username, String password, List<BattlePokemon> starters) {
+    public Player(Long id, String username, String password, List<BattlePokemon> starters) {
         this.id = id;
         this.username = username;
 //        this.allPokemon = allPokemon;
@@ -32,18 +32,18 @@ public class Player {
         this.ko = new ArrayList<>();
         this.password = password;
     }
-    public Player(int id, String username, List<BattlePokemon> starters) {
+    public Player(Long id, String username, List<BattlePokemon> starters) {
         this.id = id;
         this.username = username;
         this.starters = starters;
         this.ko = new ArrayList<>();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
