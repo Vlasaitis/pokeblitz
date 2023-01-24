@@ -3,6 +3,7 @@ package com.example.pokeblitz.Controllers;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Services.PlayerService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +18,7 @@ public class PlayerController {
     public String home(HttpSession session) {
         boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
         if (loggedIn) {
-            return "redirect:/home";
+            return "/profile";
         }
         return "home";
 
@@ -33,7 +34,7 @@ public class PlayerController {
                 session.setAttribute("password", password);
                 session.setAttribute("loggedIn", Boolean.TRUE);
                 session.setAttribute("player", player);
-                return "redirect:/home";
+                return "redirect:/profile";
             }
         }
         return "redirect:/";
@@ -47,7 +48,7 @@ public class PlayerController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute Player player, BindingResult bindingResult, HttpSession session, Model model) //Valid//
+    public String registerUser(@ModelAttribute Player player, BindingResult bindingResult, HttpSession session, Model model)
      {
         if (bindingResult.hasErrors()) {
             return "register";
@@ -56,24 +57,25 @@ public class PlayerController {
         session.setAttribute("player", player);
         session.setAttribute("username", player.getUsername());
         session.setAttribute("loggedIn", Boolean.TRUE);
-        PlayerService.savePlayer(player);
-        return "redirect:/profile";
+        //PlayerService.savePlayer(player);
+        return "redirect:/profile/" + player.getUsername();
+    }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile";
     }
 
     @GetMapping("/profile/{username}")
     public String profile(Model model, @PathVariable String username, HttpSession session) {
-        Player player = PlayerService.findUser(username);
-        model.addAttribute("player", player);
+       // Player player = PlayerService.findUser(username);
+        model.addAttribute("player", session.getAttribute("player"));
         if (session.getAttribute("username").equals(username)) {
-            return "redirect:/profile";
+            return "profile";
         }
         return "profile";
     }
 
-    @GetMapping("/profile")
-    public String profiles() {
 
-        return "profile";
-    }
 
 }

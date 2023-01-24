@@ -6,7 +6,9 @@
 <!--<img src="../images/pokemon.jpg" width="100px" class="card-img-top center" alt="...">-->
 
 <div class="backgroundImage">
-<form>
+<form action="/register" method="post" th:object="${player}">
+    <div style="text-align: center;">
+    <div style="margin: 0 auto;">
     <h1> Register new user</h1>
     <img src="../images/pixabay.webp" alt="image" class="small-image">
     <div>
@@ -14,19 +16,20 @@
             <div>
                 <form action="register.php" method="post"></form>
                 <label>Username</label>
-                <input type="text" id="username" name="firstName">
+                <input type="text" th:field="*{username}">
             </div>
             <div>
                 <label>Password</label>
-                <input type="password" id="password" name="password">
+                <input type="password" th:field="*{password}">
             </div>
             <div>
-                <button><a href="/profile" type="button">Register</a></button>
+                <input type="submit" value="Register">
                 <button><a href="/">Go to login</a></button>
             </div>
         </div>
     </div>
-
+    </div>
+    </div>
 </form>
 </div>
 </body>
