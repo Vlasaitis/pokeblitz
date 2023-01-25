@@ -244,16 +244,14 @@ input[type=text], input[type=password] {
     text-decoration: none;
 }
 
-/*.form-control,
-.form-group{
+.form-control{
     width: auto;
-}*/
+}
 
 .center {
+    display: flex;
+    justify-content: center;
     border: solid;
-    text-align: center;
-    margin: auto;
-    width: 30%;
 }
 
 
