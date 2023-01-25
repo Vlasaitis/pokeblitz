@@ -80,16 +80,6 @@ public class PlayerController {
         return "home";
     }
 
-
-   /* @GetMapping("/profile/{username}")
-    public String profile(HttpSession session) {
-        String player = (String) session.getAttribute("player");
-        if (player != null) {
-            return "profile";
-        }
-        return "home";
-    }*/
-
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
