@@ -2,8 +2,10 @@ package com.example.pokeblitz;
 
 
 import com.example.pokeblitz.Classes.BattlePokemon;
+import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Services.BattleService;
+import com.example.pokeblitz.Services.PackService;
 import com.example.pokeblitz.Services.PlayerService;
 import com.example.pokeblitz.Services.PokemonService;
 import org.junit.jupiter.api.Assertions;
@@ -27,6 +29,8 @@ class PokeBlitzTests {
 	PlayerService playerService;
 	@Autowired
 	PokemonService pokemonService;
+	@Autowired
+	PackService packService;
 
 
 	@Test
@@ -152,5 +156,17 @@ class PokeBlitzTests {
 		assertEquals(0.5, battleService.damageMultiplier(charizard, graveler));
 		assertEquals(1.0, battleService.damageMultiplier(charizard, snorlax));
 
+	}
+	@Test
+	public void openPackTest(){
+		Pack pack = new Pack();
+		pack.setPokemonAmount(3);
+		pack.setTier(1);
+
+		List<BattlePokemon> openedpack = packService.openPack(pack);
+		for (int i = 0; i < openedpack.size(); i++) {
+			System.out.println(openedpack.get(i).getName());
+		}
+		assertEquals(3, openedpack.size());
 	}
 }

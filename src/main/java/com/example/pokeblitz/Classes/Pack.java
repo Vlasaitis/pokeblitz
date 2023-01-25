@@ -13,15 +13,17 @@ public class Pack {
     @JoinColumn(name = "player_id")
     private Player player;
     private boolean used;
+    private int tier;
 
     public Pack() {
     }
 
-    public Pack(int pokemonAmount, int price, Player player, boolean used) {
+    public Pack(int pokemonAmount, int price, Player player, int tier) {
         this.pokemonAmount = pokemonAmount;
         this.price = price;
         this.player = player;
-        this.used = used;
+        this.used = false;
+        this.tier = tier;
     }
 
     public Long getId() {
@@ -62,5 +64,13 @@ public class Pack {
 
     public void setUsed(boolean used) {
         this.used = used;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
     }
 }
