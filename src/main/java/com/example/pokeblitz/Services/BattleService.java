@@ -1,7 +1,12 @@
 package com.example.pokeblitz.Services;
 
+//import com.example.pokeblitz.Classes.Battle;
+import com.example.pokeblitz.Classes.Battle;
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
+import com.example.pokeblitz.Repositories.BattleRepository;
+import com.example.pokeblitz.Repositories.PlayerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +16,11 @@ import java.util.Random;
 @Service
 public class BattleService {
     private Random random = new Random();
+    @Autowired
+    BattleRepository battleRepository;
+    public void createNewBattle(Player winner, Player loser, List<String> battleLog) {
+        battleRepository.save(new Battle(winner, loser, battleLog));
+    }
 
     public List<String> simulateBattle(Player attacker, Player defender) {
         Random random = new Random();

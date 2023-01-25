@@ -46,9 +46,10 @@ public class BattlePokemon {
     public BattlePokemon() {
     }
 
-    public BattlePokemon(Long id, String name) {
+
+
+    public BattlePokemon(String name, Player player) {
         Pokemon poke = Client.getPokemonByName(name);
-        this.id = id;
         this.name = poke.getName().toUpperCase();
         this.maxHp = poke.getStats().get(0).getBaseStat();
         this.currentHp = maxHp;
@@ -61,7 +62,26 @@ public class BattlePokemon {
         this.halfDamage = setHalfDmg(types);
         this.hasTurn = true;
         this.damageDone = 0;
+        this.player = player;
     }
+
+    public BattlePokemon(String name) { //// alt constructor. create a pokemon without having to create a player object. Mostly for tests. Don't have to create player obj to run test.
+        Pokemon poke = Client.getPokemonByName(name);
+        this.name = poke.getName().toUpperCase();
+        this.maxHp = poke.getStats().get(0).getBaseStat();
+        this.currentHp = maxHp;
+        this.attack = poke.getStats().get(1).getBaseStat();
+        this.defense = poke.getStats().get(2).getBaseStat();
+        this.speed = poke.getStats().get(5).getBaseStat();
+        this.image = poke.getSprites().getFrontDefault();
+        this.types = setPokeTypes(poke);
+        this.doubleDamage = setDblDmg(types);
+        this.halfDamage = setHalfDmg(types);
+        this.hasTurn = true;
+        this.damageDone = 0;
+        this.player = new Player();
+    }
+
 
     private List<String> setHalfDmg(List<String> types) {
         List<String> halfDamage = new ArrayList<>();

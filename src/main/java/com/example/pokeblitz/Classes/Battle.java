@@ -2,27 +2,31 @@ package com.example.pokeblitz.Classes;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Battle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "winner_id")
-//    private Player winner;
-//    @ManyToOne
-//    @JoinColumn(name = "loser_id")
-//    private Player loser;
+    @ManyToOne
+    private Player winner;
+    @ManyToOne
+    private Player loser;
+
+    @Transient
+    private List<String> battleLog;
 
 
     public Battle() {
     }
 
-//    public Battle(Player winner, Player loser) {
-//        this.winner = winner;
-//        this.loser = loser;
-//    }
+    public Battle(Player winner, Player loser, List<String> battleLog) {
+        this.winner = winner;
+        this.loser = loser;
+        this.battleLog = battleLog;
+    }
 
     public Long getId() {
         return id;
@@ -32,20 +36,27 @@ public class Battle {
         this.id = id;
     }
 
-//    public Player getLoser() {
-//        return loser;
-//    }
-//
-//    public void setLoser(Player loser) {
-//        this.loser = loser;
-//    }
-//
-//    public Player getWinner() {
-//        return winner;
-//    }
-//
-//    public void setWinner(Player winner) {
-//        this.winner = winner;
-//    }
+    public List<String> getBattleLog() {
+        return battleLog;
+    }
+
+    public void setBattleLog(List<String> battleLog) {
+        this.battleLog = battleLog;
+    }
+    public Player getLoser() {
+        return loser;
+    }
+
+    public void setLoser(Player loser) {
+        this.loser = loser;
+    }
+
+    public Player getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
+    }
 
 }
