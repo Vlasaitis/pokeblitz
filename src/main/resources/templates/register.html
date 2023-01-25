@@ -2,10 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:insert="~{fragments :: head}"></div>
 <div th:insert="~{fragments :: navigation}"></div>
-<body>
-<!--<img src="../images/pokemon.jpg" width="100px" class="card-img-top center" alt="...">-->
+<body class="backgroundImage">
 
-<div class="backgroundImage">
+<div class="backgroundContainerForm">
 <form action="/register" method="post" th:object="${player}">
     <div style="text-align: center;">
     <div style="margin: 0 auto;">
@@ -34,6 +33,5 @@
 </div>
 </body>
 </html>
-
 </body>
 </html>

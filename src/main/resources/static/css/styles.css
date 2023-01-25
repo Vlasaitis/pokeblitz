@@ -1,15 +1,36 @@
 
-.center {
-       background-image: url("../images/pokemon.jpg");
-       background-attachment: fixed;
-       background-repeat: no-repeat;
-       background-color: black;
-       overflow-y: scroll;
-  }
 
 .nav{
     --bs-nav-link-hover-color: black;
      opacity: 1;
+
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.navbar-custom {
+    box-shadow: 10px 10px 20px #aaa;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    filter: brightness(95%);
+    border-radius: 25px;
+    border: 5px solid black;
+    animation: blink 3s linear infinite;
+
 }
 
 .nav-link {
@@ -53,8 +74,59 @@ opacity: 1;
     background-repeat: no-repeat;
     background-color: black;
     overflow-y: scroll;
+    position: relative;
+    top: 25px;
+
 }
 
+/*.backgroundImage {
+    background-image: url("../images/bakgrundsbild2.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-size: cover;
+    height: 100vh;
+    overflow-y: scroll;
+}*/
+
+.backgroundContainer {
+    background-color: white;
+    width: 500px;
+    height: 250px;
+    margin: 0 auto;
+    box-shadow: 10px 10px 20px #aaa;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    filter: brightness(95%);
+    border-radius: 25px;
+    margin-top: 2cm
+
+}
+.backgroundContainerForm {
+      background-color: white;
+      width: 500px;
+      height: 600px;
+      margin: 0 auto;
+      box-shadow: 20px 20px 30px #aaa;
+      box-shadow: 10px 10px 20px #aaa;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+      filter: brightness(95%);
+      border-radius: 25px;
+      margin-top: 2cm
+
+}
+.backgroundContainerProfile {
+      background-color: white;
+      width: 500px;
+      height: 400px;
+      margin: 0 auto;
+      box-shadow: 20px 20px 30px #aaa;
+      box-shadow: 10px 10px 20px #aaa;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+      filter: brightness(95%);
+      border-radius: 25px;
+      margin-top: 2cm
+
+}
 
 
 form {
@@ -62,10 +134,30 @@ form {
     margin-right: 4rem;
 }
 
+@keyframes color-change {
+  0% {
+    color: Green;
+  }
+  25% {
+    color: orange;
+  }
+  50% {
+    color: blue;
+  }
+  75% {
+    color: yellow;
+  }
+  100% {
+    color: black;
+  }
+}
+
 h1 {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
+    margin-bottom: 60px;
+    animation: color-change 5s ease-in-out infinite;
 }
 
 .d-flex {
