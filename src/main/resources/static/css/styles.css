@@ -10,6 +10,7 @@ h1 {
 
 body{
    background-color: #F9F8F5;
+   font-family: 'Roboto Flex', sans-serif;
 }
 
 .is-invalid{
@@ -40,11 +41,11 @@ body{
 }
 
 .angry-pokemon2{
-    width: 322px;
+    width: 512px;
     opacity: 0.5;
-    z-index: 0;
     position: fixed;
-    margin-left: 100px;
+    margin-left: 34px;
+    top: 150px;
 }
 
 /* NAV */
