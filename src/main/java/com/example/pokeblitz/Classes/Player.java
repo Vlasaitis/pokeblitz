@@ -1,6 +1,8 @@
 package com.example.pokeblitz.Classes;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +14,12 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    @NotEmpty(message = "Empty Username")
+    @Size (max = 15, message = "Username can max be 20 characters")
     private String username;
     @Column
+    @NotEmpty(message = "Empty Password")
+    @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
     @Column
     private String email;

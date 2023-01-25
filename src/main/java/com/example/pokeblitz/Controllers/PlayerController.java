@@ -48,7 +48,7 @@ public class PlayerController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute Player player, BindingResult bindingResult, HttpSession session, Model model)
+    public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session, Model model)
      {
         if (bindingResult.hasErrors()) {
             return "register";
@@ -73,8 +73,25 @@ public class PlayerController {
         if (session.getAttribute("username").equals(username)) {
             return "profile";
         }
-        return "profile";
+        return "home";
     }
+
+
+   /* @GetMapping("/profile/{username}")
+    public String profile(HttpSession session) {
+        String player = (String) session.getAttribute("player");
+        if (player != null) {
+            return "profile";
+        }
+        return "home";
+    }*/
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
+
 
 
 

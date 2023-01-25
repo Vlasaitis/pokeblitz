@@ -15,14 +15,16 @@
             <div>
                 <form action="register.php" method="post"></form>
                 <label>Username</label>
-                <input type="text" th:field="*{username}">
+                <p th:if="${#fields.hasErrors('username')}">Incorrect value in username!</p>
+                <input type="text" name="username" th:classappend="${#fields.hasErrors('username')}?'is-invalid':''" th:value="${player.username}" th:field="*{username}">
             </div>
             <div>
                 <label>Password</label>
-                <input type="password" th:field="*{password}">
+                <p th:if="${#fields.hasErrors('password')}">Incorrect value in password!</p>
+                <input type="password" name="password" th:classappend="${#fields.hasErrors('password')}?'is-invalid':''" th:value="${player.password}" th:field="*{password}">
             </div>
             <div>
-                <input type="submit" value="Register">
+                <input class="button" type="submit" value="Register">
                 <button><a href="/">Go to login</a></button>
             </div>
         </div>
