@@ -31,10 +31,10 @@
 
 .nav-link {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 12px !important;
   text-transform: uppercase;
   text-decoration: none;
-  color: black;
+  color: black !important;
   padding: 20px 0px;
   margin: 0px 20px;
   display: inline-block;
@@ -43,12 +43,11 @@
 }
 
 .nav-link:hover {
-opacity: 1;
+color: black !important;
 }
 
 .nav-link::before {
-  transition: 150ms;
-  height: 5px;
+
   content: "";
   position: absolute;
   background-color: black;
@@ -61,7 +60,7 @@ opacity: 1;
 }
 
 .nav-link-grow-up:hover::before {
-  height: 5px;
+  height: 2px !important;
 }
 
 .backgroundImage {
@@ -111,7 +110,7 @@ opacity: 1;
       margin-top: 2cm
 }
 
-button .button{
+/*button .button{
     font-size: 1rem;
     padding: 0.75rem 1.5rem;
     border-radius: 0.25rem;
@@ -120,7 +119,7 @@ button .button{
     border: 1px;
     cursor: pointer;
     margin-top: 0.75cm
-}
+}*/
 
 .backgroundContainerProfile {
       background-color: white;
@@ -133,13 +132,12 @@ button .button{
       filter: brightness(95%);
       border-radius: 25px;
       margin-top: 2cm
-
 }
 
-form {
+/*form {
     margin: 2rem;
     margin-right: 4rem;
-}
+}*/
 
 @keyframes color-change {
   0% {
@@ -165,10 +163,6 @@ h1 {
     text-align: center;
     margin-bottom: 60px;
     /* animation: color-change 5s ease-in-out infinite; */
-}
-
-.d-flex {
-    display: flex;
 }
 
 .flex-row {
@@ -206,21 +200,23 @@ label {
     margin-bottom: 0.5rem;
 }
 
-input[type="text"] {
-    font-size: 1.2rem;
+input[type=text], input[type=password] {
+    /*font-size: 1.2rem;
     padding: 0.5rem;
-    margin-bottom: 1rem;
+    margin: auto;
     border-radius: 0.25rem;
     border: 1px solid #ccc;
+    */
+    box-sizing: content-box;
 }
 
-.d-flex {
+/*.d-flex {
     display: flex;
-}
+}*/
 
-.justify-content-center {
+/*.justify-content-center {
     justify-content: center;
-}
+}*/
 
 .mx-4 {
     margin-right: 4rem;
@@ -237,6 +233,27 @@ input[type="text"] {
 
 .is-invalid{
   border: 1px solid red;
+}
+
+.btn-sm{
+    padding: 10px;
+}
+
+.btn a{
+    color: white;
+    text-decoration: none;
+}
+
+/*.form-control,
+.form-group{
+    width: auto;
+}*/
+
+.center {
+    border: solid;
+    text-align: center;
+    margin: auto;
+    width: 30%;
 }
 
 
