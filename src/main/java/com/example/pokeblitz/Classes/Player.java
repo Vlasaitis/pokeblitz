@@ -35,10 +35,51 @@ public class Player {
     private List<BattlePokemon> ko;
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private List<Pack> packs;
-//    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
-//    private List<Battle> battleHistory;
+
+//    @OneToMany(mappedBy = "winner", cascade = CascadeType.ALL)
+//    private List<Battle> winningBattleHistory;
+//
+//    @OneToMany(mappedBy = "loser", cascade = CascadeType.ALL)
+//    private List<Battle> losingBattleHistory;
 
     public Player() {
+    }
+
+    public Player(String username, String password, String email, List<Pack> packs) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.elo = 1000;
+        this.coins = 500;
+        this.wins = 0;
+        this.losses = 0;
+        this.allPokemon = new ArrayList<>();
+        this.starters = new ArrayList<>();
+        this.ko = new ArrayList<>();
+        this.packs = giveStarterPack();
+//        this.winningBattleHistory = new ArrayList<>();
+//        this.losingBattleHistory = new ArrayList<>();
+    }
+
+//    public List<Battle> getWinningBattleHistory() {
+//        return winningBattleHistory;
+//    }
+//
+//    public void setWinningBattleHistory(List<Battle> winningBattleHistory) {
+//        this.winningBattleHistory = winningBattleHistory;
+//    }
+//
+//    public List<Battle> getLosingBattleHistory() {
+//        return losingBattleHistory;
+//    }
+//
+//    public void setLosingBattleHistory(List<Battle> losingBattleHistory) {
+//        this.losingBattleHistory = losingBattleHistory;
+//    }
+
+    private List<Pack> giveStarterPack() {
+        List<Pack> starterPack = new ArrayList<>(); /// utveckla
+        return starterPack;
     }
 
     public Player(Long id, String username, String password, List<BattlePokemon> starters) {
@@ -120,13 +161,7 @@ public class Player {
         this.coins = coins;
     }
 
-//    public List<Battle> getBattleHistory() {
-//        return battleHistory;
-//    }
-//
-//    public void setBattleHistory(List<Battle> battleHistory) {
-//        this.battleHistory = battleHistory;
-//    }
+
 
     public int getWins() {
         return wins;

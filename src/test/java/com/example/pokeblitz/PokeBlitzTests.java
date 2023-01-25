@@ -101,6 +101,8 @@ class PokeBlitzTests {
 			System.out.println(battleLog.get(i));
 		}
 
+//		battleService.createNewBattle(player1, player2, battleLog);
+
 	}
 
 	@Test
