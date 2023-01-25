@@ -36,16 +36,19 @@ public class Player {
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private List<Pack> packs;
 
-//    @OneToMany(mappedBy = "winner", cascade = CascadeType.ALL)
-//    private List<Battle> winningBattleHistory;
-//
-//    @OneToMany(mappedBy = "loser", cascade = CascadeType.ALL)
-//    private List<Battle> losingBattleHistory;
+    @OneToMany(mappedBy = "winner", cascade = CascadeType.ALL)
+    private List<Battle> winningBattleHistory;
+
+    @OneToMany(mappedBy = "loser", cascade = CascadeType.ALL)
+    private List<Battle> losingBattleHistory;
+
+    @Transient
+    private List<Battle> fullBattleHistory;
 
     public Player() {
     }
 
-    public Player(String username, String password, String email, List<Pack> packs) {
+    public Player(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -57,44 +60,38 @@ public class Player {
         this.starters = new ArrayList<>();
         this.ko = new ArrayList<>();
         this.packs = giveStarterPack();
-//        this.winningBattleHistory = new ArrayList<>();
-//        this.losingBattleHistory = new ArrayList<>();
+        this.winningBattleHistory = new ArrayList<>();
+        this.losingBattleHistory = new ArrayList<>();
+        this.fullBattleHistory = new ArrayList<>();
     }
 
-//    public List<Battle> getWinningBattleHistory() {
-//        return winningBattleHistory;
-//    }
-//
-//    public void setWinningBattleHistory(List<Battle> winningBattleHistory) {
-//        this.winningBattleHistory = winningBattleHistory;
-//    }
-//
-//    public List<Battle> getLosingBattleHistory() {
-//        return losingBattleHistory;
-//    }
-//
-//    public void setLosingBattleHistory(List<Battle> losingBattleHistory) {
-//        this.losingBattleHistory = losingBattleHistory;
-//    }
+    public List<Battle> getWinningBattleHistory() {
+        return winningBattleHistory;
+    }
+
+    public void setWinningBattleHistory(List<Battle> winningBattleHistory) {
+        this.winningBattleHistory = winningBattleHistory;
+    }
+
+    public List<Battle> getLosingBattleHistory() {
+        return losingBattleHistory;
+    }
+
+    public void setLosingBattleHistory(List<Battle> losingBattleHistory) {
+        this.losingBattleHistory = losingBattleHistory;
+    }
 
     private List<Pack> giveStarterPack() {
         List<Pack> starterPack = new ArrayList<>(); /// utveckla
         return starterPack;
     }
 
-    public Player(Long id, String username, String password, List<BattlePokemon> starters) {
-        this.id = id;
-        this.username = username;
-//        this.allPokemon = allPokemon;
-        this.starters = starters;
-        this.ko = new ArrayList<>();
-        this.password = password;
+    public List<Battle> getFullBattleHistory() {
+        return fullBattleHistory;
     }
-    public Player(Long id, String username, List<BattlePokemon> starters) {
-        this.id = id;
-        this.username = username;
-        this.starters = starters;
-        this.ko = new ArrayList<>();
+
+    public void setFullBattleHistory(List<Battle> fullBattleHistory) {
+        this.fullBattleHistory = fullBattleHistory;
     }
 
     public Long getId() {

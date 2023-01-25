@@ -4,6 +4,8 @@ package com.example.pokeblitz;
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Services.BattleService;
+import com.example.pokeblitz.Services.PlayerService;
+import com.example.pokeblitz.Services.PokemonService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,11 @@ class PokeBlitzTests {
 
 	@Autowired
 	BattleService battleService;
+	@Autowired
+	PlayerService playerService;
+	@Autowired
+	PokemonService pokemonService;
+
 
 	@Test
 	void contextLoads() {
@@ -28,7 +35,7 @@ class PokeBlitzTests {
 
 	@Test
 	public void battlePokemonConstructorTest() {
-		BattlePokemon testPokemon = new BattlePokemon(1L, "bulbasaur");
+		BattlePokemon testPokemon = new BattlePokemon("bulbasaur");
 
 		assertEquals(45, testPokemon.getMaxHp());
 		assertEquals(49, testPokemon.getAttack());
@@ -50,16 +57,20 @@ class PokeBlitzTests {
 
 	@Test
 	public void battleDetermineOrderTest() {
-		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(new BattlePokemon(1L, "pikachu"), new BattlePokemon(2L, "wartortle"), new BattlePokemon(3L, "butterfree")));
-		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(new BattlePokemon(1L, "blastoise"), new BattlePokemon(2L, "caterpie"), new BattlePokemon(3L, "mew")));
-		Player attacker = new Player(1L, "tony", pokemons1);
-		Player defender = new Player(2L, "vytis", pokemons2);
+		Player attacker = playerService.savePlayer(new Player("Tony", "Banan", "vvv@hot.com"));
+		Player defender = playerService.savePlayer(new Player("Vytis", "Bananas", "www@hot.com"));
+
+		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu", attacker)) , pokemonService.savePokemon(new BattlePokemon("wartortle", attacker)), pokemonService.savePokemon(new BattlePokemon("butterfree", attacker))));
+		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise", defender)) , pokemonService.savePokemon(new BattlePokemon("caterpie", defender)), pokemonService.savePokemon(new BattlePokemon("mew", defender))));
+
+		attacker.setStarters(pokemons1);
+		defender.setStarters(pokemons2);
 
 		boolean attackerStarts = battleService.doesAttackerStart(attacker, defender);
 		assertEquals(false, attackerStarts);
 
 		defender.getStarters().remove(2);
-		defender.getStarters().add(new BattlePokemon(3L, "charmander"));
+		defender.getStarters().add(new BattlePokemon("charmander"));
 		boolean attackStarts2 = battleService.doesAttackerStart(attacker, defender);
 
 		assertEquals(true, attackStarts2);
@@ -68,9 +79,9 @@ class PokeBlitzTests {
 
 	@Test
 	public void findFastestWithTurnTest() {
-		BattlePokemon blastoise = new BattlePokemon(1L, "blastoise");
-		BattlePokemon caterpie = new BattlePokemon(1L, "caterpie");
-		BattlePokemon mew = new BattlePokemon(1L, "mew");
+		BattlePokemon blastoise = new BattlePokemon("blastoise");
+		BattlePokemon caterpie = new BattlePokemon("caterpie");
+		BattlePokemon mew = new BattlePokemon("mew");
 		List<BattlePokemon> pokemons = Arrays.asList(blastoise, caterpie, mew);
 
 		BattlePokemon fastestWithTurn = battleService.fastestWithTurn(pokemons);
@@ -89,10 +100,15 @@ class PokeBlitzTests {
 
 	@Test
 	public void simulateBattleTest() {
-		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(new BattlePokemon(1L, "pikachu"), new BattlePokemon(2L, "wartortle"), new BattlePokemon(3L, "butterfree")));
-		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(new BattlePokemon(1L, "blastoise"), new BattlePokemon(2L, "caterpie"), new BattlePokemon(3L, "mew")));
-		Player player1 = new Player(1L, "tony", pokemons1);
-		Player player2 = new Player(2L, "vytis", pokemons2);
+		Player player1 = playerService.savePlayer(new Player("Tony", "Banan", "vvv@hot.com"));
+		Player player2 = playerService.savePlayer(new Player("Vytis", "Bananas", "www@hot.com"));
+
+		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu", player1)) , pokemonService.savePokemon(new BattlePokemon("wartortle", player1)), pokemonService.savePokemon(new BattlePokemon("butterfree", player1))));
+		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise", player2)) , pokemonService.savePokemon(new BattlePokemon("caterpie", player2)), pokemonService.savePokemon(new BattlePokemon("mew", player2))));
+
+		player1.setStarters(pokemons1);
+		player2.setStarters(pokemons2);
+
 		List<String> battleLog = battleService.simulateBattle(player1, player2);
 
 		Assertions.assertFalse(battleLog.isEmpty());
@@ -101,16 +117,20 @@ class PokeBlitzTests {
 			System.out.println(battleLog.get(i));
 		}
 
-//		battleService.createNewBattle(player1, player2, battleLog);
+		battleService.createNewBattle(playerService.savePlayer(player1), playerService.savePlayer(player2), battleLog);
 
 	}
 
 	@Test
 	public void healAllPokemontest() {
-		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(new BattlePokemon(1L, "pikachu"), new BattlePokemon(2L, "wartortle"), new BattlePokemon(3L, "butterfree")));
-		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(new BattlePokemon(1L, "blastoise"), new BattlePokemon(2L, "caterpie"), new BattlePokemon(3L, "mew")));
-		Player player1 = new Player(1L, "tony", pokemons1);
-		Player player2 = new Player(2L, "vytis", pokemons2);
+		Player player1 = playerService.savePlayer(new Player("Tony", "Banan", "vvv@hot.com"));
+		Player player2 = playerService.savePlayer(new Player("Vytis", "Bananas", "www@hot.com"));
+
+		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu", player1)) , pokemonService.savePokemon(new BattlePokemon("wartortle", player1)), pokemonService.savePokemon(new BattlePokemon("butterfree", player1))));
+		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise", player2)) , pokemonService.savePokemon(new BattlePokemon("caterpie", player2)), pokemonService.savePokemon(new BattlePokemon("mew", player2))));
+
+		player1.setStarters(pokemons1);
+		player2.setStarters(pokemons2);
 
 		pokemons2.get(2).setCurrentHp(50);
 
@@ -121,11 +141,11 @@ class PokeBlitzTests {
 	}
 	@Test
 	public void damageMultiplierTest (){
-		BattlePokemon charizard = new BattlePokemon(1L, "charizard");
-		BattlePokemon caterpie = new BattlePokemon(2L, "caterpie");
-		BattlePokemon blastoise = new BattlePokemon(3L, "blastoise");
-		BattlePokemon graveler = new BattlePokemon(3L, "graveler");
-		BattlePokemon snorlax = new BattlePokemon(3L, "snorlax");
+		BattlePokemon charizard = new BattlePokemon("charizard");
+		BattlePokemon caterpie = new BattlePokemon("caterpie");
+		BattlePokemon blastoise = new BattlePokemon( "blastoise");
+		BattlePokemon graveler = new BattlePokemon( "graveler");
+		BattlePokemon snorlax = new BattlePokemon( "snorlax");
 
 		assertEquals(2.0, battleService.damageMultiplier(charizard, caterpie));
 		assertEquals(0.5, battleService.damageMultiplier(charizard, blastoise));
