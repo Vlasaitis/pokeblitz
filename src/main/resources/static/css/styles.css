@@ -8,15 +8,43 @@ h1 {
     /* animation: color-change 5s ease-in-out infinite; */
 }
 
+body{
+   background-color: #F9F8F5;
+}
+
 .is-invalid{
   border: 1px solid red;
 }
 
-.center {
+.align-center {
+    display: block;
+    border: solid;
+    border-color: #FFD4B2;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 30px;
+    background-color: #F9F9F9;
+}
+
+.flex-center{
     display: flex;
     justify-content: center;
-    align-items: center;
-    border: solid;
+}
+
+.angry-pokemon{
+    width: 322px;
+    opacity: 0.5;
+    z-index: 0;
+    position: fixed;
+    margin-left: 100px;
+}
+
+.angry-pokemon2{
+    width: 322px;
+    opacity: 0.5;
+    z-index: 0;
+    position: fixed;
+    margin-left: 100px;
 }
 
 /* NAV */
@@ -85,6 +113,8 @@ input[type=text], input[type=password] {
 
 .btn-sm{
     padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .btn a{
@@ -92,6 +122,13 @@ input[type=text], input[type=password] {
     text-decoration: none;
 }
 
+.btn-success{
+    /*work in progress*/
+}
+
+.btn-row{
+    text-align: center;
+}
 
 /*.flex-row {
     flex-direction: row;
