@@ -61,8 +61,8 @@ class PokeBlitzTests {
 
 	@Test
 	public void battleDetermineOrderTest() {
-		Player attacker = playerService.savePlayer(new Player("Tony", "Banan", "vvv@hot.com"));
-		Player defender = playerService.savePlayer(new Player("Vytis", "Bananas", "www@hot.com"));
+		Player attacker = playerService.savePlayer(new Player("Tony", "Bananananas", "vvv@hot.com"));
+		Player defender = playerService.savePlayer(new Player("Vytis", "Bananananas", "www@hot.com"));
 
 		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu", attacker)) , pokemonService.savePokemon(new BattlePokemon("wartortle", attacker)), pokemonService.savePokemon(new BattlePokemon("butterfree", attacker))));
 		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise", defender)) , pokemonService.savePokemon(new BattlePokemon("caterpie", defender)), pokemonService.savePokemon(new BattlePokemon("mew", defender))));
@@ -104,8 +104,8 @@ class PokeBlitzTests {
 
 	@Test
 	public void simulateBattleTest() {
-		Player player1 = playerService.savePlayer(new Player("Tony", "Banan", "vvv@hot.com"));
-		Player player2 = playerService.savePlayer(new Player("Vytis", "Bananas", "www@hot.com"));
+		Player player1 = playerService.savePlayer(new Player("Tony", "Bananananas", "vvv@hot.com"));
+		Player player2 = playerService.savePlayer(new Player("Vytis", "Bananananas", "www@hot.com"));
 
 		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu", player1)) , pokemonService.savePokemon(new BattlePokemon("wartortle", player1)), pokemonService.savePokemon(new BattlePokemon("butterfree", player1))));
 		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise", player2)) , pokemonService.savePokemon(new BattlePokemon("caterpie", player2)), pokemonService.savePokemon(new BattlePokemon("mew", player2))));
@@ -127,8 +127,8 @@ class PokeBlitzTests {
 
 	@Test
 	public void healAllPokemontest() {
-		Player player1 = playerService.savePlayer(new Player("Tony", "Banan", "vvv@hot.com"));
-		Player player2 = playerService.savePlayer(new Player("Vytis", "Bananas", "www@hot.com"));
+		Player player1 = playerService.savePlayer(new Player("Tony", "Bananananas", "vvv@hot.com"));
+		Player player2 = playerService.savePlayer(new Player("Vytis", "Bananananas", "www@hot.com"));
 
 		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu", player1)) , pokemonService.savePokemon(new BattlePokemon("wartortle", player1)), pokemonService.savePokemon(new BattlePokemon("butterfree", player1))));
 		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise", player2)) , pokemonService.savePokemon(new BattlePokemon("caterpie", player2)), pokemonService.savePokemon(new BattlePokemon("mew", player2))));
@@ -159,14 +159,15 @@ class PokeBlitzTests {
 	}
 	@Test
 	public void openPackTest(){
-		Pack pack = new Pack();
-		pack.setPokemonAmount(3);
-		pack.setTier(1);
+		Player player1 = playerService.savePlayer(new Player("Tony", "Bananananas", "vvv@hot.com"));
+		Pack pack = packService.savePack(new Pack(3,100,player1,1));
 
 		List<BattlePokemon> openedpack = packService.openPack(pack);
 		for (int i = 0; i < openedpack.size(); i++) {
 			System.out.println(openedpack.get(i).getName());
 		}
 		assertEquals(3, openedpack.size());
+
+
 	}
 }

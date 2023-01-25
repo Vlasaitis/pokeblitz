@@ -3,9 +3,11 @@ package com.example.pokeblitz.Services;
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
+import com.example.pokeblitz.Repositories.PackRepository;
 import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
 import com.github.oscar0812.pokeapi.utils.Client;
 import org.hibernate.loader.BatchLoadSizingStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,7 +15,16 @@ import java.util.List;
 import java.util.Random;
 @Service
 public class PackService {
-private Random random = new Random();
+
+    @Autowired
+    PackRepository packRepository;
+    private Random random = new Random();
+
+    public Pack savePack(Pack pack) {
+        return packRepository.save(pack);
+    }
+
+
     public List<BattlePokemon> openPack(Pack pack){
         List<BattlePokemon> tierPack = adjustListBasedOnTier(pack.getTier());
         List<BattlePokemon> packPokemon = new ArrayList<>();
@@ -23,6 +34,7 @@ private Random random = new Random();
         }
         return packPokemon;
     }
+
     private List<BattlePokemon> adjustListBasedOnTier(int tier) {
         List<Pokemon> allPokemon = new ArrayList<>();
 
@@ -34,6 +46,7 @@ private Random random = new Random();
         List<BattlePokemon> uncommon = new ArrayList<>();
         List<BattlePokemon> rare = new ArrayList<>();
         List<BattlePokemon> epic = new ArrayList<>();
+
         for (int i = 0; i < allPokemon.size(); i++) {
             int powerLevel = allPokemon.get(i).getStats().get(0).getBaseStat() + allPokemon.get(i).getStats().get(1).getBaseStat() + allPokemon.get(i).getStats().get(2).getBaseStat() + allPokemon.get(i).getStats().get(5).getBaseStat();
 
