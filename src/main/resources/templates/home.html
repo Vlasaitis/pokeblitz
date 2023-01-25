@@ -2,10 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: head}"></head>
 <nav th:replace="~{fragments :: navigation}"></nav>
-<body class="backgroundImage">
+
+<body>
 
 <div class="backgroundContainer">
 <form class="backgroundForm">
+
     <div style="text-align: center;">
         <div style="margin: 0 auto;">
     <h1>Login to start battle!</h1>
@@ -13,12 +15,11 @@
     <div>
         <div>
             <div>
-
-                <label  for="username">Username</label>
+                <label>Username</label>
                 <input type="text" name="username">
             </div>
             <div>
-                <label for="password">Password</label>
+                <label>Password</label>
                 <input type="password" name="password">
             </div>
             <div>
