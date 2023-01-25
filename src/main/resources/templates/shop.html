@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:insert="~{fragments :: head}"></div>
+<div th:insert="~{fragments :: navigation}"></div>
+<body>
+
+<table class="table table-striped table-dark align-middle container">
+
+  <h2 class="snackMovie">Filmer</h2>
+
+  <div class="Panel">
+    <div class="movieMenu" th:each="movie : ${movies}">
+
+      <div class="poster">
+        <a th:href= "'/movies/'+ ${movie.id}"> <img class="homePageImage"  th:src="'/images/' + ${movie.imageName} "></a>
+      </div>
+      <span><p th:text="${movie.title}"></p></span>
+    </div>
+  </div>
+</table>
+
+</body>
+</html>
