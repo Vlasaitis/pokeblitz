@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "BattlePokemons")
+@Table(name = "battle_pokemon")
 public class BattlePokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

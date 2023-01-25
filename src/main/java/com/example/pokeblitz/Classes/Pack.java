@@ -3,6 +3,7 @@ package com.example.pokeblitz.Classes;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "pack")
 public class Pack {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

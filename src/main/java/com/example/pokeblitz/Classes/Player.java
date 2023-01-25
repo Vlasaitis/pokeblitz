@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "player")
 public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "player_id")
     private Long id;
-    @Column
     private String username;
     @Column
     private String password;
@@ -21,7 +22,6 @@ public class Player {
     private int elo;
     @Column
     private int coins;
-
     @Column
     private int wins;
     @Column
