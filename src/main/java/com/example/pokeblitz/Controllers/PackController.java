@@ -6,14 +6,11 @@ import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Services.PackService;
 import com.example.pokeblitz.Services.PlayerService;
 import com.example.pokeblitz.Services.PokemonService;
-import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,7 +21,6 @@ import java.util.List;
 public class PackController {
     @Autowired
     PlayerService playerService;
-
     @Autowired
     PackService packService;
     @Autowired
@@ -44,7 +40,6 @@ public class PackController {
         Player player = (Player) session.getAttribute("player");
 
         List<BattlePokemon> openedPokemon = packService.openPackAndUpdateDB(packId, player);
-
 
         session.setAttribute("loot", openedPokemon);
         return "openedPack";

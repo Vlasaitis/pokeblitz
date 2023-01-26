@@ -5,32 +5,32 @@
 <body class="backgroundImage">
 
 <div class="backgroundContainerForm">
-<form th:action=@{/register} method="post" th:object="${player}">
-    <div style="text-align: center;">
-    <div style="margin: 0 auto;">
-    <h1> Register new user</h1>
-    <img src="../images/pixabay.webp" alt="image" class="small-image">
-    <div>
-        <div>
-            <div>
-                <label>Username</label>
-                <p th:if="${#fields.hasErrors('username')}">Incorrect value in username!</p>
-                <input type="text" name="username" th:classappend="${#fields.hasErrors('username')}?'is-invalid':''" th:value="${player.username}" th:field="*{username}">
-            </div>
-            <div>
-                <label>Password</label>
-                <p th:if="${#fields.hasErrors('password')}">Incorrect value in password!</p>
-                <input type="password" name="password" th:classappend="${#fields.hasErrors('password')}?'is-invalid':''" th:value="${player.password}" th:field="*{password}">
-            </div>
-            <div>
-                <input class="button" type="submit" value="Register">
-                <button><a href="/">Go to login</a></button>
+    <form th:action=@{/register} method="post" th:object="${player}">
+        <div style="text-align: center;">
+            <div style="margin: 0 auto;">
+                <h1> Register new user</h1>
+                <img src="../images/pixabay.webp" alt="image" class="small-image">
+                <div>
+                    <div>
+                        <div>
+                            <label>Username</label>
+                            <p th:if="${#fields.hasErrors('username')}">Incorrect value in username!</p>
+                            <input type="text" name="username" th:classappend="${#fields.hasErrors('username')}?'is-invalid':''" th:value="${player.username}" th:field="*{username}">
+                        </div>
+                        <div>
+                            <label>Password</label>
+                            <p th:if="${#fields.hasErrors('password')}">Incorrect value in password!</p>
+                            <input type="password" name="password" th:classappend="${#fields.hasErrors('password')}?'is-invalid':''" th:value="${player.password}" th:field="*{password}">
+                        </div>
+                        <div>
+                            <input class="button" type="submit" value="Register">
+                            <button><a href="/">Go to login</a></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
-</form>
+    </form>
 </div>
 </body>
 </html>

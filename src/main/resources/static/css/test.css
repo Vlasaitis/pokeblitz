@@ -1,0 +1,306 @@
+/*GENERAL*/
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 60px;
+    /* animation: color-change 5s ease-in-out infinite; */
+}
+
+body{
+   background-color: #F9F8F5;
+   font-family: 'Poppins', sans-serif;
+     /*font-family: 'Roboto Flex', sans-serif;*/
+}
+
+.is-invalid{
+  border: 1px solid red;
+}
+
+.align-center {
+    display: block;
+    border: solid;
+    border-color: #FFD4B2;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 30px;
+    background-color: #F9F9F9;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+.angry-pokemon{
+    width: 322px;
+    opacity: 0.5;
+    z-index: 0;
+    position: fixed;
+    margin-left: 100px;
+}
+
+.angry-pokemon2{
+    width: 512px;
+    opacity: 0.5;
+    position: fixed;
+    margin-left: 34px;
+    top: 150px;
+}
+
+/* NAV */
+
+.nav{
+    --bs-nav-link-hover-color: black;
+}
+
+.navbar-custom {
+    box-shadow: 10px 10px 20px #aaa;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)); */
+    filter: brightness(95%); */
+    border-radius: 25px;
+    border: 5px solid black;
+    animation: blink 3s linear infinite;
+}
+
+.nav-link {
+   font-weight: bold;
+   font-size: 12px !important;
+   text-transform: uppercase;
+   text-decoration: none;
+   color: black !important;
+   padding: 20px 0px;
+   margin: 0px 20px;
+   display: inline-block;
+   position: relative;
+   opacity: 0.8;
+}
+
+.nav-link:hover {
+color: black !important;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  background-color: black;
+}
+
+.nav-link-grow-up::before {
+  height: 0%;
+  width: 100%;
+  bottom: 0px;
+}
+
+.nav-link-grow-up:hover::before {
+  height: 2px !important;
+}
+
+/*FORM/INPUT/BTN*/
+
+.form-control{
+    width: auto;
+}
+
+input[type=text], input[type=password] {
+    /*font-size: 1.2rem;
+    padding: 0.5rem;
+    margin: auto;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    */
+    box-sizing: content-box;
+}
+
+.btn-sm{
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.btn a{
+    color: white;
+    text-decoration: none;
+}
+
+.btn-success{
+    /*work in progress*/
+}
+
+.btn-row{
+    text-align: center;
+}
+
+.backgroundContainer {
+    background-color: white;
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+    box-shadow: 10px 10px 20px #aaa;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    filter: brightness(95%);
+    border-radius: 25px;
+    margin-top: 2cm
+}
+
+.backgroundContainerProfile {
+      background-color: white;
+      width: 500px;
+      height: 700px;
+      margin: 0 auto;
+      box-shadow: 20px 20px 30px #aaa;
+      box-shadow: 10px 10px 20px #aaa;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+      filter: brightness(95%);
+      border-radius: 25px;
+      margin-top: 2cm
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
+}
+
+.me-3 {
+    margin-right: 3rem;
+}
+
+.fa-lg {
+    font-size: 2rem;
+}
+
+.fa-fw {
+    width: 2rem;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.mx-4 {
+    margin-right: 4rem;
+    margin-left: 4rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.mb-lg-4 {
+    margin-bottom: 4rem;
+}
+
+.form-outline {
+    border: 1px solid #ccc;
+    padding: 1rem;
+}
+
+label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes color-change {
+  0% {
+    color: Green;
+  }
+  25% {
+    color: orange;
+  }
+  50% {
+    color: black;
+  }
+  75% {
+    color: green;
+  }
+  100% {
+    color: orange;
+  }
+
+
+}
+
+button .button{
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    button-background-color: #orange;
+    text-decoration: none;
+    border: 1px;
+    cursor: pointer;
+    margin-top: 0.75cm
+}
+
+form {
+    margin: 2rem;
+    margin-right: 4rem;
+}
+
+.backgroundImage {
+    background-image: url("../images/bakgrundsbild2.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-size: cover;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+
+.backgroundImage {
+    background-image: url("../images/pokemon.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: black;
+    overflow-y: scroll;
+    position: relative;
+    top: 25px;
+}
+
+.backgroundContainerForm {
+      background-color: white;
+      width: 500px;
+      height: 700px;
+      margin: 0 auto;
+      box-shadow: 20px 20px 30px #aaa;
+      box-shadow: 10px 10px 20px #aaa;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+      filter: brightness(95%);
+      border-radius: 25px;
+      margin-top: 2cm
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+*/

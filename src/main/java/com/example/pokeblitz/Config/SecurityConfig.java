@@ -1,6 +1,5 @@
 package com.example.pokeblitz.Config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,7 +20,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests()
                 .requestMatchers("/", "/login", "/register", "/css/**","/images/**").permitAll()
-                .anyRequest().authenticated();
+                .anyRequest().authenticated().and().csrf().disable();
+        http.headers().frameOptions().disable();
 
         http.formLogin()
                 .loginPage("/login")
@@ -30,9 +30,7 @@ public class SecurityConfig {
 
         http.logout().logoutSuccessUrl("/");
 
-
         return http.build();
-
 
     }
     @Bean
