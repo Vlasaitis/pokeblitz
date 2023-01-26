@@ -1,23 +1,26 @@
 package com.example.pokeblitz.Config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/login", "/register", "/css/**","/images/**", "/h2/**", "/h2-console/**").permitAll()
-                .requestMatchers("/profile/**").hasRole("USER")
+                .requestMatchers("/", "/login", "/register", "/css/**","/images/**").permitAll()
                 .anyRequest().authenticated();
 
         http.formLogin()
@@ -38,5 +41,19 @@ public class SecurityConfig {
         manager.createUser(User.withDefaultPasswordEncoder().username("user").password("123").roles("USER").build());
         return manager;
     }
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    public void createNewUser(String username, String password) {
+        BCryptPasswordEncoder encoder = passwordEncoder();
+        String encodedPassword = encoder.encode(password);
+        UserDetailsService userDetailsService = userDetailsService();
+        ((InMemoryUserDetailsManager) userDetailsService).createUser(User.withUsername(username).password(encodedPassword).roles("USER").build());
+    }
+
 
 }
+
+

@@ -15,7 +15,7 @@
 <body>
 <div class="container p-3 my-3 bg-dark text-white">
   <div th:each="pack : ${session.playerPacks}">
-    <form action="/packOpening" method="POST">
+    <form th:action="@{/packOpening}" method="POST">
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" th:src="@{${'/images/' + pack.packImage}}">
         <div class="card-body" style="background-color: #576066;">
