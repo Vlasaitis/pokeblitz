@@ -1,6 +1,8 @@
 package com.example.pokeblitz.Controllers;
 
+import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
+import com.example.pokeblitz.Services.PackService;
 import com.example.pokeblitz.Services.PlayerService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
