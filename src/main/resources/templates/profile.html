@@ -28,6 +28,13 @@
                             <button class="button-73" role="button" onclick="location.href = '/setStarters';">Set starters</button>
                         </div>
                     </div>
+                    <div th:unless="${session.player.starters == null or session.player.starters.isEmpty()}">
+                        <div class="starter-container">
+                            <div th:each="pokemon : ${session.player.starters}">
+                                <img th:src="${pokemon.image}" alt="">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

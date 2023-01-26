@@ -7,6 +7,8 @@
 <body>
     <div th:each="pkm : ${session.loot}">
         <img th:src="${pkm.image}" alt="">
+        <div th:text="${pkm.name}"></div>
     </div>
+    <button  role="button" onclick="location.href = '/profile';">Back to profile</button>
 </body>
 </html>

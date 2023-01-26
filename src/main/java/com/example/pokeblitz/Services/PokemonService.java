@@ -22,4 +22,8 @@ public class PokemonService {
         poke.setSpeed(poke.getSpeed()+1);
         poke.setPowerLevel(poke.getPowerLevel()+4);
     }
+    public BattlePokemon findById(Long id) {
+        return pokemonRepository.findById(id).get();
+    }
+
 }

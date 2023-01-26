@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" th:href="@{/css/styles.css}">
   <link rel="stylesheet" th:href="@{/css/vytisButton.css}">
+  <script th:src="@{/js/checkboxes.js}"></script>
+
 
   <link rel="icon" href="">
 </head>
@@ -16,7 +18,7 @@
   <form action="/addStartersToProfile" method="post">
     <div th:each="pokemon : ${session.player.allPokemon}">
       <img th:src="${pokemon.image}" alt="">
-      <input type="checkbox" th:name="${pokemon.id}" onchange="checkCheckboxes()">
+      <input type="checkbox" th:name="pokemonIds" th:value="${pokemon.id}" onchange="checkCheckboxes()">
       <label th:text="${pokemon.name}"></label>
     </div>
     <input type="submit" id="submit" value="Submit" disabled>
