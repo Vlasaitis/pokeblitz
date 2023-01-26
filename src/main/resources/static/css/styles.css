@@ -10,7 +10,8 @@ h1 {
 
 body{
    background-color: #F9F8F5;
-   font-family: 'Roboto Flex', sans-serif;
+   font-family: 'Poppins', sans-serif;
+     /*font-family: 'Roboto Flex', sans-serif;*/
 }
 
 .is-invalid{
