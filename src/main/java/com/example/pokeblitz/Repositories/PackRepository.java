@@ -5,7 +5,9 @@ import com.example.pokeblitz.Classes.Player;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface PackRepository extends CrudRepository<Pack, Integer> {
+public interface PackRepository extends CrudRepository<Pack, Long> {
 
 }

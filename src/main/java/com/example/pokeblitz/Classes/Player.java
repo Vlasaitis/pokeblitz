@@ -1,8 +1,11 @@
 package com.example.pokeblitz.Classes;
 
+import com.example.pokeblitz.Services.PackService;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +56,23 @@ public class Player {
 
     public Player() {
     }
+    public Player(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.email = "defaultemail";
+        this.elo = 1000;
+        this.coins = 500;
+        this.wins = 0;
+        this.losses = 0;
+        this.allPokemon = new ArrayList<>();
+        this.starters = new ArrayList<>();
+        this.ko = new ArrayList<>();
+        this.packs = new ArrayList<>();
+        this.winningBattleHistory = new ArrayList<>();
+        this.losingBattleHistory = new ArrayList<>();
+        this.fullBattleHistory = new ArrayList<>();
+    }
+
 
     public Player(String username, String password, String email) {
         this.username = username;
@@ -65,11 +85,12 @@ public class Player {
         this.allPokemon = new ArrayList<>();
         this.starters = new ArrayList<>();
         this.ko = new ArrayList<>();
-        this.packs = giveStarterPack();
+        this.packs = new ArrayList<>();
         this.winningBattleHistory = new ArrayList<>();
         this.losingBattleHistory = new ArrayList<>();
         this.fullBattleHistory = new ArrayList<>();
     }
+
 
     public List<Battle> getWinningBattleHistory() {
         return winningBattleHistory;
@@ -86,11 +107,11 @@ public class Player {
     public void setLosingBattleHistory(List<Battle> losingBattleHistory) {
         this.losingBattleHistory = losingBattleHistory;
     }
-
-    private List<Pack> giveStarterPack() {
-        List<Pack> starterPack = new ArrayList<>(); /// utveckla
-        return starterPack;
+    public Player addPurchasedPack(Pack e) { // adds a purchased pack and returns the player object
+        this.packs.add(e);
+        return this;
     }
+
 
     public List<Battle> getFullBattleHistory() {
         return fullBattleHistory;

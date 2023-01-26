@@ -117,7 +117,7 @@ opacity: 1;
       margin-top: 2cm
 }
 
-button .button{
+.button{
     font-size: 1rem;
     padding: 0.75rem 1.5rem;
     border-radius: 0.25rem;
@@ -246,14 +246,5 @@ input[type="text"] {
   border: 1px solid red;
 }
 
-
-
-
-
-
-
-
-
-
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 

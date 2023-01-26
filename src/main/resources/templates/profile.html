@@ -1,20 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments :: head}"></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Pokeblitz</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/vytisButton.css}">
+
+    <link rel="icon" href="">
+</head>
 <nav th:replace="~{fragments :: navigation}"></nav>
 <body class="backgroundImage">
-<div class="backgroundContainerProfile">
-    <div style="text-align: center;">
-        <div style="margin: 0 auto;">
-            <div width="150px">
-                <img src="../images/profilbild.png" width="300px" alt="...">
-                <ul>
-                    <h1 th:text=" 'Welcome ' + ${session.username} + '!'"></h1>
-                </ul>
+<div class="d-flex bd-highlight mb-3">
+    <div class="backgroundContainerProfile">
+        <div style="text-align: center;">
+            <div style="margin: 0 auto;">
+                <div th:if="${session.player.allPokemon == null or session.player.allPokemon.isEmpty()}">
+                        <div class="starter-container">
+                            <div class="coolText">You've not yet picked your starters! Open your starter pack now!</div>
+                            <button class="button-73" role="button" onclick="location.href = '/packOpening';">Open starter pack</button>
+                        </div>
+
+                </div>
             </div>
         </div>
     </div>
-    </main>
+    <div class="backgroundContainerProfile">
+        <div style="text-align: center;">
+            <div style="margin: 0 auto;">
+                <div width="150px">
+                    <img class = "img-responsive" src="../images/profilbild.png" width="300px" alt="...">
+                    <h1 th:text=" 'Welcome ' + ${session.player.username}"></h1>
+                    <h2 th:text=" 'ELO: ' + ${session.player.elo}"></h2>
+                    <h2 th:text=" 'WINS: ' + ${session.player.wins}"></h2>
+                    <h2 th:text=" 'LOSSES: ' + ${session.player.losses}"></h2>
+                    <!--                <div th:each="pack : ${packss}">-->
+                    <!--                    <div th:text="${pack.name}"></div>-->
+                    <!--                </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backgroundContainerProfile">
+        <div style="text-align: center;">
+            <div style="margin: 0 auto;">
+                <div width="150px">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 </body>
 </html>

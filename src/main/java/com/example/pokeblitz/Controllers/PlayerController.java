@@ -1,6 +1,8 @@
 package com.example.pokeblitz.Controllers;
 
+import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
+import com.example.pokeblitz.Services.PackService;
 import com.example.pokeblitz.Services.PlayerService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -17,12 +19,16 @@ public class PlayerController {
     @Autowired
     PlayerService playerService;
 
+    @Autowired
+    PackService packService;
+
     @GetMapping("/")
-    public String home(HttpSession session) {
+    public String home(HttpSession session, Model model) {
         boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
         if (loggedIn) {
             return "/profile";
         }
+        model.addAttribute(model);
         return "home";
 
     }
@@ -56,12 +62,16 @@ public class PlayerController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
-        playerService.savePlayer(player);
-        model.addAttribute("player", player);
-        session.setAttribute("player", player);
+        // ge starter pack till ny user
+        Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword()));
+        Pack pack = packService.savePack(new Pack(3,200,loggedInPlayer, 2));
+        playerService.savePlayer(loggedInPlayer.addPurchasedPack(pack));
+
+//        model.addAttribute("packss", loggedInPlayer.getPacks());
+//         session.setAttribute("packs", loggedInPlayer.getPacks());
+        session.setAttribute("player", loggedInPlayer);
         session.setAttribute("username", player.getUsername());
         session.setAttribute("loggedIn", Boolean.TRUE);
-        //PlayerService.savePlayer(player);
         return "redirect:/profile/" + player.getUsername();
     }
 

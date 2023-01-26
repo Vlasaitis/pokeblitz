@@ -24,6 +24,11 @@ public class PackService {
         return packRepository.save(pack);
     }
 
+    public Pack getPackById(Long id) {
+        Pack pack = packRepository.findById(id).get();
+        return pack;
+    }
+
 
     public List<BattlePokemon> openPack(Pack pack){
         List<BattlePokemon> tierPack = adjustListBasedOnTier(pack.getTier());
