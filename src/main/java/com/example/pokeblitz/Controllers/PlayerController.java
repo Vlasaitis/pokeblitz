@@ -17,6 +17,9 @@ public class PlayerController {
     @Autowired
     PlayerService playerService;
 
+    @Autowired
+    PackService packService;
+
     @GetMapping("/")
     public String home(HttpSession session) {
        /* boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
@@ -24,6 +27,7 @@ public class PlayerController {
             return "/profile";
         }*/
         return "home";
+
     }
 
     @PostMapping("/")
@@ -60,9 +64,14 @@ public class PlayerController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
-        playerService.savePlayer(player);
-        model.addAttribute("player", player);
-        session.setAttribute("player", player);
+        // ge starter pack till ny user
+        Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword()));
+        Pack pack = packService.savePack(new Pack(3,200,loggedInPlayer, 2));
+        playerService.savePlayer(loggedInPlayer.addPurchasedPack(pack));
+
+//        model.addAttribute("packss", loggedInPlayer.getPacks());
+//         session.setAttribute("packs", loggedInPlayer.getPacks());
+        session.setAttribute("player", loggedInPlayer);
         session.setAttribute("username", player.getUsername());
         session.setAttribute("loggedIn", Boolean.TRUE);
         //PlayerService.savePlayer(player);

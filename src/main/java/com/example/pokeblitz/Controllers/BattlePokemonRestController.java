@@ -24,7 +24,7 @@ public class BattlePokemonRestController {
 
     // Get BattlePokemon by ID
     @GetMapping("/{id}")
-    public BattlePokemon getBtPokemonById(@PathVariable(value = "id") int btPokemonId) {
+    public BattlePokemon getBtPokemonById(@PathVariable(value = "id") Long btPokemonId) {
         return this.battlePokemonRepository.findById(btPokemonId)
                 .orElseThrow(() -> new ResourceNotFoundException("BattlePokemon not found with id :" + btPokemonId));
     }
@@ -37,7 +37,7 @@ public class BattlePokemonRestController {
 
     // Update BattlePokemon by ID
     @PutMapping("/{id}")
-    public BattlePokemon updateBtPokemon(@RequestBody BattlePokemon btPokemon, @PathVariable ("id") int btPokemonId) {
+    public BattlePokemon updateBtPokemon(@RequestBody BattlePokemon btPokemon, @PathVariable ("id") Long btPokemonId) {
         BattlePokemon existingBtPokemon = this.battlePokemonRepository.findById(btPokemonId)
                 .orElseThrow(() -> new ResourceNotFoundException("BattlePokemon not found with id :" + btPokemonId));
         existingBtPokemon.setName(btPokemon.getName());
@@ -48,7 +48,7 @@ public class BattlePokemonRestController {
 
     // Delete BattlePokemon by ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<BattlePokemon> deleteBtPokemon(@PathVariable ("id") int btPokemonId){
+    public ResponseEntity<BattlePokemon> deleteBtPokemon(@PathVariable ("id") Long btPokemonId){
         BattlePokemon existingBtPokemon = this.battlePokemonRepository.findById(btPokemonId)
                 .orElseThrow(() -> new ResourceNotFoundException("BattlePokemon not found with id :" + btPokemonId));
         this.battlePokemonRepository.delete(existingBtPokemon);
