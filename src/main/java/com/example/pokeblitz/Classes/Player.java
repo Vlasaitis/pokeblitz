@@ -27,32 +27,32 @@ public class Player {
     @Column
     private String email;
     @Column
-    private int elo;
+    private int elo = 1000;
     @Column
-    private int coins;
+    private int coins = 400;
 
     @Column
-    private int wins;
+    private int wins = 0;
     @Column
-    private int losses;
+    private int losses = 0;
 
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
-    private List<BattlePokemon> allPokemon;
+    private List<BattlePokemon> allPokemon = new ArrayList<>();
     @Transient
-    private List<BattlePokemon> starters;
+    private List<BattlePokemon> starters = new ArrayList<>();
     @Transient
-    private List<BattlePokemon> ko;
+    private List<BattlePokemon> ko = new ArrayList<>();
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
-    private List<Pack> packs;
+    private List<Pack> packs = new ArrayList<>();
 
     @OneToMany(mappedBy = "winner", cascade = CascadeType.ALL)
-    private List<Battle> winningBattleHistory;
+    private List<Battle> winningBattleHistory = new ArrayList<>();
 
     @OneToMany(mappedBy = "loser", cascade = CascadeType.ALL)
-    private List<Battle> losingBattleHistory;
+    private List<Battle> losingBattleHistory = new ArrayList<>();
 
     @Transient
-    private List<Battle> fullBattleHistory;
+    private List<Battle> fullBattleHistory = new ArrayList<>();
 
     public Player() {
     }
@@ -60,17 +60,7 @@ public class Player {
         this.username = username;
         this.password = password;
         this.email = "defaultemail";
-        this.elo = 1000;
-        this.coins = 500;
-        this.wins = 0;
-        this.losses = 0;
-        this.allPokemon = new ArrayList<>();
-        this.starters = new ArrayList<>();
-        this.ko = new ArrayList<>();
-        this.packs = new ArrayList<>();
-        this.winningBattleHistory = new ArrayList<>();
-        this.losingBattleHistory = new ArrayList<>();
-        this.fullBattleHistory = new ArrayList<>();
+
     }
 
 
@@ -78,17 +68,7 @@ public class Player {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.elo = 1000;
-        this.coins = 500;
-        this.wins = 0;
-        this.losses = 0;
-        this.allPokemon = new ArrayList<>();
-        this.starters = new ArrayList<>();
-        this.ko = new ArrayList<>();
-        this.packs = new ArrayList<>();
-        this.winningBattleHistory = new ArrayList<>();
-        this.losingBattleHistory = new ArrayList<>();
-        this.fullBattleHistory = new ArrayList<>();
+
     }
 
 

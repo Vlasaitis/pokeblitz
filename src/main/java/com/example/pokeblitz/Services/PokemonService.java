@@ -15,4 +15,11 @@ public class PokemonService {
         pokemon.setPlayer(player);
         return pokemonRepository.save(pokemon);
     }
+    public void levelUp(BattlePokemon poke) {
+        poke.setAttack(poke.getAttack()+1);
+        poke.setDefense(poke.getDefense()+1);
+        poke.setMaxHp(poke.getMaxHp()+1);
+        poke.setSpeed(poke.getSpeed()+1);
+        poke.setPowerLevel(poke.getPowerLevel()+4);
+    }
 }

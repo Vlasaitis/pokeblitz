@@ -22,13 +22,15 @@ public class BattlePokemon {
     private int attack;
     private int defense;
     private int speed;
+    private int powerLevel;
     private String image;
     private List<String> types;
     private List<String> doubleDamage;
     private List<String> halfDamage;
-    private Boolean hasTurn;
+    private Boolean hasTurn = true;
 
-    private int damageDone;
+    private int damageDone = 0;
+
 
     @ManyToOne
     @JoinColumn(name = "player_id")
@@ -56,6 +58,7 @@ public class BattlePokemon {
         this.attack = poke.getStats().get(1).getBaseStat();
         this.defense = poke.getStats().get(2).getBaseStat();
         this.speed = poke.getStats().get(5).getBaseStat();
+        this.powerLevel = maxHp + attack + defense + speed;
         this.image = poke.getSprites().getFrontDefault();
         this.types = setPokeTypes(poke);
         this.doubleDamage = setDblDmg(types);
@@ -73,6 +76,7 @@ public class BattlePokemon {
         this.attack = poke.getStats().get(1).getBaseStat();
         this.defense = poke.getStats().get(2).getBaseStat();
         this.speed = poke.getStats().get(5).getBaseStat();
+        this.powerLevel = maxHp + attack + defense + speed;
         this.image = poke.getSprites().getFrontDefault();
         this.types = setPokeTypes(poke);
         this.doubleDamage = setDblDmg(types);
@@ -82,6 +86,9 @@ public class BattlePokemon {
         this.player = new Player();
     }
 
+    public void setPowerLevel(int powerLevel) {
+        this.powerLevel = powerLevel;
+    }
 
     private List<String> setHalfDmg(List<String> types) {
         List<String> halfDamage = new ArrayList<>();
@@ -91,10 +98,6 @@ public class BattlePokemon {
         }
         return halfDamage;
     }
-
-
-
-
     private List<String> setDblDmg(List<String> types) {
         List<String> doubleDamage = new ArrayList<>();
         for (int i = 0; i < types.size(); i++) {
@@ -103,14 +106,12 @@ public class BattlePokemon {
         }
         return doubleDamage;
     }
-
     private List<String> setPokeTypes(Pokemon poke) {
         List<PokemonType> types = poke.getTypes();
         List<String> returnTypes = new ArrayList<>();
         types.stream().forEach(pokemonType -> returnTypes.add(pokemonType.getType().getName()));
         return returnTypes;
     }
-
     public Long getId() {
         return id;
     }
@@ -215,6 +216,12 @@ public class BattlePokemon {
     public void setDamageDone(int damageDone) {
         this.damageDone = damageDone;
     }
+
+    public int getPowerLevel() {
+        return powerLevel;
+    }
+
+
 }
 
 
