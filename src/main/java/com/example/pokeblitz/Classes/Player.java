@@ -4,6 +4,8 @@ import com.example.pokeblitz.Services.PackService;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -36,13 +38,16 @@ public class Player {
     @Column
     private int losses = 0;
 
-    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch=)
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     private List<BattlePokemon> allPokemon = new ArrayList<>();
     @Transient
     private List<BattlePokemon> starters = new ArrayList<>();
     @Transient
     private List<BattlePokemon> ko = new ArrayList<>();
-    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Fetch(FetchMode.JOIN)
     private List<Pack> packs = new ArrayList<>();
 
     @OneToMany(mappedBy = "winner", cascade = CascadeType.ALL)

@@ -15,11 +15,19 @@
     <div class="backgroundContainerProfile">
         <div style="text-align: center;">
             <div style="margin: 0 auto;">
-                <div th:if="${session.player.allPokemon == null or session.player.allPokemon.isEmpty()}">
+                <div th:if="${session.player.allPokemon == null || session.player.allPokemon.isEmpty()}">
                         <div class="starter-container">
                             <div class="coolText">You've not yet picked your starters! Open your starter pack now!</div>
                             <button class="button-73" role="button" onclick="location.href = '/packOpening';">Open starter pack</button>
                         </div>
+                </div>
+                <div th:unless="${session.player.allPokemon == null || session.player.allPokemon.isEmpty()}">
+                    <div th:if="${session.player.starters == null or session.player.starters.isEmpty()}">
+                        <div class="starter-container">
+                            <div class="coolText">You've not yet selected your starters! Select them now!</div>
+                            <button class="button-73" role="button" onclick="location.href = '/setStarters';">Set starters</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

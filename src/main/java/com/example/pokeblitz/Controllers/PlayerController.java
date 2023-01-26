@@ -1,5 +1,7 @@
 package com.example.pokeblitz.Controllers;
 
+import com.example.pokeblitz.Classes.Battle;
+import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Services.PackService;
@@ -34,18 +36,25 @@ public class PlayerController {
 
     @PostMapping("/")
     public String login(HttpSession session, @RequestParam String username, @RequestParam String password) {
-        List<Player> allPlayers = playerService.getAllPlayers();
-        for (Player player : allPlayers) {
-            if (username.equals(player.getUsername().toLowerCase()) && password.equals(player.getPassword())) {
-                String name = username.substring(0, 1).toUpperCase() + username.substring(1);
-                session.setAttribute("username", name);
-                session.setAttribute("password", password);
-                session.setAttribute("loggedIn", Boolean.TRUE);
-                session.setAttribute("player", player);
-                return "redirect:/profile";
-            }
+//        List<Player> allPlayers = playerService.getAllPlayers();
+        Player player = playerService.findUser(username);
+        if (player.getPassword().equals(password)) {
+            session.setAttribute("password", password);
+            session.setAttribute("loggedIn", Boolean.TRUE);
+            session.setAttribute("player", player);
+            return "redirect:/profile";
         }
         return "redirect:/";
+//        for (Player player : allPlayers) {
+//            if (username.equals(player.getUsername()) && password.equals(player.getPassword())) {
+////                String name = username.substring(0, 1).toUpperCase() + username.substring(1);
+////                session.setAttribute("username", name);
+//                session.setAttribute("password", password);
+//                session.setAttribute("loggedIn", Boolean.TRUE);
+//                session.setAttribute("player", player);
+//                return "redirect:/profile";
+//            }
+//        }
 
     }
 
@@ -81,7 +90,7 @@ public class PlayerController {
     }
 
     @GetMapping("/profile")
-    public String profile() {
+    public String profile(HttpSession session) {
         return "profile";
     }
 
