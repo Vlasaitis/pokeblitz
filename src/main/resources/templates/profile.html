@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments :: head}"></head>
 <nav th:replace="~{fragments :: navigation}"></nav>
 <body class="backgroundImage">
@@ -9,7 +9,7 @@
             <div width="150px">
                 <img src="../images/profilbild.png" width="300px" alt="...">
                 <ul>
-                    <h1 th:text=" 'Welcome ' + ${session.username} + '!'"></h1>
+                    <h1>Welcome  <span sec:authentication="name"></span></h1>
                 </ul>
             </div>
         </div>

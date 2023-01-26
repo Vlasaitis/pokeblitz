@@ -19,12 +19,11 @@ public class PlayerController {
 
     @GetMapping("/")
     public String home(HttpSession session) {
-        boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
+       /* boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
         if (loggedIn) {
             return "/profile";
-        }
+        }*/
         return "home";
-
     }
 
     @PostMapping("/")
@@ -42,6 +41,11 @@ public class PlayerController {
         }
         return "redirect:/";
 
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "home";
     }
 
     @GetMapping("/register")

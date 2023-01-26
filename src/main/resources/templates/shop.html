@@ -4,20 +4,19 @@
 <div th:insert="~{fragments :: navigation}"></div>
 <body>
 
-<table class="table table-striped table-dark align-middle container">
+<table>
 
-  <h2 class="snackMovie">Filmer</h2>
+  <h2>Shoppingcart</h2>
 
   <div class="Panel">
-    <div class="movieMenu" th:each="movie : ${movies}">
+    <div th:each=" : ${}">
 
-      <div class="poster">
-        <a th:href= "'/movies/'+ ${movie.id}"> <img class="homePageImage"  th:src="'/images/' + ${movie.imageName} "></a>
+      <div>
+        <a th:href= "'/shop/'+ ${}"> <img th:src="'/images/' + ${} "></a>
       </div>
-      <span><p th:text="${movie.title}"></p></span>
+      <span><p th:text="${}"></p></span>
     </div>
   </div>
 </table>
-
 </body>
 </html>
