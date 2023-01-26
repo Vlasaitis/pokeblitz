@@ -5,6 +5,7 @@ import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Services.PackService;
 import com.example.pokeblitz.Services.PlayerService;
+import com.example.pokeblitz.Services.PokemonService;
 import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class PackController {
 
     @Autowired
     PackService packService;
+    @Autowired
+    PokemonService pokemonService;
 
 
     @GetMapping("/packOpening")
@@ -40,11 +43,8 @@ public class PackController {
     public String openPack(HttpSession session, Model model, @RequestParam Long packId) {
         Player player = (Player) session.getAttribute("player");
 
-        Pack packToBeOpened = packService.getPackById(packId); // gets the pack object to be opened
-        List<BattlePokemon> openedPokemon = packService.openPack(packToBeOpened); // opens, and extracts into variable
-        openedPokemon.stream().forEach(battlePokemon -> player.getAllPokemon().add(battlePokemon)); // give the pokemon to the user
-        packService.savePack(packToBeOpened.setUsed(true)); // set the pack to used and save it in database
-        playerService.savePlayer(player);
+        List<BattlePokemon> openedPokemon = packService.openPackAndUpdateDB(packId, player);
+
 
         session.setAttribute("loot", openedPokemon);
         return "openedPack";

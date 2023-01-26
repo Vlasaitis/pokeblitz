@@ -18,6 +18,10 @@ public class PackService {
 
     @Autowired
     PackRepository packRepository;
+    @Autowired
+    PokemonService pokemonService;
+    @Autowired
+    PlayerService playerService;
     private Random random = new Random();
 
     public Pack savePack(Pack pack) {
@@ -77,4 +81,12 @@ public class PackService {
     }
 
 
+    public List<BattlePokemon> openPackAndUpdateDB(Long packId, Player player) {
+        Pack packToBeOpened = getPackById(packId); // gets the pack object to be opened
+        List<BattlePokemon> openedPokemon = openPack(packToBeOpened); // opens, and extracts into variable
+        openedPokemon.stream().forEach(battlePokemon -> player.getAllPokemon().add(pokemonService.savePokemon(battlePokemon, player))); // add pkmn to db, add to player
+        savePack(packToBeOpened.setUsed(true)); // set the pack to used and save it in database
+        playerService.savePlayer(player);
+        return openedPokemon;
+    }
 }
