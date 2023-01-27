@@ -89,7 +89,6 @@ public class PlayerController {
 //    public String profile(HttpSession session) {
 //        return "profile";
 //    }
-
     @GetMapping("/profile")
     public String profile(HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -112,6 +111,11 @@ public class PlayerController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+
+    @GetMapping("/about")
+    public String aboutus(){
+        return "about";
     }
 
 
