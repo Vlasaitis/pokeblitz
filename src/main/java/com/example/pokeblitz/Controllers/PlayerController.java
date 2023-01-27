@@ -32,27 +32,11 @@ public class PlayerController {
 
     @GetMapping("/")
     public String home(HttpSession session) {
-       /* boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
-        if (loggedIn) {
-            return "/profile";
-        }*/
+
         return "home";
 
     }
 
-//    @PostMapping("/")
-//    public String login(HttpSession session, @RequestParam String username, @RequestParam String password) {
-////        List<Player> allPlayers = playerService.getAllPlayers();
-//        Player player = playerService.findUser(username);
-//        if (player.getPassword().equals(password)) {
-//            session.setAttribute("password", password);
-//            session.setAttribute("loggedIn", Boolean.TRUE);
-//            session.setAttribute("player", player);
-//            return "redirect:/profile";
-//        }
-//        return "redirect:/";
-//
-//    }
 
     @GetMapping("/login")
     public String login() {
@@ -66,7 +50,7 @@ public class PlayerController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session, Model model)
+    public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session)
      {
         if (bindingResult.hasErrors()) {
             return "register";
@@ -74,21 +58,16 @@ public class PlayerController {
 
         // ge starter pack till ny user
         Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword()));
-        Pack pack = packService.savePack(new Pack(3,200,loggedInPlayer, 2));
+        Pack pack = packService.savePack(new Pack(3,100,loggedInPlayer, 1));
         playerService.savePlayer(loggedInPlayer.addPurchasedPack(pack));
-         securityConfig.createNewUser(player.getUsername(), player.getPassword());
+        securityConfig.createNewUser(player.getUsername(), player.getPassword());
 //        model.addAttribute("packss", loggedInPlayer.getPacks());
 //         session.setAttribute("packs", loggedInPlayer.getPacks());
         session.setAttribute("player", loggedInPlayer);
         session.setAttribute("username", player.getUsername());
-        //PlayerService.savePlayer(player);
         return "redirect:/profile";
     }
 
-//    @GetMapping("/profile")
-//    public String profile(HttpSession session) {
-//        return "profile";
-//    }
 
     @GetMapping("/profile")
     public String profile(HttpSession session) {
@@ -99,20 +78,6 @@ public class PlayerController {
     }
 
 
-//    @GetMapping("/profile/{username}")
-//    public String profile(Model model, @PathVariable String username, HttpSession session) {
-//        boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
-//        if (loggedIn) {
-//            return "profile";
-//        }
-//        return "redirect:/login";
-//    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
-    }
 
 
 
