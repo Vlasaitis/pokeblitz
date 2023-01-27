@@ -119,8 +119,8 @@ public class Pack {
         return used;
     }
 
-    public Pack setUsed(boolean used) {
-        this.used = used;
+    public Pack setUsed() {
+        this.used = true;
         return this;
     }
 
