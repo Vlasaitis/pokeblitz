@@ -11,6 +11,10 @@ body {
     position: relative;
 }
 
+.table{
+width: 0% !important;
+}
+
 label {
     font-size: 1.5rem;
     font-weight: bold;
@@ -229,6 +233,7 @@ form {
 
 /*BOOTSTRAP?*/
 
+/*
 .d-flex {
     display: flex;
 }
@@ -282,3 +287,5 @@ form {
 .mb-lg-4 {
     margin-bottom: 4rem;
 }
+
+*/

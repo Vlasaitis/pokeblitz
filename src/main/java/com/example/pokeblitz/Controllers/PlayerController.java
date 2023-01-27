@@ -1,7 +1,5 @@
 package com.example.pokeblitz.Controllers;
 
-import com.example.pokeblitz.Classes.Battle;
-import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Config.SecurityConfig;
@@ -15,9 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PlayerController {

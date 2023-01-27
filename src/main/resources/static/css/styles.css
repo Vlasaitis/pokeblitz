@@ -3,6 +3,10 @@
      opacity: 1;
 }
 
+.imagetest{
+
+}
+
 @keyframes blink {
   0% {
     opacity: 1;
