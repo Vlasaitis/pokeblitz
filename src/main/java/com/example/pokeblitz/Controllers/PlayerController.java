@@ -10,6 +10,8 @@ import com.example.pokeblitz.Services.PlayerService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,19 +40,19 @@ public class PlayerController {
 
     }
 
-    @PostMapping("/")
-    public String login(HttpSession session, @RequestParam String username, @RequestParam String password) {
-//        List<Player> allPlayers = playerService.getAllPlayers();
-        Player player = playerService.findUser(username);
-        if (player.getPassword().equals(password)) {
-            session.setAttribute("password", password);
-            session.setAttribute("loggedIn", Boolean.TRUE);
-            session.setAttribute("player", player);
-            return "redirect:/profile";
-        }
-        return "redirect:/";
-
-    }
+//    @PostMapping("/")
+//    public String login(HttpSession session, @RequestParam String username, @RequestParam String password) {
+////        List<Player> allPlayers = playerService.getAllPlayers();
+//        Player player = playerService.findUser(username);
+//        if (player.getPassword().equals(password)) {
+//            session.setAttribute("password", password);
+//            session.setAttribute("loggedIn", Boolean.TRUE);
+//            session.setAttribute("player", player);
+//            return "redirect:/profile";
+//        }
+//        return "redirect:/";
+//
+//    }
 
     @GetMapping("/login")
     public String login() {
@@ -79,22 +81,21 @@ public class PlayerController {
 //         session.setAttribute("packs", loggedInPlayer.getPacks());
         session.setAttribute("player", loggedInPlayer);
         session.setAttribute("username", player.getUsername());
-        session.setAttribute("loggedIn", Boolean.TRUE);
         //PlayerService.savePlayer(player);
-        return "redirect:/profile/";
+        return "redirect:/profile";
     }
 
 //    @GetMapping("/profile")
 //    public String profile(HttpSession session) {
 //        return "profile";
 //    }
+
     @GetMapping("/profile")
     public String profile(HttpSession session) {
-        boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
-        if (loggedIn) {
-            return "profile";
-        }
-        return "redirect:/login";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        session.setAttribute("player", playerService.findUser(currentPrincipalName));
+        return "profile";
     }
 
 
