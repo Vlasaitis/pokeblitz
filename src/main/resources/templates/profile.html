@@ -22,15 +22,15 @@
                         </div>
                 </div>
                 <div th:unless="${session.player.allPokemon == null || session.player.allPokemon.isEmpty()}">
-                    <div th:if="${session.player.starters == null or session.player.starters.isEmpty()}">
+                    <div th:if="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}">
                         <div class="starter-container">
                             <div class="coolText">You've not yet selected your starters! Select them now!</div>
                             <button class="button-73" role="button" onclick="location.href = '/setStarters';">Set starters</button>
                         </div>
                     </div>
-                    <div th:unless="${session.player.starters == null or session.player.starters.isEmpty()}">
+                    <div th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}">
                         <div class="starter-container">
-                            <div th:each="pokemon : ${session.player.starters}">
+                            <div th:each="pokemon : ${session.player.battleStarters}">
                                 <img th:src="${pokemon.image}" alt="">
                             </div>
                         </div>

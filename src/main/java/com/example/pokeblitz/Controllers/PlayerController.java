@@ -1,5 +1,6 @@
 package com.example.pokeblitz.Controllers;
 
+import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Config.SecurityConfig;
@@ -15,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class PlayerController {
@@ -102,6 +105,10 @@ public class PlayerController {
         Player player = playerService.findUser(currentPrincipalName);
 //        System.out.println(player.getUsername());
 //        player.getStarters().stream().forEach(battlePokemon -> System.out.println(battlePokemon.getName()));
+        if (!player.getAllPokemon().isEmpty()) {
+            player.setBattleStarters(player.getStarters().returnStarters());
+        }
+//        session.setAttribute("starters", player.getStarters());
         session.setAttribute("player", player);
         return "profile";
     }
