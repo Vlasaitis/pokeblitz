@@ -2,6 +2,13 @@
 
 body {
     background-color: #FBF7F0;
+    background-image: url("../images/pokemonBG.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    overflow-y: scroll;
+    position: relative;
 }
 
 label {
