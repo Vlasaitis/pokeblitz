@@ -69,12 +69,11 @@ opacity: 1;
 }
 
 .backgroundImage {
-    background-image: url("../images/pokemon.jpg");
+    background-image: url("../images/pokemonBG.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-color: black;
     overflow-y: scroll;
     position: relative;
     top: 25px;
