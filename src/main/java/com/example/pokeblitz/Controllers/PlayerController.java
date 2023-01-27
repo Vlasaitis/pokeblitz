@@ -79,15 +79,14 @@ public class PlayerController {
             return "register";
         }*/
         // ge starter pack till ny user
-        Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword(), player.getEmail()));
-        Pack pack = packService.savePack(new Pack(3,200,loggedInPlayer, 2));
+        Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword()));
+        Pack pack = packService.savePack(new Pack(3,100,loggedInPlayer, 1));
         playerService.savePlayer(loggedInPlayer.addPurchasedPack(pack));
         securityConfig.createNewUser(player.getUsername(), player.getPassword());
 //        model.addAttribute("packss", loggedInPlayer.getPacks());
 //         session.setAttribute("packs", loggedInPlayer.getPacks());
         session.setAttribute("player", loggedInPlayer);
         session.setAttribute("username", player.getUsername());
-        //PlayerService.savePlayer(player);
         return "redirect:/profile";
     }
 
@@ -95,29 +94,27 @@ public class PlayerController {
 //    public String profile(HttpSession session) {
 //        return "profile";
 //    }
+    @GetMapping("/landingPage")
+    public String successfulLogin(HttpSession session) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Player player = playerService.findUser(currentPrincipalName);
+//        System.out.println(player.getUsername());
+//        player.getStarters().stream().forEach(battlePokemon -> System.out.println(battlePokemon.getName()));
+        session.setAttribute("player", player);
+        return "profile";
+    }
 
     @GetMapping("/profile")
     public String profile(HttpSession session) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        session.setAttribute("player", playerService.findUser(currentPrincipalName));
         return "profile";
     }
 
 
-//    @GetMapping("/profile/{username}")
-//    public String profile(Model model, @PathVariable String username, HttpSession session) {
-//        boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
-//        if (loggedIn) {
-//            return "profile";
-//        }
-//        return "redirect:/login";
-//    }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
+    @GetMapping("/about")
+    public String aboutus(){
+        return "about";
     }
 
 

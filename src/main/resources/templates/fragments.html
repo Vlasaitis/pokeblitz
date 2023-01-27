@@ -20,11 +20,13 @@
     <a href="/"><img class="navLogo" style="height: 50px;" src="../images/logo2.png"></a>
     <li  sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/" style="font-size: 2rem; solid Black;">Login</a></li>
     <li  sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/register" style=" font-size: 2rem;">Register</a></li>
-    <li class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="" style=" font-size: 2rem;">About</a></li>
+    <li class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/about" style=" font-size: 2rem;">About</a></li>
     <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="" style=" font-size: 2rem;">Shop</a></li>
     <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="" style=" font-size: 2rem;">Start battle</a></li>
     <li sec:authorize="isAuthenticated()" class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/logout" style=" font-size: 2rem; justify-content: right">Logout</a></li>
+   <!-- <a sec:authorize="isAuthenticated()"  href="/profile"><img class="navLogo" style="height: 50px;" src="../images/gåtillprofil.jpg"></a> -->
   </ul>
 </nav>
 </body>
 </html>
+

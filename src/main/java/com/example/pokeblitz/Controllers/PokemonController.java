@@ -28,7 +28,7 @@ public class PokemonController {
 
     @GetMapping("/setStarters")
     public String home(HttpSession session) {
-        return "setStarters.html";
+        return "setStarters";
     }
 
     @PostMapping("/addStartersToProfile")
@@ -40,7 +40,8 @@ public class PokemonController {
         }
         player.setStarters(starters);
         playerService.savePlayer(player);
-        return "profile";
+        session.setAttribute("player", player);
+        return "redirect:/profile";
     }
 
 

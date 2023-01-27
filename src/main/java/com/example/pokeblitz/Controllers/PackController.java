@@ -28,21 +28,26 @@ public class PackController {
 
 
     @GetMapping("/packOpening")
-    public String choosePackToOpen(HttpSession session, Model model) {
+    public String choosePackToOpen(HttpSession session) {
         Player loggedInPlayer = (Player) session.getAttribute("player");
         List<Pack> unopenedPacks = new ArrayList<>();
         loggedInPlayer.getPacks().stream().forEach(pack -> { if (!pack.isUsed()) { unopenedPacks.add(pack);}}); // think this is right but was TIRED
         session.setAttribute("playerPacks", unopenedPacks);
         return "packOpening";
     }
+    @GetMapping("/openedPack")
+    public String test() {
+        return "openedPack";
+    }
+
     @PostMapping("/packOpening")
-    public String openPack(HttpSession session, Model model, @RequestParam Long packId) {
+    public String openPack(HttpSession session, @RequestParam Long packId) {
         Player player = (Player) session.getAttribute("player");
 
         List<BattlePokemon> openedPokemon = packService.openPackAndUpdateDB(packId, player);
 
         session.setAttribute("loot", openedPokemon);
-        return "openedPack";
+        return "redirect:/openedPack";
     }
 
 }
