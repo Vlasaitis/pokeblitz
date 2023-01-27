@@ -25,6 +25,11 @@
                <!-- <img src="../images/pixabay.webp" alt="image" class="small-image">-->
                 <div>
                     <div>
+                       <!-- <div class="form-outline mb-4">
+                            <label>Email</label>
+                            <p th:if="${#fields.hasErrors('email')}">Incorrect value in Email!</p>
+                            <input type="text" name="email" class="form-control form-control-lg" th:classappend="${#fields.hasErrors('email')}?'is-invalid':''" th:value="${player.email}" th:field="*{email}">
+                        </div>-->
                         <div class="form-outline mb-4">
                             <label>Username</label>
                             <p th:if="${#fields.hasErrors('username')}">Incorrect value in username!</p>
@@ -35,6 +40,13 @@
                             <p th:if="${#fields.hasErrors('password')}">Incorrect value in password!</p>
                             <input type="password" name="password" class="form-control form-control-lg" th:classappend="${#fields.hasErrors('password')}?'is-invalid':''" th:value="${player.password}" th:field="*{password}">
                         </div>
+                        <!--
+
+                        <div class="form-outline mb-4">
+                            <label>Confirm Password</label>
+                            <p th:if="${#fields.hasErrors('confirmPassword')}">Passwords do not match!</p>
+                            <input type="password" name="confirmPassword" class="form-control form-control-lg" th:classappend="${#fields.hasErrors('confirmPassword')}?'is-invalid':''" th:field="*{confirmPassword}">
+                        </div> -->
                         <div>
                             <div class="pt-1 mb-4">
                                 <button class="btn btn-dark btn-lg btn-block" type="submit">Register</button>

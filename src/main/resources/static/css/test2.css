@@ -233,7 +233,6 @@ form {
 
 /*BOOTSTRAP?*/
 
-/*
 .d-flex {
     display: flex;
 }
@@ -288,4 +287,11 @@ form {
     margin-bottom: 4rem;
 }
 
+.charpic{
+height: 840px
+}
+
+.pokeball{
+height: 700px
+}
 */
