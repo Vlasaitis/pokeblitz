@@ -15,9 +15,9 @@
 
 </head>
 <body>
-<nav th:fragment="navigation" class="navbar sticky-top" style="background-color: #86C8BC;" >
+<nav th:fragment="navigation" class="navbar sticky-top" style="background-color: #F7EA00;" >
   <ul class="navbar nav">
-    <a href="/"><img class="navLogo" style="height: 50px;" src="../images/logo.jpg"></a>
+    <a href="/"><img class="navLogo" style="height: 50px;" src="../images/pikaface.png"></a>
     <li  sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/" style="font-size: 2rem; solid Black;">Login</a></li>
     <li  sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/register" style=" font-size: 2rem;">Register</a></li>
     <li class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="" style=" font-size: 2rem;">About</a></li>
