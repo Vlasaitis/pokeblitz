@@ -67,16 +67,22 @@ public class PlayerController {
 
     @PostMapping("/register")
     public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session, Model model)
-     {
+    {
         if (bindingResult.hasErrors()) {
             return "register";
         }
 
+  /*      String password = player.getPassword();
+        String confirmPassword = player.getConfirmPassword();
+        if(!password.equals(confirmPassword)) {
+            bindingResult.rejectValue("password", "error.password", "Passwords do not match");
+            return "register";
+        }*/
         // ge starter pack till ny user
-        Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword()));
+        Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword(), player.getEmail()));
         Pack pack = packService.savePack(new Pack(3,200,loggedInPlayer, 2));
         playerService.savePlayer(loggedInPlayer.addPurchasedPack(pack));
-         securityConfig.createNewUser(player.getUsername(), player.getPassword());
+        securityConfig.createNewUser(player.getUsername(), player.getPassword());
 //        model.addAttribute("packss", loggedInPlayer.getPacks());
 //         session.setAttribute("packs", loggedInPlayer.getPacks());
         session.setAttribute("player", loggedInPlayer);

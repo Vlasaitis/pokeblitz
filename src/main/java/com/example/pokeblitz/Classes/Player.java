@@ -2,8 +2,7 @@ package com.example.pokeblitz.Classes;
 
 import com.example.pokeblitz.Services.PackService;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,10 @@ public class Player {
     @NotEmpty(message = "Empty Password")
     @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
+    private String ConfirmPassword;
     @Column
+    @Email
+    @NotEmpty
     private String email;
     @Column
     private int elo = 1000;
@@ -58,6 +60,8 @@ public class Player {
 
     @Transient
     private List<Battle> fullBattleHistory = new ArrayList<>();
+
+
 
     public Player() {
     }
@@ -202,6 +206,14 @@ public class Player {
 
     public void setAllPokemon(List<BattlePokemon> allPokemon) {
         this.allPokemon = allPokemon;
+    }
+
+    public String getConfirmPassword() {
+        return ConfirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        ConfirmPassword = confirmPassword;
     }
 }
 
