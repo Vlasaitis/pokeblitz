@@ -41,7 +41,9 @@ public class PackService {
        for (int i = 0; i < pack.getPokemonAmount(); i++) {
             packPokemon.add(tierPack.get(random.nextInt(tierPack.size())));
         }
-        return packPokemon;
+       pack.setUsed();
+       savePack(pack);
+       return packPokemon;
     }
 
     private List<BattlePokemon> adjustListBasedOnTier(int tier) {
@@ -85,8 +87,7 @@ public class PackService {
         Pack packToBeOpened = getPackById(packId); // gets the pack object to be opened
         List<BattlePokemon> openedPokemon = openPack(packToBeOpened); // opens, and extracts into variable
         openedPokemon.stream().forEach(battlePokemon -> player.getAllPokemon().add(pokemonService.savePokemon(battlePokemon, player))); // add pkmn to db, add to player
-        savePack(packToBeOpened.setUsed(true)); // set the pack to used and save it in database
-        playerService.savePlayer(player);
+//        playerService.savePlayer(player);
         return openedPokemon;
     }
 }

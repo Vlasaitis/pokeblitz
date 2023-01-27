@@ -89,12 +89,19 @@ public class PlayerController {
 //    public String profile(HttpSession session) {
 //        return "profile";
 //    }
+    @GetMapping("/landingPage")
+    public String successfulLogin(HttpSession session) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Player player = playerService.findUser(currentPrincipalName);
+//        System.out.println(player.getUsername());
+//        player.getStarters().stream().forEach(battlePokemon -> System.out.println(battlePokemon.getName()));
+        session.setAttribute("player", player);
+        return "profile";
+    }
 
     @GetMapping("/profile")
     public String profile(HttpSession session) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        session.setAttribute("player", playerService.findUser(currentPrincipalName));
         return "profile";
     }
 

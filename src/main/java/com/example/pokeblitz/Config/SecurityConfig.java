@@ -31,7 +31,7 @@ public class SecurityConfig {
 
         http.formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/profile", true)
+                .defaultSuccessUrl("/landingPage", true)
                 .permitAll();
 
 
