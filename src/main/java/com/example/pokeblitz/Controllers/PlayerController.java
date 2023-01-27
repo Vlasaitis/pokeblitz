@@ -32,11 +32,27 @@ public class PlayerController {
 
     @GetMapping("/")
     public String home(HttpSession session) {
-
+       /* boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
+        if (loggedIn) {
+            return "/profile";
+        }*/
         return "home";
 
     }
 
+//    @PostMapping("/")
+//    public String login(HttpSession session, @RequestParam String username, @RequestParam String password) {
+////        List<Player> allPlayers = playerService.getAllPlayers();
+//        Player player = playerService.findUser(username);
+//        if (player.getPassword().equals(password)) {
+//            session.setAttribute("password", password);
+//            session.setAttribute("loggedIn", Boolean.TRUE);
+//            session.setAttribute("player", player);
+//            return "redirect:/profile";
+//        }
+//        return "redirect:/";
+//
+//    }
 
     @GetMapping("/login")
     public String login() {
@@ -78,6 +94,11 @@ public class PlayerController {
     }
 
 
+
+    @GetMapping("/about")
+    public String aboutus(){
+        return "about";
+    }
 
 
 
