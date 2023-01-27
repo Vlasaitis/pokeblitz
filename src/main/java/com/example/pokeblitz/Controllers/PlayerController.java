@@ -63,8 +63,12 @@ public class PlayerController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session)
-     {
+    public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session) {
+
+        Player checkUsername = playerService.findUser(player.getUsername());
+        if (checkUsername != null) {
+            bindingResult.rejectValue("username", "username taken/invalid", "Username Taken!");
+        }
         if (bindingResult.hasErrors()) {
             return "register";
         }
