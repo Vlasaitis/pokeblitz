@@ -32,7 +32,7 @@
                         </div>-->
                         <div class="form-outline mb-4">
                             <label>Username</label>
-                            <p th:if="${#fields.hasErrors('username')}">Incorrect value in username!</p>
+                            <p th:if="${#fields.hasErrors('username')}" >Username exists or is invalid</p>
                             <input type="text" name="username" class="form-control form-control-lg" th:classappend="${#fields.hasErrors('username')}?'is-invalid':''" th:value="${player.username}" th:field="*{username}">
                         </div>
                         <div class="form-outline mb-4">
@@ -56,10 +56,8 @@
                     </div>
                 </div>
             </div>
-        </div>
     </form>
-</div>
-</body>
-</html>
+                            </div>
+</section>
 </body>
 </html>
