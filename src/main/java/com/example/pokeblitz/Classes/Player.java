@@ -19,16 +19,15 @@ public class Player {
     private Long id;
     @Column
     @NotEmpty(message = "Empty Username")
-    @Size (max = 15, message = "Username can max be 20 characters")
+    @Size(max = 15, message = "Username can max be 20 characters")
     private String username;
     @Column
     @NotEmpty(message = "Empty Password")
     @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
-    private String ConfirmPassword;
     @Column
-    @Email
-    @NotEmpty
+//    @Email
+//    @NotEmpty
     private String email;
     @Column
     private int elo = 1000;
@@ -40,7 +39,6 @@ public class Player {
     @Column
     private int losses = 0;
 
-//    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch=)
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     private List<BattlePokemon> allPokemon = new ArrayList<>();
@@ -49,7 +47,8 @@ public class Player {
     @Transient
     private List<BattlePokemon> ko = new ArrayList<>();
 
-    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Fetch(FetchMode.JOIN)
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     private List<Pack> packs = new ArrayList<>();
 
     @OneToMany(mappedBy = "winner", cascade = CascadeType.ALL)
@@ -62,9 +61,9 @@ public class Player {
     private List<Battle> fullBattleHistory = new ArrayList<>();
 
 
-
     public Player() {
     }
+
     public Player(String username, String password) {
         this.username = username;
         this.password = password;
@@ -96,6 +95,7 @@ public class Player {
     public void setLosingBattleHistory(List<Battle> losingBattleHistory) {
         this.losingBattleHistory = losingBattleHistory;
     }
+
     public Player addPurchasedPack(Pack e) { // adds a purchased pack and returns the player object
         this.packs.add(e);
         return this;
@@ -175,7 +175,6 @@ public class Player {
     }
 
 
-
     public int getWins() {
         return wins;
     }
@@ -207,14 +206,8 @@ public class Player {
     public void setAllPokemon(List<BattlePokemon> allPokemon) {
         this.allPokemon = allPokemon;
     }
-
-    public String getConfirmPassword() {
-        return ConfirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        ConfirmPassword = confirmPassword;
-    }
 }
+
+
 
 

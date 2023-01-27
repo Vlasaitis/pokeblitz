@@ -66,13 +66,13 @@ public class PlayerController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session, Model model)
-    {
+    public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session)
+     {
         if (bindingResult.hasErrors()) {
             return "register";
         }
 
-  /*      String password = player.getPassword();
+        /*String password = player.getPassword();
         String confirmPassword = player.getConfirmPassword();
         if(!password.equals(confirmPassword)) {
             bindingResult.rejectValue("password", "error.password", "Passwords do not match");
