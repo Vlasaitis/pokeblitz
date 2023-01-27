@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Pokeblitz</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" th:href="@{/css/test2.css}">
 
   <link rel="icon" href="">
 
@@ -15,16 +15,18 @@
 
 </head>
 <body>
-<nav th:fragment="navigation" class="navbar sticky-top" style="background-color: #86C8BC;" >
+<nav th:fragment="navigation" class="navbar sticky-top" style="background-color: #E4D600;" >
   <ul class="navbar nav">
-    <a href="/"><img class="navLogo" style="height: 50px;" src="../images/logo.jpg"></a>
+    <a href="/"><img class="navLogo" style="height: 50px;" src="../images/logo2.png"></a>
     <li  sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/" style="font-size: 2rem; solid Black;">Login</a></li>
     <li  sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/register" style=" font-size: 2rem;">Register</a></li>
-    <li class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="" style=" font-size: 2rem;">About</a></li>
+    <li class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/about" style=" font-size: 2rem;">About</a></li>
     <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="" style=" font-size: 2rem;">Shop</a></li>
     <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="" style=" font-size: 2rem;">Start battle</a></li>
     <li sec:authorize="isAuthenticated()" class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/logout" style=" font-size: 2rem; justify-content: right">Logout</a></li>
+   <!-- <a sec:authorize="isAuthenticated()"  href="/profile"><img class="navLogo" style="height: 50px;" src="../images/gåtillprofil.jpg"></a> -->
   </ul>
 </nav>
 </body>
 </html>
+

@@ -4,6 +4,8 @@ import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
 import com.github.oscar0812.pokeapi.models.pokemon.PokemonType;
 import com.github.oscar0812.pokeapi.utils.Client;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,6 @@ public class BattlePokemon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-
     private int maxHp;
     @Transient
     private int currentHp;
@@ -28,13 +29,11 @@ public class BattlePokemon {
     private List<String> doubleDamage;
     private List<String> halfDamage;
     private Boolean hasTurn = true;
-
     private int damageDone = 0;
-
-
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
+
 
     public Player getPlayer() {
         return player;

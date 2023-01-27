@@ -1,9 +1,6 @@
-
-
 .nav{
     --bs-nav-link-hover-color: black;
      opacity: 1;
-
 }
 
 @keyframes blink {
@@ -69,12 +66,11 @@ opacity: 1;
 }
 
 .backgroundImage {
-    background-image: url("../images/pokemon.jpg");
+    background-image: url("../images/pokemonBG.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-color: black;
     overflow-y: scroll;
     position: relative;
     top: 25px;
@@ -100,9 +96,8 @@ opacity: 1;
     filter: brightness(95%);
     border-radius: 25px;
     margin-top: 2cm
-
-
 }
+
 .backgroundContainerForm {
       background-color: white;
       width: 500px;
@@ -149,19 +144,19 @@ form {
 
 @keyframes color-change {
   0% {
-    color: Green;
+    color: #9EDE73;
   }
   25% {
-    color: orange;
+    color: #E4D600;
   }
   50% {
-    color: black;
+    color: #E48900;
   }
   75% {
-    color: green;
+    color: #BE0000;
   }
   100% {
-    color: orange;
+    color: #E4D600;
   }
 }
 

@@ -66,7 +66,7 @@ public class PlayerController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session, Model model)
+    public String registerUser(@Valid Player player, BindingResult bindingResult, HttpSession session)
      {
         if (bindingResult.hasErrors()) {
             return "register";
@@ -74,14 +74,13 @@ public class PlayerController {
 
         // ge starter pack till ny user
         Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword()));
-        Pack pack = packService.savePack(new Pack(3,200,loggedInPlayer, 2));
+        Pack pack = packService.savePack(new Pack(3,100,loggedInPlayer, 1));
         playerService.savePlayer(loggedInPlayer.addPurchasedPack(pack));
-         securityConfig.createNewUser(player.getUsername(), player.getPassword());
+        securityConfig.createNewUser(player.getUsername(), player.getPassword());
 //        model.addAttribute("packss", loggedInPlayer.getPacks());
 //         session.setAttribute("packs", loggedInPlayer.getPacks());
         session.setAttribute("player", loggedInPlayer);
         session.setAttribute("username", player.getUsername());
-        //PlayerService.savePlayer(player);
         return "redirect:/profile";
     }
 
@@ -106,19 +105,10 @@ public class PlayerController {
     }
 
 
-//    @GetMapping("/profile/{username}")
-//    public String profile(Model model, @PathVariable String username, HttpSession session) {
-//        boolean loggedIn = Boolean.TRUE == session.getAttribute("loggedIn");
-//        if (loggedIn) {
-//            return "profile";
-//        }
-//        return "redirect:/login";
-//    }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
+    @GetMapping("/about")
+    public String aboutus(){
+        return "about";
     }
 
 
