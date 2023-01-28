@@ -4,8 +4,6 @@ import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
 import com.github.oscar0812.pokeapi.models.pokemon.PokemonType;
 import com.github.oscar0812.pokeapi.utils.Client;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +32,6 @@ public class BattlePokemon {
     @JoinColumn(name = "player_id")
     private Player player;
 
-
     public Player getPlayer() {
         return player;
     }
@@ -47,11 +44,9 @@ public class BattlePokemon {
     public BattlePokemon() {
     }
 
-
-
     public BattlePokemon(String name, Player player) {
         Pokemon poke = Client.getPokemonByName(name);
-        this.name = poke.getName().toUpperCase();
+        this.name = poke.getName();
         this.maxHp = poke.getStats().get(0).getBaseStat();
         this.currentHp = maxHp;
         this.attack = poke.getStats().get(1).getBaseStat();
@@ -69,7 +64,7 @@ public class BattlePokemon {
 
     public BattlePokemon(String name) { //// alt constructor. create a pokemon without having to create a player object. Mostly for tests. Don't have to create player obj to run test.
         Pokemon poke = Client.getPokemonByName(name);
-        this.name = poke.getName().toUpperCase();
+        this.name = poke.getName();
         this.maxHp = poke.getStats().get(0).getBaseStat();
         this.currentHp = maxHp;
         this.attack = poke.getStats().get(1).getBaseStat();

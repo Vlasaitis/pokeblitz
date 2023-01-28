@@ -1,70 +1,80 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Pokeblitz</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
-    <link rel="stylesheet" th:href="@{/css/vytisButton.css}">
-
-    <link rel="icon" href="">
-</head>
+<head th:replace="~{fragments :: head}"></head>
 <nav th:replace="~{fragments :: navigation}"></nav>
-<body class="backgroundImage">
-<div class="d-flex bd-highlight mb-3">
-    <div class="backgroundContainerProfile">
-        <div style="text-align: center;">
-            <div style="margin: 0 auto;">
-                <div th:if="${session.player.allPokemon == null || session.player.allPokemon.isEmpty()}">
-                        <div class="starter-container">
-                            <div class="coolText">You've not yet picked your starters! Open your starter pack now!</div>
-                            <button class="button-73" role="button" onclick="location.href = '/packOpening';">Open starter pack</button>
-                        </div>
-                </div>
-                <div th:unless="${session.player.allPokemon == null || session.player.allPokemon.isEmpty()}">
-                    <div th:if="${session.player.starters == null or session.player.starters.isEmpty()}">
-                        <div class="starter-container">
-                            <div class="coolText">You've not yet selected your starters! Select them now!</div>
-                            <button class="button-73" role="button" onclick="location.href = '/setStarters';">Set starters</button>
-                        </div>
-                    </div>
-                    <div th:unless="${session.player.starters == null or session.player.starters.isEmpty()}">
-                        <div class="starter-container">
-                            <div th:each="pokemon : ${session.player.starters}">
-                                <img th:src="${pokemon.image}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="backgroundContainerProfile">
-        <div style="text-align: center;">
-            <div style="margin: 0 auto;">
-                <div width="150px">
-                    <img class = "img-responsive" src="../images/profilbild.png" width="300px" alt="...">
-                    <h1 th:text=" 'Welcome ' + ${session.player.username}"></h1>
-                    <h2 th:text=" 'ELO: ' + ${session.player.elo}"></h2>
-                    <h2 th:text=" 'WINS: ' + ${session.player.wins}"></h2>
-                    <h2 th:text=" 'LOSSES: ' + ${session.player.losses}"></h2>
-                    <!--                <div th:each="pack : ${packss}">-->
-                    <!--                    <div th:text="${pack.name}"></div>-->
-                    <!--                </div>-->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="backgroundContainerProfile">
-        <div style="text-align: center;">
-            <div style="margin: 0 auto;">
-                <div width="150px">
+<body>
 
-                </div>
+<a href="/packOpening">pack opening</a>
+<a href="/setStarters">set starters</a>
+
+<table th:unless="${session.player.starters == null or session.player.starters.isEmpty()}"
+       class="table align-middle mb-0 bg-white">
+
+    <thead class="bg-light">
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Type(s)</th>
+        <th>Attack</th>
+        <th>Defense</th>
+        <th>Speed</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="pokemon : ${session.player.starters}">
+        <!--IMAGE-->
+        <td >
+            <img th:src="${pokemon.image}" style="width: 45px; height: 45px" class="rounded-circle"/>
+        </td>
+        <!--NAME-->
+        <td>
+            <p th:text="${pokemon.name}" class="fw-normal mb-1 poke-name"></p>
+        </td>
+        <!--TYPE-->
+        <td>
+            <div th:each="type : ${pokemon.types}">
+                <span th:text="${type}" class="badge rounded-pill d-inline"
+                      th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +
+                      ((type == 'fire') ? 'badge-fire' : '') +
+                      ((type == 'water') ? 'badge-water' : '') +
+                      ((type == 'psychic') ? 'badge-psychic' : '') +
+                      ((type == 'dragon') ? 'badge-dragon' : '') +
+                      ((type == 'electric') ? 'badge-electric' : '') +
+                      ((type == 'ice') ? 'badge-ice' : '') +
+                      ((type == 'ghost') ? 'badge-ghost' : '') +
+                      ((type == 'normal') ? 'badge-normal' : '') +
+                      ((type == 'rock') ? 'badge-rock' : '') +
+                      ((type == 'ground') ? 'badge-ground' : '') +
+                      ((type == 'fighting') ? 'badge-fighting' : '') +
+                      ((type == 'bug') ? 'badge-bug' : '') +
+                      ((type == 'poison') ? 'badge-poison' : '') +
+                      ((type == 'flying') ? 'badge-flying' : '') +
+                      ((type == 'steel') ? 'badge-steel' : '') +
+                      ((type == 'shadow') ? 'badge-shadow' : '') +
+                      ((type == 'fairy') ? 'badge-fairy' : '') +
+                      ((type == 'dark') ? 'badge-dark' : '')
+                      }">
+                </span>
+                <br>
             </div>
-        </div>
-    </div>
-</div>
+        </td>
+        <!--ATTACK-->
+        <td>
+            <p th:text="${pokemon.attack}" class="fw-normal mb-1"></p>
+        </td>
+        <!--DEFENSE-->
+        <td>
+            <p th:text="${pokemon.defense}" class="fw-normal mb-1"></p>
+        </td>
+        <!--SPEED-->
+        <td>
+            <p th:text="${pokemon.speed}" class="fw-normal mb-1"></p>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
 
 
 
