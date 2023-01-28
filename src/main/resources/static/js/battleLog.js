@@ -26,7 +26,7 @@ function scrollToBottom() {
 }
 
 
-reveal();
+//reveal();
 
 
 

@@ -16,7 +16,6 @@ public class BattlePokemon {
     private Long id;
     private String name;
     private int maxHp;
-    @Transient
     private int currentHp;
     private int attack;
     private int defense;

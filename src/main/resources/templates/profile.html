@@ -7,7 +7,7 @@
 <a href="/packOpening">pack opening</a>
 <a href="/setStarters">set starters</a>
 
-<table th:unless="${session.player.starters == null or session.player.starters.isEmpty()}"
+<table th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
        class="table align-middle mb-0 bg-white">
 
     <thead class="bg-light">
@@ -15,6 +15,7 @@
         <th></th>
         <th>Name</th>
         <th>Type(s)</th>
+        <th>Hp</th>
         <th>Attack</th>
         <th>Defense</th>
         <th>Speed</th>
@@ -22,7 +23,7 @@
     </thead>
 
     <tbody>
-    <tr th:each="pokemon : ${session.player.starters}">
+    <tr th:each="pokemon : ${session.player.battleStarters}">
         <!--IMAGE-->
         <td >
             <img th:src="${pokemon.image}" style="width: 45px; height: 45px" class="rounded-circle"/>
@@ -58,6 +59,10 @@
                 </span>
                 <br>
             </div>
+        </td>
+        <!--HP-->
+        <td>
+            <p th:text="${pokemon.currentHp + '/' + pokemon.maxHp}" class="fw-normal mb-1 poke-name"></p>
         </td>
         <!--ATTACK-->
         <td>
