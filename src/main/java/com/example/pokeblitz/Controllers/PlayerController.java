@@ -1,6 +1,5 @@
 package com.example.pokeblitz.Controllers;
 
-import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Config.SecurityConfig;
@@ -17,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -116,6 +116,13 @@ public class PlayerController {
     @GetMapping("/profile")
     public String profile(HttpSession session) {
         return "profile";
+    }
+
+    @GetMapping("/ladder")
+    public String sortLadder(HttpSession session, Model model) {
+        List<Player> sortedLadder = playerService.sortPlayersByRanking();
+        model.addAttribute("ladder", sortedLadder);
+        return "ladder";
     }
 
 

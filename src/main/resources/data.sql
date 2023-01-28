@@ -1,11 +1,11 @@
 INSERT INTO player (ID, COINS, ELO, EMAIL, LOSSES, PASSWORD, USERNAME, WINS)
-VALUES (2, 400, 1000, '', 0, '', '', 0);
+VALUES (2, 400, 1000, '', 0, '', 'Bengt', 0);
 
 INSERT INTO player (ID, COINS, ELO, EMAIL, LOSSES, PASSWORD, USERNAME, WINS)
-VALUES (3, 400, 1000, '', 0, '', '', 0);
+VALUES (3, 400, 1000, '', 0, '', 'Kalle', 0);
 
 INSERT INTO player (ID, COINS, ELO, EMAIL, LOSSES, PASSWORD, USERNAME, WINS)
-VALUES (4, 200, 1000,'' , 0, '', '', 0);
+VALUES (4, 200, 1000,'' , 0, '', 'Torbjörn', 0);
 
 
 INSERT INTO battle_pokemon (ID, ATTACK, DAMAGE_DONE, DEFENSE, DOUBLE_DAMAGE, HALF_DAMAGE, HAS_TURN, IMAGE, MAX_HP, NAME, POWER_LEVEL, SPEED, TYPES, PLAYER_ID) VALUES (21, 55, 0, 50, '', 'rock, steel', 'TRUE', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png', 55, 'EEVEE', 215, 55, 'normal', 2);

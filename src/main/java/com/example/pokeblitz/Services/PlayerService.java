@@ -5,6 +5,8 @@ import com.example.pokeblitz.Repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -27,4 +29,16 @@ public class PlayerService {
     }
 
 
+    public List<Player> sortPlayersByRanking() {
+        List<Player> allPlayers = (List<Player>) playerRepository.findAll();
+        allPlayers.sort(Comparator.comparingInt(Player::getElo).reversed());
+        // alternatively can use the below. keeping this here while trying the above. Can delete if leaderboard works
+//        Collections.sort(allPlayers, new Comparator<Player>() {
+//            @Override
+//            public int compare(Player p1, Player p2) {
+//                return Integer.compare(p2.getElo(), p1.getElo());
+//            }
+//        });
+        return allPlayers;
+    }
 }
