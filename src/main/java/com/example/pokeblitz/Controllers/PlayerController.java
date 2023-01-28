@@ -16,6 +16,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class PlayerController {
     @Autowired
@@ -102,6 +105,10 @@ public class PlayerController {
         Player player = playerService.findUser(currentPrincipalName);
 //        System.out.println(player.getUsername());
 //        player.getStarters().stream().forEach(battlePokemon -> System.out.println(battlePokemon.getName()));
+        if (!player.getAllPokemon().isEmpty()) {
+            player.setBattleStarters(player.getStarters().returnStarters());
+        }
+//        session.setAttribute("starters", player.getStarters());
         session.setAttribute("player", player);
         return "profile";
     }
@@ -109,6 +116,13 @@ public class PlayerController {
     @GetMapping("/profile")
     public String profile(HttpSession session) {
         return "profile";
+    }
+
+    @GetMapping("/ladder")
+    public String sortLadder(HttpSession session, Model model) {
+        List<Player> sortedLadder = playerService.sortPlayersByRanking();
+        model.addAttribute("ladder", sortedLadder);
+        return "ladder";
     }
 
 

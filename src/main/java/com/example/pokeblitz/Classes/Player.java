@@ -42,8 +42,12 @@ public class Player {
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     private List<BattlePokemon> allPokemon = new ArrayList<>();
+    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    private Starters starters;
+
     @Transient
-    private List<BattlePokemon> starters = new ArrayList<>();
+    private List<BattlePokemon> battleStarters = new ArrayList<>();
     @Transient
     private List<BattlePokemon> ko = new ArrayList<>();
 
@@ -79,6 +83,13 @@ public class Player {
 
     }
 
+    public List<BattlePokemon> getBattleStarters() {
+        return battleStarters;
+    }
+
+    public void setBattleStarters(List<BattlePokemon> battleStarters) {
+        this.battleStarters = battleStarters;
+    }
 
     public List<Battle> getWinningBattleHistory() {
         return winningBattleHistory;
@@ -126,11 +137,11 @@ public class Player {
         this.username = username;
     }
 
-    public List<BattlePokemon> getStarters() {
+    public Starters getStarters() {
         return starters;
     }
 
-    public void setStarters(List<BattlePokemon> starters) {
+    public void setStarters(Starters starters) {
         this.starters = starters;
     }
 

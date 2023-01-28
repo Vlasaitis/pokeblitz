@@ -4,6 +4,7 @@ package com.example.pokeblitz;
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
+import com.example.pokeblitz.Classes.Starters;
 import com.example.pokeblitz.Services.BattleService;
 import com.example.pokeblitz.Services.PackService;
 import com.example.pokeblitz.Services.PlayerService;
@@ -77,14 +78,20 @@ class PokeBlitzTests {
 //		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu", attacker)) , pokemonService.savePokemon(new BattlePokemon("wartortle", attacker)), pokemonService.savePokemon(new BattlePokemon("butterfree", attacker))));
 //		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise", defender)) , pokemonService.savePokemon(new BattlePokemon("caterpie", defender)), pokemonService.savePokemon(new BattlePokemon("mew", defender))));
 
-		player1.setStarters(pokemons1);
-		player2.setStarters(pokemons2);
+		player1.setStarters(new Starters(player1, pokemons1));
+		player2.setStarters(new Starters(player2, pokemons2));
+
+
+		player1.setBattleStarters(player1.getStarters().returnStarters());
+		player2.setBattleStarters(player2.getStarters().returnStarters());
+		playerService.savePlayer(player1);
+		playerService.savePlayer(player2);
 
 		boolean attackerStarts = battleService.doesAttackerStart(player1, player2);
 		assertEquals(false, attackerStarts);
 
-		player2.getStarters().remove(2);
-		player2.getStarters().add(new BattlePokemon("charmander"));
+		player2.getBattleStarters().set(2, new BattlePokemon("charmander"));
+//		player2.getStarters().add(new BattlePokemon("charmander"));
 		boolean attackStarts2 = battleService.doesAttackerStart(player1, player2);
 
 		assertEquals(true, attackStarts2);
@@ -130,8 +137,8 @@ class PokeBlitzTests {
 //		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu", player1)) , pokemonService.savePokemon(new BattlePokemon("wartortle", player1)), pokemonService.savePokemon(new BattlePokemon("butterfree", player1))));
 //		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise", player2)) , pokemonService.savePokemon(new BattlePokemon("caterpie", player2)), pokemonService.savePokemon(new BattlePokemon("mew", player2))));
 
-		player1.setStarters(pokemons1);
-		player2.setStarters(pokemons2);
+		player1.setStarters(new Starters(player1, pokemons1));
+		player2.setStarters(new Starters(player2, pokemons2));
 
 		List<String> battleLog = battleService.simulateBattle(player1, player2);
 
@@ -163,8 +170,12 @@ class PokeBlitzTests {
 //		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu"), player1)) , pokemonService.savePokemon(new BattlePokemon("wartortle"), player1)), pokemonService.savePokemon(new BattlePokemon("butterfree", player1))));
 //		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise"), player2)) , pokemonService.savePokemon(new BattlePokemon("caterpie", player2)), pokemonService.savePokemon(new BattlePokemon("mew", player2))));
 
-		player1.setStarters(pokemons1);
-		player2.setStarters(pokemons2);
+		player1.setStarters(new Starters(player1, pokemons1));
+		player2.setStarters(new Starters(player2, pokemons2));
+
+		player1.setBattleStarters(player1.getStarters().returnStarters());
+		player2.setBattleStarters(player2.getStarters().returnStarters());
+
 
 		pokemons2.get(2).setCurrentHp(50);
 		assertEquals(50, pokemons2.get(2).getCurrentHp());

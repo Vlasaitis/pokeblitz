@@ -2,9 +2,12 @@ package com.example.pokeblitz.Controllers;
 
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
+import com.example.pokeblitz.Classes.Starters;
+import com.example.pokeblitz.Repositories.StartersRepository;
 import com.example.pokeblitz.Services.PackService;
 import com.example.pokeblitz.Services.PlayerService;
 import com.example.pokeblitz.Services.PokemonService;
+import com.example.pokeblitz.Services.StartersService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,8 @@ public class PokemonController {
 
     @Autowired
     PokemonService pokemonService;
+    @Autowired
+    StartersService startersService;
 
     @GetMapping("/setStarters")
     public String home(HttpSession session) {
@@ -38,9 +43,16 @@ public class PokemonController {
         for (int i = 0; i < pokemonIds.size(); i++) {
             starters.add(pokemonService.findById(Long.valueOf(pokemonIds.get(i))));
         }
-        player.setStarters(starters);
+
+        Starters starterz = new Starters(player, starters.get(0), starters.get(1),starters.get(2)); // nytt
+        startersService.saveStarters(starterz); // nytt
+
+        player.setStarters(starterz);
+        player.setBattleStarters(starters);
         playerService.savePlayer(player);
+
         session.setAttribute("player", player);
+//        session.setAttribute("starters", starters); // nytt
         return "redirect:/profile";
     }
 

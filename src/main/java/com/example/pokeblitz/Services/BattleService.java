@@ -23,6 +23,9 @@ public class BattleService {
     }
 
     public List<String> simulateBattle(Player attacker, Player defender) {
+        attacker.setBattleStarters(attacker.getStarters().returnStarters()); // temp transient property for memory
+        defender.setBattleStarters(defender.getStarters().returnStarters());
+
         Random random = new Random();
         boolean gameNotOver = true;
         List<String> battleLog = new ArrayList<>();
@@ -43,9 +46,10 @@ public class BattleService {
         return battleLog;
     }
 
+
     public void addBattleSummaryToLog(Player attacker, Player defender, List<String> battleLog) {
         battleLog.add("-------------------");
-        if (attacker.getStarters().isEmpty()) { // means defender won
+        if (attacker.getBattleStarters().isEmpty()) { // means defender won
             battleLog.add(defender.getUsername() + " won the battle! Fight summary below:");
             battleLog.add("-------------------");
         } else {
@@ -53,11 +57,11 @@ public class BattleService {
             battleLog.add("-------------------");
         }
         battleLog.add(defender.getUsername() + "'s Pokemon:");
-        defender.getStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
+        defender.getBattleStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
         defender.getKo().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
         battleLog.add("-------------------");
         battleLog.add(attacker.getUsername() + "'s Pokemon:");
-        attacker.getStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
+        attacker.getBattleStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
         attacker.getKo().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
         battleLog.add("-------------------");
 //        for (int i = 0; i < defender.getStarters().size(); i++) {
@@ -66,22 +70,22 @@ public class BattleService {
     }
 
     public void healAllPokemonAndResetDamageDone(Player attacker, Player defender) {
-        attacker.getStarters().addAll(attacker.getKo());
-        attacker.getStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
+        attacker.getBattleStarters().addAll(attacker.getKo());
+        attacker.getBattleStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
         attacker.getKo().clear();
-        defender.getStarters().addAll(attacker.getKo());
-        defender.getStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
+        defender.getBattleStarters().addAll(attacker.getKo());
+        defender.getBattleStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
         defender.getKo().clear();
         //reset damage done, log already holds the info
-        attacker.getStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
-        defender.getStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
+        attacker.getBattleStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
+        defender.getBattleStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
     }
 
     public boolean shouldGameContinue(Player attacker, Player defender) {
-        if (attacker.getStarters().isEmpty()) {
+        if (attacker.getBattleStarters().isEmpty()) {
             //lägg tillbaka pokemon i starter
             return false;
-        } else if (defender.getStarters().isEmpty()) {
+        } else if (defender.getBattleStarters().isEmpty()) {
             //lägg tillbaka pokemon i starter
             return false;
         }
@@ -89,15 +93,15 @@ public class BattleService {
     }
 
     public void simulateAttack(Player attacker, Player defender, Random random, List<String> battleLog) {
-        BattlePokemon attackingPokemon = fastestWithTurn(attacker.getStarters());
-        int randomIndex = random.nextInt(defender.getStarters().size());
-        BattlePokemon offer = defender.getStarters().get(randomIndex);
+        BattlePokemon attackingPokemon = fastestWithTurn(attacker.getBattleStarters());
+        int randomIndex = random.nextInt(defender.getBattleStarters().size());
+        BattlePokemon offer = defender.getBattleStarters().get(randomIndex);
         dealAndLogDamage(attackingPokemon, offer, battleLog);
 
         if (offer.getCurrentHp() <= 0) {
             battleLog.add(offer.getName() + " has fainted.");
             defender.getKo().add(offer);
-            defender.getStarters().remove(offer);
+            defender.getBattleStarters().remove(offer);
         }
 
     }
@@ -164,11 +168,11 @@ public class BattleService {
     }
 
     public boolean doesAttackerStart (Player attacker, Player defender){
-        int attackerHighestSpeed = attacker.getStarters().get(0).getSpeed();
-        int defenderHighestSpeed = defender.getStarters().get(0).getSpeed();
+        int attackerHighestSpeed = attacker.getBattleStarters().get(0).getSpeed();
+        int defenderHighestSpeed = defender.getBattleStarters().get(0).getSpeed();
         for (int i = 1; i <= 2; i++) {
-            int currentAtkPokemonSpeed = attacker.getStarters().get(i).getSpeed();
-            int currentDefPokemonSpeed = defender.getStarters().get(i).getSpeed();
+            int currentAtkPokemonSpeed = attacker.getBattleStarters().get(i).getSpeed();
+            int currentDefPokemonSpeed = defender.getBattleStarters().get(i).getSpeed();
 
             if (currentAtkPokemonSpeed > attackerHighestSpeed) {
                 attackerHighestSpeed = currentAtkPokemonSpeed;

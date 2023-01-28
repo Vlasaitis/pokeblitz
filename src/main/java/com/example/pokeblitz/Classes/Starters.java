@@ -2,6 +2,9 @@ package com.example.pokeblitz.Classes;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Starters {
     @Id
@@ -22,11 +25,29 @@ public class Starters {
     @JoinColumn(name = "battle_pokemon3_id")
     private BattlePokemon battlePokemon3;
 
+    public Starters(Player player) {
+        this.player = player;
+    }
+
     public Starters(Player player, BattlePokemon battlePokemon1, BattlePokemon battlePokemon2, BattlePokemon battlePokemon3) {
         this.player = player;
         this.battlePokemon1 = battlePokemon1;
         this.battlePokemon2 = battlePokemon2;
         this.battlePokemon3 = battlePokemon3;
+    }
+    public Starters(Player player, List<BattlePokemon> pokemon) {
+        this.player = player;
+        this.battlePokemon1 = pokemon.get(0);
+        this.battlePokemon2 = pokemon.get(1);
+        this.battlePokemon3 = pokemon.get(2);
+    }
+
+    public List<BattlePokemon> returnStarters() {
+        List<BattlePokemon> pokemon = new ArrayList<>();
+        pokemon.add(battlePokemon1);
+        pokemon.add(battlePokemon2);
+        pokemon.add(battlePokemon3);
+        return pokemon;
     }
 
     public BattlePokemon getBattlePokemon2() {
