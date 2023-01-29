@@ -42,4 +42,12 @@ public class PokemonService {
       Starters starters = new Starters(player, pokemon1, pokemon2, pokemon3);
       return startersRepository.save(starters);
     }
+
+    public List<BattlePokemon> getStartersListByIds(List<String> pokemonIds) {
+        List<BattlePokemon> starters = new ArrayList<>();
+        for (int i = 0; i < pokemonIds.size(); i++) {
+            starters.add(findById(Long.valueOf(pokemonIds.get(i))));
+        }
+        return starters;
+    }
 }

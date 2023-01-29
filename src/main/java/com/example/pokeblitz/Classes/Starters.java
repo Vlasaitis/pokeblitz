@@ -42,6 +42,20 @@ public class Starters {
         this.battlePokemon3 = pokemon.get(2);
     }
 
+    public void setNewStarters(BattlePokemon poke1, BattlePokemon poke2, BattlePokemon poke3) {
+        this.battlePokemon1 = poke1;
+        this.battlePokemon2 = poke2;
+        this.battlePokemon3 = poke3;
+    }
+
+    public BattlePokemon getBattlePokemon1() {
+        return battlePokemon1;
+    }
+
+    public void setBattlePokemon1(BattlePokemon battlePokemon1) {
+        this.battlePokemon1 = battlePokemon1;
+    }
+
     public List<BattlePokemon> returnStarters() {
         List<BattlePokemon> pokemon = new ArrayList<>();
         pokemon.add(battlePokemon1);

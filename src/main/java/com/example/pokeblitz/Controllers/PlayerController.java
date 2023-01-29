@@ -82,16 +82,19 @@ public class PlayerController {
             bindingResult.rejectValue("password", "error.password", "Passwords do not match");
             return "register";
         }*/
+
+
         // ge starter pack till ny user
         Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword()));
         Pack pack = packService.savePack(new Pack(3,100,loggedInPlayer, 1));
         playerService.savePlayer(loggedInPlayer.addPurchasedPack(pack));
         securityConfig.createNewUser(player.getUsername(), player.getPassword());
-//        model.addAttribute("packss", loggedInPlayer.getPacks());
-//         session.setAttribute("packs", loggedInPlayer.getPacks());
-        session.setAttribute("player", loggedInPlayer);
-        session.setAttribute("username", player.getUsername());
-        return "redirect:/profile";
+
+//        System.out.println("newly created pack, is used: " + packService.getPackById(player.getPacks().get(0).getId()).isUsed());
+
+//        session.setAttribute("player", loggedInPlayer); dont think we need this, not yet logged in
+
+        return "redirect:/home";
     }
 
 //    @GetMapping("/profile")
@@ -105,7 +108,7 @@ public class PlayerController {
         Player player = playerService.findUser(currentPrincipalName);
 //        System.out.println(player.getUsername());
 //        player.getStarters().stream().forEach(battlePokemon -> System.out.println(battlePokemon.getName()));
-        if (!player.getAllPokemon().isEmpty()) {
+        if (!player.getAllPokemon().isEmpty() && player.getStarters() != null) {
             player.setBattleStarters(player.getStarters().returnStarters());
         }
 //        session.setAttribute("starters", player.getStarters());
@@ -115,6 +118,11 @@ public class PlayerController {
 
     @GetMapping("/profile")
     public String profile(HttpSession session) {
+        Player player = (Player) session.getAttribute("player");
+        if (!player.getAllPokemon().isEmpty() && player.getStarters() != null) {
+            player.setBattleStarters(player.getStarters().returnStarters());
+        }
+        session.setAttribute("player", player);
         return "profile";
     }
 
