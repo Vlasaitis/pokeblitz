@@ -111,7 +111,15 @@ public class Player {
         this.packs.add(e);
         return this;
     }
-
+    public Pack findPackInBackPack(Long packId) { // adds a purchased pack and returns the player object
+        for (int i = 0; i < this.packs.size(); i++) {
+            if (this.packs.get(i).getId() == packId) {
+                this.packs.get(i).setUsed();
+                return this.packs.get(i);
+            }
+        }
+        return new Pack();
+    }
 
     public List<Battle> getFullBattleHistory() {
         return fullBattleHistory;
@@ -216,6 +224,19 @@ public class Player {
 
     public void setAllPokemon(List<BattlePokemon> allPokemon) {
         this.allPokemon = allPokemon;
+    }
+
+    public void increaseElo(int increaseBy) {
+        this.elo += increaseBy;
+    }
+    public void decreaseElo(int decreaseBy) {
+        this.elo -= decreaseBy;
+    }
+    public void wonAGame() {
+        this.wins += 1;
+    }
+    public void lostAGame() {
+        this.losses += 1;
     }
 }
 

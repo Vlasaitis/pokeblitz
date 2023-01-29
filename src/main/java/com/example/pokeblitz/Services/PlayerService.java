@@ -27,6 +27,10 @@ public class PlayerService {
         Player player = playerRepository.findByusername(username);
         return player;
     }
+    public Player findUserById(Long id) {
+        Player player = playerRepository.findById(id).get();
+        return player;
+    }
 
 
     public List<Player> sortPlayersByRanking() {

@@ -6,6 +6,7 @@ import com.example.pokeblitz.Classes.Battle;
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Repositories.BattleRepository;
+import com.example.pokeblitz.Repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class BattleService {
     private Random random = new Random();
     @Autowired
     BattleRepository battleRepository;
+    @Autowired
+    PlayerService playerService;
+
     public void createNewBattle(Player winner, Player loser, List<String> battleLog) {
         battleRepository.save(new Battle(winner, loser, battleLog));
     }
@@ -40,22 +44,26 @@ public class BattleService {
             }
             gameNotOver = shouldGameContinue(attacker, defender);
         }
-        addBattleSummaryToLog(attacker, defender, battleLog);
+        addBattleSummaryToLogAndChangeElo(attacker, defender, battleLog);
         healAllPokemonAndResetDamageDone(attacker, defender);
 
         return battleLog;
     }
 
 
-    public void addBattleSummaryToLog(Player attacker, Player defender, List<String> battleLog) {
+    public void addBattleSummaryToLogAndChangeElo(Player attacker, Player defender, List<String> battleLog) {
         battleLog.add("-------------------");
         if (attacker.getBattleStarters().isEmpty()) { // means defender won
-            battleLog.add(defender.getUsername() + " won the battle! Fight summary below:");
+            battleLog.add(defender.getUsername() + " won the battle and stole 10 ELO! Fight summary below:");
             battleLog.add("-------------------");
+            adjustEloAndWinLoss(defender,attacker);
         } else {
-            battleLog.add(attacker.getUsername() + " won the battle! Fight summary:");
+            battleLog.add(attacker.getUsername() + " won the battle and stole 10 ELO! Fight summary:");
             battleLog.add("-------------------");
+            adjustEloAndWinLoss(attacker, defender);
         }
+//        playerService.savePlayer(defender);
+//        playerService.savePlayer(attacker);
         battleLog.add(defender.getUsername() + "'s Pokemon:");
         defender.getBattleStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
         defender.getKo().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
@@ -69,16 +77,30 @@ public class BattleService {
 //        }
     }
 
+    private void adjustEloAndWinLoss(Player winner, Player loser) {
+        winner.increaseElo(10);
+        winner.wonAGame();
+
+        loser.decreaseElo(10);
+        loser.lostAGame();
+    }
+
     public void healAllPokemonAndResetDamageDone(Player attacker, Player defender) {
-        attacker.getBattleStarters().addAll(attacker.getKo());
-        attacker.getBattleStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
+        attacker.getStarters().returnStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
+        defender.getStarters().returnStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
+
+        attacker.getStarters().returnStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
+        defender.getStarters().returnStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
+
         attacker.getKo().clear();
-        defender.getBattleStarters().addAll(attacker.getKo());
-        defender.getBattleStarters().stream().forEach(battlePokemon -> battlePokemon.setCurrentHp(battlePokemon.getMaxHp()));
         defender.getKo().clear();
-        //reset damage done, log already holds the info
-        attacker.getBattleStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
-        defender.getBattleStarters().stream().forEach(battlePokemon -> battlePokemon.setDamageDone(0));
+
+        attacker.getStarters().returnStarters().stream().forEach(battlePokemon -> battlePokemon.setHasTurn(true));
+        defender.getStarters().returnStarters().stream().forEach(battlePokemon -> battlePokemon.setHasTurn(true));
+
+
+        playerService.savePlayer(attacker);
+        playerService.savePlayer(defender);
     }
 
     public boolean shouldGameContinue(Player attacker, Player defender) {
@@ -184,5 +206,20 @@ public class BattleService {
             }
         }
         return (attackerHighestSpeed >= defenderHighestSpeed);
+    }
+
+    public Player findRandomOpponent(Player attacker) {
+        List<Player> allPlayers = playerService.getAllPlayers(); // all players
+        List<Long> allPlayerIds = new ArrayList<>();
+        allPlayers.forEach(player -> allPlayerIds.add(player.getId())); // loops through all players in DB, extracts their ID and adds to allPlayerIds
+
+        // loops until it finds an opponent that isnt itself
+        while (true) {
+            int randomIndex = random.nextInt(allPlayerIds.size());
+            Long randomId = allPlayerIds.get(randomIndex);
+            if (!(randomId == attacker.getId())) {
+                return playerService.findUserById(randomId);
+            }
+        }
     }
 }
