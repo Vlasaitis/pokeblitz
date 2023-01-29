@@ -27,6 +27,7 @@ public class BattlePokemon {
     private List<String> halfDamage;
     private Boolean hasTurn = true;
     private int damageDone = 0;
+    private int pokemonNumber;
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
@@ -59,6 +60,7 @@ public class BattlePokemon {
         this.hasTurn = true;
         this.damageDone = 0;
         this.player = player;
+        this.pokemonNumber = poke.getId();
     }
 
     public BattlePokemon(String name) { //// alt constructor. create a pokemon without having to create a player object. Mostly for tests. Don't have to create player obj to run test.
@@ -77,6 +79,7 @@ public class BattlePokemon {
         this.hasTurn = true;
         this.damageDone = 0;
         this.player = new Player();
+        this.pokemonNumber = poke.getId();
     }
 
     public void setPowerLevel(int powerLevel) {
@@ -214,7 +217,13 @@ public class BattlePokemon {
         return powerLevel;
     }
 
+    public int getPokemonNumber() {
+        return pokemonNumber;
+    }
 
+    public void setPokemonNumber(int pokemonNumber) {
+        this.pokemonNumber = pokemonNumber;
+    }
 }
 
 

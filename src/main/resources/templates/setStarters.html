@@ -15,14 +15,14 @@
 
 <body>
 
-  <form action="/addStartersToProfile" method="post">
-    <div th:each="pokemon : ${session.player.allPokemon}">
-      <img th:src="${pokemon.image}" alt="">
-      <input type="checkbox" th:name="pokemonIds" th:value="${pokemon.id}" onchange="checkCheckboxes()">
-      <label th:text="${pokemon.name}"></label>
-    </div>
-    <input type="submit" id="submit" value="Submit" disabled>
-  </form>
+<form action="/addStartersToProfile" method="post">
+  <div th:each="pokemon : ${session.player.allPokemon}">
+    <img th:src="${pokemon.image}" alt="">
+    <input type="checkbox" th:name="pokemonIds" th:value="${pokemon.id}" onchange="checkCheckboxes()">
+    <label th:text="${pokemon.name}"></label>
+  </div>
+  <input type="submit" id="submit" value="Submit" disabled>
+</form>
 
 
 </body>

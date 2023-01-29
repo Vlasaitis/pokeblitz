@@ -2,7 +2,7 @@
 
 body {
     background-color: #EEE;
-    background-image: url("../images/pokemonBG.png");
+    /*background-image: url("../images/pokemonBG.png");*/
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -10,33 +10,6 @@ body {
     overflow-y: scroll;
     position: relative;
     font-family: 'Poppins', sans-serif;
-}
-
-.table{
-    color: #fff;
-    width: 0% !important;
-    border-collapse: collapse;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #8DC468;
-}
-
-.table td{
-    vertical-align: middle !important;
-    font-size: 12px !important;
-    text-align: none !important;
-    background-color: #E8FFD9;
-    color: black !important;
-    border-top-color: #71A64E !important;
-}
-
-th{
-    font-size: 10px !important;
-    text-align: none !important;
-    background-color: #71A64E !important;
-    border-top: none !important;
-    border-bottom: 2px solid #8DC468 !important;
-    color: #fff !important;
 }
 
 label {
@@ -253,6 +226,13 @@ form {
 
 /*NAV*/
 
+.navbar{
+   padding-top: 10px !important;
+   padding-right: 1rem;
+   padding-bottom: 0.2rem;
+   padding-left: 1rem;
+}
+
 .nav {
     --bs-nav-link-hover-color: black;
     opacity: 1;
@@ -279,7 +259,7 @@ form {
     display: inline-block;
     position: relative;
     opacity: 0.7;
-    margin-left: 100px;
+    margin-left: 45px;
 }
 
 .nav-link:hover {
@@ -365,6 +345,26 @@ form {
     margin-bottom: 50px;
 }
 
+.charpic{
+height: 840px
+}
+
+.pokeball{
+height: 700px
+}
+
+/*SJUK CSS*/
+
+.bg-gradient {
+  /* background: #C9D6FF;
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF);
+    */
+}
+ul li {
+  margin-bottom:1.4rem;
+}
+
 /*BOOTSTRAP?*/
 
 /*
@@ -421,16 +421,6 @@ form {
 
 .mb-lg-4 {
     margin-bottom: 4rem;
-}
-
-*/
-
-.charpic{
-height: 840px
-}
-
-.pokeball{
-height: 700px
 }
 
 */
