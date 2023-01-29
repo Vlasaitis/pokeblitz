@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
+
 </head>
 <nav th:replace="~{fragments :: navigation}"></nav>
 <body>
@@ -33,7 +34,7 @@
               <li><b>Includes</b><p th:text="${pack.pokemonAmount} + ' pokemons'"></p></li>
             </ul>
             <input type="hidden" name="packId" th:value="${pack.id}"/>
-            <button type="submit" class="btn btn-lg btn-block btn-custom ">Open</button>
+            <button type="submit" class="btn btn-lg btn-block btn-custom open-button">Open</button>
           </div>
         </div>
       </form>
@@ -61,5 +62,6 @@
   </div>
 </div>
 
+<script th:src="@{/js/packOpening.js}"></script>
 </body>
 </html>

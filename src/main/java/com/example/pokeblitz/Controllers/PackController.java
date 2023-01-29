@@ -6,6 +6,7 @@ import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Services.PackService;
 import com.example.pokeblitz.Services.PlayerService;
 import com.example.pokeblitz.Services.PokemonService;
+import com.example.pokeblitz.Services.StartersService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class PackController {
     PackService packService;
     @Autowired
     PokemonService pokemonService;
+    @Autowired
+    StartersService startersService;
 
 
     @GetMapping("/packOpening")
@@ -43,9 +46,11 @@ public class PackController {
     @PostMapping("/packOpening")
     public String openPack(HttpSession session, @RequestParam Long packId) {
         Player player = (Player) session.getAttribute("player");
-
+        boolean starterPack = startersService.isStarterPack(player);
         List<BattlePokemon> openedPokemon = packService.openPackAndUpdateDB(packId, player);
-
+        if (starterPack) {
+            startersService.updateStartersEntryOrCreateItAndUpdateBattleStarters(player, openedPokemon); // if first ever pack, immediately sets this pack pokemon as starters
+        }
         session.setAttribute("loot", openedPokemon);
         return "redirect:/openedPack";
     }

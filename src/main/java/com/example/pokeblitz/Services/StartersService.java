@@ -37,4 +37,12 @@ public class StartersService {
         player.setBattleStarters(player.getStarters().returnStarters());
         playerService.savePlayer(player);
     }
+
+    public boolean isStarterPack(Player player) {
+        boolean starterPack = false;
+        if (player.getAllPokemon().isEmpty()) { // checks if this is the first pack that the user is opening
+            starterPack = true;
+        }
+        return starterPack;
+    }
 }

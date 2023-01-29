@@ -23,7 +23,6 @@
  line-height: 90vh;
 }
 
-
 .splash.display-none{
     position: fixed; /* so user cant scroll past */
     opacity: 0;
