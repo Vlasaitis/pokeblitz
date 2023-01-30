@@ -1,3 +1,11 @@
+.flex-test{
+    display: flex;
+}
+
+form{
+    margin: 0;
+}
+
 .poke-card {
     background: #f2bf5f;
     border: 1px solid #dd2476;
@@ -13,8 +21,17 @@
     width: 140px;
 }
 
+.profile-card{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.col-md-5{
+    max-width: 30.0%;
+}
+
 .card-body{
-   height: 11em !important;
+   /*height: 11em !important;*/
    padding: 1rem !important;
 }
 
@@ -22,6 +39,14 @@
     text-transform: uppercase !important;
     color: #fff7f7;
     font-weight: 600;
+    text-shadow: #776d68 1px 1px 1px;
+}
+
+.row{
+   display: flex;
+   margin-right: 0px !important;
+   margin-left: 0px !important;
+   flex-wrap: none !important;
 }
 
 .rounded-pill{
@@ -42,25 +67,40 @@
 }
 
 .profile-board{
-    display: block;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.starter-cards{
+    margin-right: -80px;
+}
+
+.starter-container{
+
 }
 
 .table{
     color: #fff;
     border-collapse: collapse;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #8DC468;
-    width: 70rem;
     font-weight: bold;
-    margin-left: 1.5rem;
+    width: auto;
+    height: 1px;
+    margin-right: auto;
+}
+
+.poke-table{
+
 }
 
 .table td{
     vertical-align: middle !important;
     font-size: 18px !important;
     text-align: none !important;
-    background-color: #fd73a7;
+    background-color: #fd7380;
     color: #f0f0f0 !important;
     border-top-color: #EC2626 !important
 }
@@ -73,4 +113,32 @@ th{
     border-bottom: 1px solid #EC2626 !important;
     color: #ffcdcd !important;
     text-transform: uppercase;
+}
+
+input[type=checkbox]
+{
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+  accent-color: #fff;
+  cursor: pointer
+}
+
+.btn-secondary{
+    background-color: #794676;
+    border-color: #a82c72;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.btn-secondary hover{
+ background-color: #91578d
+}
+
+.poke-name{
+   text-transform: capitalize;
+   text-shadow: #776d68 1px 1px 1px;
 }

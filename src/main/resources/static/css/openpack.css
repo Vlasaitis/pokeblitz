@@ -4,17 +4,34 @@
     position: relative;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    width: 150%;
 }
 .blue .pricing-divider{
     background: #2D5772;
 
 }
 .green .pricing-divider {
-    background: #7CD581;
+    background: linear-gradient(-45deg, #7CD581, #7cd59e, #7cd5c9, #7cd2d5);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    /*height: 100vh;*/
     background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png");
     background-position: center;
     background-size: cover;
 }
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 .red b {
   color:#C64545
 }
@@ -64,4 +81,12 @@
 
 .col-md-4{
     max-width: 19.3% !important;
+}
+
+.card-body{
+    width: 150% !important;
+}
+
+.btn-custom{
+    background: #7CD581
 }
