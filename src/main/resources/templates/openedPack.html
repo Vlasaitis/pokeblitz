@@ -30,19 +30,19 @@
     <div class="flip-card" th:each="pokemon : ${session.player.battleStarters}" onclick="this.classList.toggle('flip');">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img src="/images/cardback.png"style="width:475px;height:475px;">
+                <img class="front-img" src="/images/cardback.png">
                 <h1>Click to see starters! </h1>
             </div>
-            <div class="flip-card-back" style="display: flex; align-items: center; justify-content: center;">
-                <img class="img" th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + ${pokemon.pokemonNumber} + '.png'">
+            <div class="flip-card-back">
+                <img class="back-img" th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + ${pokemon.pokemonNumber} + '.png'">
                 <h1 th:text="${pokemon.name}"></h1>
             </div>
         </div>
     </div>
-    <button role="button" onclick="location.href = '/profile';">Back to profile</button>
 </div>
 </div>
 </div>
 </div>
+<button role="button" onclick="location.href = '/profile';">Back to profile</button>
 </body>
 </html>
