@@ -32,13 +32,10 @@
                 <div class="card-body text-center">
                     <img src="/images/profil2.png" alt="avatar"
                          class="img-fluid" style="width: 150px;">
-                    <h5 class="my-3">Bosse Banan</h5>
-                    <p class="text-muted mb-1">Banan</p>
-                    <p class="text-muted mb-4">Banan</p>
-                    <div class="d-flex justify-content-center mb-2">
-                        <button type="button" class="btn btn-primary">Banan</button>
-                        <button type="button" class="btn btn-outline-primary ms-1">Banan</button>
-                    </div>
+                    <h5 th:text="${session.player.username}" class="my-3"></h5>
+                    <p th:text="'ELO: ' + ${session.player.elo}" class="text-muted mb-1"></p>
+                    <p th:text="'WINS: ' + ${session.player.wins}" class="text-muted mb-1"></p>
+                    <p th:text="'LOSSES: ' + ${session.player.losses}" class="text-muted mb-1"></p>
                 </div>
             </div>
         </div>
