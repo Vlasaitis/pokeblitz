@@ -127,6 +127,7 @@
     <div th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
          class="row vafan">
         <div th:each="pokemon : ${session.player.battleStarters}" class="col-md-5">
+
             <div class="card poke-card" style="width: 13rem;">
                 <!--IMAGE-->
                 <img th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + ${pokemon.pokemonNumber} + '.png'"
