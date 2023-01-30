@@ -15,6 +15,7 @@
 <div class="container-fluid d-flex h-100 justify-content-center">
     <div class="col-2 m-2 justify-content-center">
         <button class="btn btn-primary m-1 ">Items</button>
+        <br>
         <button class="btn btn-primary m-1">Pokemon</button>
         <div th:text="'Coins: ' +${session.player.coins}"></div>
     </div>
@@ -117,6 +118,8 @@
         </div>
     </div>
 </div>
+
+<h1><a href="/packOpening">PACK OPENING</a></h1>
 
 <script th:src="@{/js/shop.js}"></script>
 </body>
