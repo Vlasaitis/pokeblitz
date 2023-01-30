@@ -119,6 +119,12 @@ public class Player {
         }
         return new Pack();
     }
+    public void deductCoins(int price) {
+        this.coins -= price;
+    }
+    public void addCoins(int price) {
+        this.coins += price;
+    }
 
     public List<Battle> getFullBattleHistory() {
         return fullBattleHistory;
@@ -238,9 +244,7 @@ public class Player {
         this.losses += 1;
     }
 
-    public void deductCoins(int price) {
-        this.coins -= price;
-    }
+
 }
 
 
