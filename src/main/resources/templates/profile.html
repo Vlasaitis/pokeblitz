@@ -6,108 +6,58 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/test2.css}">
     <link rel="stylesheet" th:href="@{/css/profile.css}">
-    <!--  <link rel="icon" href="">-->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script th:src="@{/js/checkboxes.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+
+    <link rel="icon" th:href="@{/images/pokemon-icon.svg}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
-    <script th:src="@{/js/checkboxes.js}"></script>
+
 </head>
 <nav th:replace="~{fragments :: navigation}"></nav>
 <body>
 
-<a href="/packOpening">pack opening</a>
-<a href="/setStarters">set starters</a>
-<a href="/test123">test123</a>
+<div class="row profile-board">
 
-<div class="profile-board">
-    <!--STARTERS-->
-    <div id="parent" th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}">
-        <div class="container mx-auto mt-4">
-            <div class="row">
-
-                <div th:each="pokemon : ${session.player.battleStarters}" class="col-md-4">
-                    <div class="card poke-card" style="width: 13rem;">
-                            <!--IMAGE-->
-                        <img th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + ${pokemon.pokemonNumber} + '.png'"
-                             class="card-img-top"/>
-                        <div class="card-body">
-                            <!--NAME-->
-                            <h5 th:text="${pokemon.name}" class="card-title"></h5>
-                            <!--TYPES-->
-                            <span th:each="type : ${pokemon.types}">
-                <span th:text="${type}" class="badge"
-                      th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +
-                      ((type == 'fire') ? 'badge-fire' : '') +
-                      ((type == 'water') ? 'badge-water' : '') +
-                      ((type == 'psychic') ? 'badge-psychic' : '') +
-                      ((type == 'dragon') ? 'badge-dragon' : '') +
-                      ((type == 'electric') ? 'badge-electric' : '') +
-                      ((type == 'ice') ? 'badge-ice' : '') +
-                      ((type == 'ghost') ? 'badge-ghost' : '') +
-                      ((type == 'normal') ? 'badge-normal' : '') +
-                      ((type == 'rock') ? 'badge-rock' : '') +
-                      ((type == 'ground') ? 'badge-ground' : '') +
-                      ((type == 'fighting') ? 'badge-fighting' : '') +
-                      ((type == 'bug') ? 'badge-bug' : '') +
-                      ((type == 'poison') ? 'badge-poison' : '') +
-                      ((type == 'flying') ? 'badge-flying' : '') +
-                      ((type == 'steel') ? 'badge-steel' : '') +
-                      ((type == 'shadow') ? 'badge-shadow' : '') +
-                      ((type == 'fairy') ? 'badge-fairy' : '') +
-                      ((type == 'dark') ? 'badge-dark' : '')
-                      }">
-                </span>
-                        </span>
-                            <!--HP-->
-                            <h6 th:text="'HP: ' + ${pokemon.currentHp + '/' + pokemon.maxHp}"
-                                class="starter-stats">Card subtitle</h6>
-                            <h6 th:text="'ATT: ' + ${pokemon.attack}"
-                                class="starter-stats">Card subtitle</h6>
-                            <h6 th:text="'DEF: ' + ${pokemon.defense}"
-                                class="starter-stats">Card subtitle</h6>
-                            <h6 th:text="'SPD: ' + ${pokemon.speed}"
-                                class="starter-stats">Card subtitle</h6>
-                            <p class="card-text"></p>
-                        </div>
+    <!--    PROFILE-->
+    <div class="row profile-card">
+        <div class="lg-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <img src="/images/profil2.png" alt="avatar"
+                         class="img-fluid" style="width: 150px;">
+                    <h5 class="my-3">Bosse Banan</h5>
+                    <p class="text-muted mb-1">Banan</p>
+                    <p class="text-muted mb-4">Banan</p>
+                    <div class="d-flex justify-content-center mb-2">
+                        <button type="button" class="btn btn-primary">Banan</button>
+                        <button type="button" class="btn btn-outline-primary ms-1">Banan</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!--ALL POKEMONS-->
-    <table th:unless="${session.player.allPokemon == null or session.player.allPokemon.isEmpty()}"
-           class="table align-middle mb-0 bg-white">
+    <!--STARTERS-->
 
-        <form action="/addStartersToProfile" method="post">
-
-            <thead class="bg-light">
-            <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Type(s)</th>
-                <th>Hp</th>
-                <th>Attack</th>
-                <th>Defense</th>
-                <th>Speed</th>
-                <th></th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr th:each="pokemon : ${session.player.allPokemon}">
+    <div th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
+         class="row">
+        <div th:each="pokemon : ${session.player.battleStarters}" class="col-md-5">
+            <div class="card poke-card" style="width: 13rem;">
                 <!--IMAGE-->
-                <td >
-                    <img th:src="${pokemon.image}"/>
-                </td>
-                <!--NAME-->
-                <td>
-                    <p th:text="${pokemon.name}" class="fw-normal mb-1 poke-name"></p>
-                </td>
-                <!--TYPE-->
-                <td>
-                    <div th:each="type : ${pokemon.types}">
+                <img th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + ${pokemon.pokemonNumber} + '.png'"
+                     class="card-img-top"/>
+                <div class="card-body">
+                    <!--NAME-->
+                    <h5 th:text="${pokemon.name}" class="card-title"></h5>
+                    <!--TYPES-->
+                    <span th:each="type : ${pokemon.types}">
                 <span th:text="${type}" class="badge d-inline"
                       th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +
                       ((type == 'fire') ? 'badge-fire' : '') +
@@ -130,31 +80,103 @@
                       ((type == 'dark') ? 'badge-dark' : '')
                       }">
                 </span>
-                        <br>
-                    </div>
-                </td>
-                <!--HP-->
-                <td>
-                    <p th:text="${pokemon.currentHp + '/' + pokemon.maxHp}" class="fw-normal mb-1 poke-name"></p>
-                </td>
-                <!--ATTACK-->
-                <td>
-                    <p th:text="${pokemon.attack}" class="fw-normal mb-1"></p>
-                </td>
-                <!--DEFENSE-->
-                <td>
-                    <p th:text="${pokemon.defense}" class="fw-normal mb-1"></p>
-                </td>
-                <!--SPEED-->
-                <td>
-                    <p th:text="${pokemon.speed}" class="fw-normal mb-1"></p>
-                </td>
-                <td><input type="checkbox" th:name="pokemonIds" th:value="${pokemon.id}" onchange="checkCheckboxes()"></td>
-            </tr>
-            </tbody>
-            <input type="submit" id="submit" value="Submit" disabled>
+                        </span>
+                    <!--HP-->
+                    <h6 th:text="'HP: ' + ${pokemon.currentHp + '/' + pokemon.maxHp}"
+                        class="starter-stats">Card subtitle</h6>
+                    <h6 th:text="'ATT: ' + ${pokemon.attack}"
+                        class="starter-stats">Card subtitle</h6>
+                    <h6 th:text="'DEF: ' + ${pokemon.defense}"
+                        class="starter-stats">Card subtitle</h6>
+                    <h6 th:text="'SPD: ' + ${pokemon.speed}"
+                        class="starter-stats">Card subtitle</h6>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--ALL POKEMONS-->
+
+    <div th:unless="${session.player.allPokemon == null or session.player.allPokemon.isEmpty()}"
+         class="poke-table">
+        <form action="/addStartersToProfile"  method="post">
+            <div class="flex-test">
+                <table class="table">
+
+                    <tbody>
+                    <tr th:each="pokemon : ${session.player.allPokemon}">
+
+                        <!--IMAGE-->
+                        <td>
+                            <img th:src="${pokemon.image}" th:alt="${pokemon.name}"/>
+                        </td>
+                        <!--NAME-->
+                        <td>
+                            <p th:text="${pokemon.name}" class="fw-normal mb-1 poke-name"></p>
+                        </td>
+
+                        <!--TYPE-->
+                        <td>
+                            <div th:each="type : ${pokemon.types}">
+                <span th:text="${type}" class="badge badge-sm d-inline"
+                      th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +
+                      ((type == 'fire') ? 'badge-fire' : '') +
+                      ((type == 'water') ? 'badge-water' : '') +
+                      ((type == 'psychic') ? 'badge-psychic' : '') +
+                      ((type == 'dragon') ? 'badge-dragon' : '') +
+                      ((type == 'electric') ? 'badge-electric' : '') +
+                      ((type == 'ice') ? 'badge-ice' : '') +
+                      ((type == 'ghost') ? 'badge-ghost' : '') +
+                      ((type == 'normal') ? 'badge-normal' : '') +
+                      ((type == 'rock') ? 'badge-rock' : '') +
+                      ((type == 'ground') ? 'badge-ground' : '') +
+                      ((type == 'fighting') ? 'badge-fighting' : '') +
+                      ((type == 'bug') ? 'badge-bug' : '') +
+                      ((type == 'poison') ? 'badge-poison' : '') +
+                      ((type == 'flying') ? 'badge-flying' : '') +
+                      ((type == 'steel') ? 'badge-steel' : '') +
+                      ((type == 'shadow') ? 'badge-shadow' : '') +
+                      ((type == 'fairy') ? 'badge-fairy' : '') +
+                      ((type == 'dark') ? 'badge-dark' : '')
+                      }">
+                </span>
+                                <br>
+                            </div>
+
+<!--                            &lt;!&ndash;HP&ndash;&gt;-->
+<!--                        <td>-->
+<!--                            <p th:text="${pokemon.currentHp + '/' + pokemon.maxHp}" class="fw-normal mb-1 poke-name"></p>-->
+<!--                        </td>-->
+
+                        <!--STATS-->
+                        <td>
+                            <button type="button"
+                                    class="btn btn-secondary"
+                                    data-container="body"
+                                    data-toggle="popover"
+                                    data-placement="top"
+                                    th:data-content=
+                                            "'Attack ' + ${pokemon.attack} +
+                                    ', Defense ' + ${pokemon.defense} +
+                                    ', Speed: ' + ${pokemon.speed}">
+                                Show stats
+                            </button>
+                        </td>
+
+                        <td><input type="checkbox" th:name="pokemonIds" th:value="${pokemon.id}" onchange="checkCheckboxes()"></td>
+                        <td><input type="submit" id="submit" value="Submit" disabled></td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
         </form>
-    </table>
+    </div>
 </div>
+
+<h1><a href="/packOpening">PACK OPENING</a></h1>
+
 </body>
 </html>
