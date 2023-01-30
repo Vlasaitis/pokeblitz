@@ -6,7 +6,6 @@ import com.example.pokeblitz.Classes.Battle;
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Repositories.BattleRepository;
-import com.example.pokeblitz.Repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,23 +43,25 @@ public class BattleService {
             }
             gameNotOver = shouldGameContinue(attacker, defender);
         }
-        addBattleSummaryToLogAndChangeElo(attacker, defender, battleLog);
+        addBattleSummaryToLogChangeEloGiveCoins(attacker, defender, battleLog);
         healAllPokemonAndResetDamageDone(attacker, defender);
 
         return battleLog;
     }
 
 
-    public void addBattleSummaryToLogAndChangeElo(Player attacker, Player defender, List<String> battleLog) {
+    public void addBattleSummaryToLogChangeEloGiveCoins(Player attacker, Player defender, List<String> battleLog) {
         battleLog.add("-------------------");
         if (attacker.getBattleStarters().isEmpty()) { // means defender won
             battleLog.add(defender.getUsername() + " won the battle and stole 10 ELO! Fight summary below:");
             battleLog.add("-------------------");
             adjustEloAndWinLoss(defender,attacker);
+            defender.addCoins(100);
         } else {
             battleLog.add(attacker.getUsername() + " won the battle and stole 10 ELO! Fight summary:");
             battleLog.add("-------------------");
             adjustEloAndWinLoss(attacker, defender);
+            attacker.addCoins(100);
         }
 //        playerService.savePlayer(defender);
 //        playerService.savePlayer(attacker);

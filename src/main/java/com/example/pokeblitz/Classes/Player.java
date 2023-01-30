@@ -1,11 +1,10 @@
 package com.example.pokeblitz.Classes;
 
-import com.example.pokeblitz.Services.PackService;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class Player {
     @Column
     private int elo = 1000;
     @Column
-    private int coins = 400;
+    private int coins = 4000;
 
     @Column
     private int wins = 0;
@@ -119,6 +118,12 @@ public class Player {
             }
         }
         return new Pack();
+    }
+    public void deductCoins(int price) {
+        this.coins -= price;
+    }
+    public void addCoins(int price) {
+        this.coins += price;
     }
 
     public List<Battle> getFullBattleHistory() {
@@ -239,9 +244,7 @@ public class Player {
         this.losses += 1;
     }
 
-    public void deductCoins(int price) {
-        this.coins -= price;
-    }
+
 }
 
 
