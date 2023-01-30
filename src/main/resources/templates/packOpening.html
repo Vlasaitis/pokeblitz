@@ -22,19 +22,21 @@
 
       <form th:action="@{/packOpening}" method="POST">
 
-        <div class="col-4 princing-item green">
-          <div class="pricing-divider ">
+        <div class="col-4 pack-item common-pack">
+          <div class="pack">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+                 alt="" class="card-pic">
           </div>
           <div class="card-body bg-white mt-0 shadow">
             <ul class="list-unstyled mb-5 position-relative">
-              <li style="font-size: 25px;" th:if="${pack.tier == 1}"><b>Common Pack</b></li>
+              <li style="font-size: 25px;" th:if="${pack.tier == 1}"><b class="common-pack-text-hl">Common Pack</b></li>
               <li th:if="${pack.tier == 2}"><b>Uncommon Pack</b></li>
               <li th:if="${pack.tier == 3}"><b>Rare Pack</b></li>
               <li th:if="${pack.tier == 4}"><b>Epic Pack</b></li>
-              <li><b>Includes</b><p th:text="${pack.pokemonAmount} + ' pokemons'"></p></li>
+              <li><b class="common-pack-text-hl">Includes</b><p th:text="${pack.pokemonAmount} + ' pokemons'"></p></li>
             </ul>
             <input type="hidden" name="packId" th:value="${pack.id}"/>
-            <button type="submit" class="btn btn-lg btn-block btn-custom open-button">Open</button>
+            <button type="submit" class="btn btn-lg btn-block btn-custom btn-common open-button">Open</button>
           </div>
         </div>
       </form>
