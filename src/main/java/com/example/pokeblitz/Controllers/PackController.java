@@ -49,7 +49,8 @@ public class PackController {
         boolean starterPack = startersService.isStarterPack(player);
         List<BattlePokemon> openedPokemon = packService.openPackAndUpdateDB(packId, player);
         if (starterPack) {
-            startersService.updateStartersEntryOrCreateItAndUpdateBattleStarters(player, openedPokemon); // if first ever pack, immediately sets this pack pokemon as starters
+            startersService.updateStartersEntryOrCreateItAndUpdateBattleStarters(player, openedPokemon);// if first ever pack, immediately sets this pack pokemon as starters
+            player.setCoins(400);
         }
         session.setAttribute("loot", openedPokemon);
         return "redirect:/openedPack";
