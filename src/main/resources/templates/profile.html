@@ -44,6 +44,87 @@
         </div>
     </div>
 
+    <!--DEFAULT STARTERS-->
+
+    <div th:if="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
+         class="row">
+        <div class="col-md-5">
+            <div class="card poke-card" style="width: 13rem;">
+                <!--IMAGE-->
+                <img src="/images/pikachu-shadow.png"
+                     class="card-img-top"/>
+                <div class="card-body">
+                    <!--NAME-->
+                    <h5 class="card-title">Your starter Pokemons will be displayed here</h5>
+                    <!--TYPES-->
+
+                    <!--HP-->
+                    <h6 class="starter-stats">Along with their stats</h6>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card poke-card" style="width: 13rem;">
+                <!--IMAGE-->
+                <img src="/images/pikachu-shadow.png"
+                     class="card-img-top"/>
+                <div class="card-body">
+                    <!--NAME-->
+                    <h5 class="card-title">Your starter Pokemons will be displayed here</h5>
+                    <!--TYPES-->
+
+                    <!--HP-->
+                    <h6 class="starter-stats">Along with their stats</h6>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card poke-card" style="width: 13rem;">
+                <!--IMAGE-->
+                <img src="/images/pikachu-shadow.png"
+                     class="card-img-top"/>
+                <div class="card-body">
+                    <!--NAME-->
+                    <h5 class="card-title">Your starter Pokemons will be displayed here</h5>
+                    <!--TYPES-->
+
+                    <!--HP-->
+                    <h6 class="starter-stats">Along with their stats</h6>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--DEFAULT POKEMONS-->
+
+    <div th:if="${session.player.allPokemon == null or session.player.allPokemon.isEmpty()}"
+         class="poke-table">
+        <form action="/addStartersToProfile" method="POST">
+
+            <table class="table">
+
+                <tbody>
+                <tr>
+
+                    <!--IMAGE-->
+<!--                    <td>-->
+<!--                        <img th:src="${pokemon.image}" th:alt="${pokemon.name}"/>-->
+<!--                    </td>-->
+                    <td>
+                        <p class="fw-normal mb-1 poke-name">All your Pokemons will be displayed here</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
     <!--STARTERS-->
 
     <div th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
@@ -173,9 +254,14 @@
 
         </form>
     </div>
+
 </div>
 
-<h1><a href="/packOpening">PACK OPENING</a></h1>
+<h1 th:if="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}">
+    <a href="/packOpening">GET STARTED AND OPEN YOUR FREE PACK!</a></h1>
+
+<h1 th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}">
+    <a href="/packOpening">PACK OPENING</a></h1>
 
 </body>
 </html>
