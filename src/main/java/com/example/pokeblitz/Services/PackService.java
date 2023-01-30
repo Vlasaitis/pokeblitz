@@ -32,6 +32,11 @@ public class PackService {
         Pack pack = packRepository.findById(id).get();
         return pack;
     }
+//    public void addPackToPlayerInventory(Player player, int pokemonAmount, int price, int tier) {
+//        Pack pack = packRepository.findById(id).get();
+//        return pack;
+//    }
+
 
 
     public List<BattlePokemon> openPack(Pack pack, Player player){

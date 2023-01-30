@@ -45,4 +45,19 @@ public class PlayerService {
 //        });
         return allPlayers;
     }
+
+    public boolean canPlayerAffordPurchase(Player player, String packType, int amount) {
+        int totalPrice = switch (packType) {
+            case "epic" -> 600;
+            case "rare" -> 400;
+            case "uncommon" -> 200;
+            case "common" -> 100;
+            default -> 100000;
+        };
+        totalPrice = totalPrice*amount;
+        if (totalPrice <= player.getCoins()) {
+            return true;
+        }
+        return false;
+    }
 }

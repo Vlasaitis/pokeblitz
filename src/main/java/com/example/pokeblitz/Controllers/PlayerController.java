@@ -86,6 +86,8 @@ public class PlayerController {
 
         // ge starter pack till ny user
         Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword()));
+//        packService.addPackToPlayerInventory(Player player, int pokemonAmount, int price, int tier);
+
         Pack pack = packService.savePack(new Pack(3,100,loggedInPlayer, 1));
         playerService.savePlayer(loggedInPlayer.addPurchasedPack(pack));
         securityConfig.createNewUser(player.getUsername(), player.getPassword());

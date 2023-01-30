@@ -220,4 +220,20 @@ class PokeBlitzTests {
 		}
 		player1.getAllPokemon().forEach(battlePokemon -> System.out.println(battlePokemon.getName()));
 	}
+	@Test void canPlayerAffordPurchaseTest() {
+		Player player = playerService.savePlayer(new Player("Tony", "Bananananas", "vvv@hot.com"));
+		boolean canAfford = playerService.canPlayerAffordPurchase(player, "epic", 1);
+		assertEquals(false,canAfford);
+
+		player.setCoins(600);
+		canAfford = playerService.canPlayerAffordPurchase(player, "epic", 1);
+		assertEquals(true,canAfford);
+
+		player.setCoins(1000);
+		canAfford = playerService.canPlayerAffordPurchase(player, "rare", 2);
+		assertEquals(true,canAfford);
+
+		canAfford = playerService.canPlayerAffordPurchase(player, "rare", 3);
+		assertEquals(false,canAfford);
+	}
 }

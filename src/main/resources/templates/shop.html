@@ -1,22 +1,124 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:insert="~{fragments :: head}"></div>
-<div th:insert="~{fragments :: navigation}"></div>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/shop.css}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<nav th:replace="~{fragments :: navigation}"></nav>
 <body>
-
-<table>
-
-  <h2>Shoppingcart</h2>
-
-  <div class="Panel">
-    <div th:each=" : ${}">
-
-      <div>
-        <a th:href= "'/shop/'+ ${}"> <img th:src="'/images/' + ${} "></a>
-      </div>
-      <span><p th:text="${}"></p></span>
+<div class="container-fluid d-flex h-100 justify-content-center">
+    <div class="col-2 m-2 justify-content-center">
+        <button class="btn btn-primary m-1 ">Button 1</button>
+        <button class="btn btn-primary m-1">Button 2</button>
+        <div th:text="'Coins: ' +${session.player.coins}"></div>
     </div>
-  </div>
-</table>
+    <div class="row justify-content-center align-self-center shop-container">
+        <div class="col-2.5 m-1">
+            <div class="card">
+                <img class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Common Pack</h5>
+                    <form method="POST" th:action="@{/processPurchase}">
+                        <div class="form-group">
+                            <label for="common-pack">Pokemon Amount</label>
+                            <select class="form-control" id="common-pack" name="amount">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                            <input type="hidden" name="packType" value="common"/>
+                        </div>
+                        <div>
+                            <label for="common-price">Price:</label>
+                            <span id="common-price">100</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-2.5 m-1">
+            <div class="card">
+                <img class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Uncommon Pack</h5>
+                    <form method="POST" th:action="@{/processPurchase}">
+                        <div class="form-group">
+                            <label for="uncommon-pack">Pokemon Amount</label>
+                            <select class="form-control" id="uncommon-pack" name="amount">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                            <input type="hidden" name="packType" value="uncommon"/>
+                            <div>
+                                <label for="uncommon-price">Price:</label>
+                                <span id="uncommon-price">200</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-2.5 m-1">
+            <div class="card">
+                <img class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Rare Pack</h5>
+                    <form method="POST" th:action="@{/processPurchase}">
+                        <div class="form-group">
+                            <label for="rare-pack">Pokemon Amount</label>
+                            <select class="form-control" id="rare-pack" name="amount">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                            <input type="hidden" name="packType" value="rare"/>
+                        </div>
+                        <div>
+                            <label for="rare-price">Price:</label>
+                            <span id="rare-price">400</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-2.5 m-1">
+            <div class="card">
+                <img class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Epic Pack</h5>
+                    <form method="POST" th:action="@{/processPurchase}">
+                        <div class="form-group">
+                            <label for="epic-pack">Pokemon Amount</label>
+                            <select class="form-control" id="epic-pack" name="amount">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                            <input type="hidden" name="packType" value="epic"/>
+                            <div>
+                                <label for="epic-price">Price:</label>
+                                <span id="epic-price">600</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/shop.js}"></script>
 </body>
+
 </html>
