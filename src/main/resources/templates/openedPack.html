@@ -27,7 +27,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="flip-card" th:each="pokemon : ${session.player.battleStarters}" onclick="this.classList.toggle('flip');">
+    <div class="flip-card" th:each="pokemon : ${session.loot}" onclick="this.classList.toggle('flip');">
         <div class="flip-card-inner">
             <div class="flip-card-front">
                 <img src="/images/cardback.png"style="width:475px;height:475px;">
