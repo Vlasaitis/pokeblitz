@@ -1,3 +1,10 @@
 .shop-container {
-    border: 5px solid black;
+    border: 5px solid  #E4D600;
+    background: #E4D600
+}
+.d-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2cm;
 }
