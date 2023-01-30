@@ -1,23 +1,30 @@
-.pricing-divider {
-    background: #C64545;
-    padding: 10em 0 4em;
+.pack {
+    padding: 5em 0 4em;
     position: relative;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    width: 150%;
+    width: 100%;
 }
 .blue .pricing-divider{
     background: #2D5772;
 
 }
-.green .pricing-divider {
+.common-pack .pack {
     background: linear-gradient(-45deg, #7CD581, #7cd59e, #7cd5c9, #7cd2d5);
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
     /*height: 100vh;*/
-    background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png");
+    /*background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png");
     background-position: center;
-    background-size: cover;
+    background-size: cover;*/
+}
+
+.common-pack-text-hl{
+color: #55a875;
+}
+
+.card-pic{
+    width: 50%;
 }
 
 @keyframes gradient {
@@ -60,17 +67,17 @@
   width:50px; position:absolute;top:-3.5rem;right:1rem
 }
 
-.princing-item {
+.pack-item {
   transition: all 150ms ease-out;
 }
-.princing-item:hover {
+.pack-item:hover {
   transform: scale(1.05);
 }
-.princing-item:hover .deco-layer--1 {
+.pack-item:hover .deco-layer--1 {
   -webkit-transform: translate3d(15px, 0, 0);
   transform: translate3d(15px, 0, 0);
 }
-.princing-item:hover .deco-layer--2 {
+.pack-item:hover .deco-layer--2 {
   -webkit-transform: translate3d(-15px, 0, 0);
   transform: translate3d(-15px, 0, 0);
 }
@@ -84,9 +91,15 @@
 }
 
 .card-body{
-    width: 150% !important;
+    width: 100% !important;
 }
 
-.btn-custom{
-    background: #7CD581
+.btn-common{
+    background: #70ceb4
+}
+
+.btn{
+text-transform: uppercase !important;
+font-size: 30px !important;
+font-weight: bold !important;
 }

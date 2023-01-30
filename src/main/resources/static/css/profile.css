@@ -83,6 +83,10 @@ form{
 
 }
 
+.vafan{
+
+}
+
 .table{
     color: #fff;
     border-collapse: collapse;
@@ -103,6 +107,10 @@ form{
     background-color: #fd7380;
     color: #f0f0f0 !important;
     border-top-color: #EC2626 !important
+}
+
+table td img{
+    width: 43px;
 }
 
 th{
@@ -140,5 +148,6 @@ input[type=checkbox]
 
 .poke-name{
    text-transform: capitalize;
-   text-shadow: #776d68 1px 1px 1px;
+   font-size: 12px;
+   color: #4d4a4a
 }
