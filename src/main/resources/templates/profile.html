@@ -23,7 +23,7 @@
 <nav th:replace="~{fragments :: navigation}"></nav>
 <body>
 
-<div class="row profile-board">
+<div class="col container profile-board">
 
     <!--    PROFILE-->
     <div class="row profile-card">
@@ -47,7 +47,7 @@
     <!--STARTERS-->
 
     <div th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
-         class="row">
+         class="row vafan">
         <div th:each="pokemon : ${session.player.battleStarters}" class="col-md-5">
             <div class="card poke-card" style="width: 13rem;">
                 <!--IMAGE-->
@@ -100,25 +100,25 @@
 
     <div th:unless="${session.player.allPokemon == null or session.player.allPokemon.isEmpty()}"
          class="poke-table">
-        <form action="/addStartersToProfile"  method="post">
-            <div class="flex-test">
-                <table class="table">
+        <form action="/addStartersToProfile" method="POST">
 
-                    <tbody>
-                    <tr th:each="pokemon : ${session.player.allPokemon}">
+            <table class="table">
 
-                        <!--IMAGE-->
-                        <td>
-                            <img th:src="${pokemon.image}" th:alt="${pokemon.name}"/>
-                        </td>
-                        <!--NAME-->
-                        <td>
-                            <p th:text="${pokemon.name}" class="fw-normal mb-1 poke-name"></p>
-                        </td>
+                <tbody>
+                <tr th:each="pokemon : ${session.player.allPokemon}">
 
-                        <!--TYPE-->
-                        <td>
-                            <div th:each="type : ${pokemon.types}">
+                    <!--IMAGE-->
+                    <td>
+                        <img th:src="${pokemon.image}" th:alt="${pokemon.name}"/>
+                    </td>
+                    <!--NAME-->
+                    <td>
+                        <p th:text="${pokemon.name}" class="fw-normal mb-1 poke-name"></p>
+                    </td>
+
+                    <!--TYPE-->
+                    <td>
+                        <div th:each="type : ${pokemon.types}">
                 <span th:text="${type}" class="badge badge-sm d-inline"
                       th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +
                       ((type == 'fire') ? 'badge-fire' : '') +
@@ -141,37 +141,35 @@
                       ((type == 'dark') ? 'badge-dark' : '')
                       }">
                 </span>
-                                <br>
-                            </div>
+                            <br>
+                        </div>
 
-<!--                            &lt;!&ndash;HP&ndash;&gt;-->
-<!--                        <td>-->
-<!--                            <p th:text="${pokemon.currentHp + '/' + pokemon.maxHp}" class="fw-normal mb-1 poke-name"></p>-->
-<!--                        </td>-->
+                        <!--                            &lt;!&ndash;HP&ndash;&gt;-->
+                        <!--                        <td>-->
+                        <!--                            <p th:text="${pokemon.currentHp + '/' + pokemon.maxHp}" class="fw-normal mb-1 poke-name"></p>-->
+                        <!--                        </td>-->
 
                         <!--STATS-->
-                        <td>
-                            <button type="button"
-                                    class="btn btn-secondary"
-                                    data-container="body"
-                                    data-toggle="popover"
-                                    data-placement="top"
-                                    th:data-content=
-                                            "'Attack ' + ${pokemon.attack} +
-                                    ', Defense ' + ${pokemon.defense} +
-                                    ', Speed: ' + ${pokemon.speed}">
-                                Show stats
-                            </button>
-                        </td>
+                        <!--                        <td>-->
+                        <!--                            <button type="button"-->
+                        <!--                                    class="btn btn-secondary"-->
+                        <!--                                    data-container="body"-->
+                        <!--                                    data-toggle="popover"-->
+                        <!--                                    data-placement="top"-->
+                        <!--                                    th:data-content=-->
+                        <!--                                            "'Attack ' + ${pokemon.attack} +-->
+                        <!--                                    ', Defense ' + ${pokemon.defense} +-->
+                        <!--                                    ', Speed: ' + ${pokemon.speed}">-->
+                        <!--                                Show stats-->
+                        <!--                            </button>-->
+                        <!--                        </td>-->
 
-                        <td><input type="checkbox" th:name="pokemonIds" th:value="${pokemon.id}" onchange="checkCheckboxes()"></td>
-                        <td><input type="submit" id="submit" value="Submit" disabled></td>
-                    </tr>
+                    <td><input type="checkbox" th:name="pokemonIds" th:value="${pokemon.id}" onchange="checkCheckboxes()"></td>
+                    <td><input type="submit" id="submit" value="Submit" disabled></td>
+                </tr>
+                </tbody>
+            </table>
 
-                    </tbody>
-
-                </table>
-            </div>
         </form>
     </div>
 </div>

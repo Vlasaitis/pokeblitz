@@ -86,8 +86,8 @@ public class PlayerController {
 
         // ge starter pack till ny user
         Player loggedInPlayer = playerService.savePlayer(new Player(player.getUsername(), player.getPassword()));
-        Pack pack = packService.savePack(new Pack(3,100,loggedInPlayer, 1));
-        playerService.savePlayer(loggedInPlayer.addPurchasedPack(pack));
+        packService.addPackToPlayerInventoryAndDeductCoins(loggedInPlayer, 3, 300, 1);
+
         securityConfig.createNewUser(player.getUsername(), player.getPassword());
 
 //        System.out.println("newly created pack, is used: " + packService.getPackById(player.getPacks().get(0).getId()).isUsed());

@@ -238,6 +238,10 @@ public class Player {
     public void lostAGame() {
         this.losses += 1;
     }
+
+    public void deductCoins(int price) {
+        this.coins -= price;
+    }
 }
 
 
