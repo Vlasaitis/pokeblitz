@@ -60,6 +60,8 @@ class PokeBlitzTests {
 		Assertions.assertArrayEquals(halfDmg, testHalf);
 	}
 
+
+
 	@Test
 	public void battleDetermineOrderTest() {
 		Player player1 = playerService.savePlayer(new Player("Tony", "Bananananas", "vvv@hot.com"));
@@ -202,12 +204,20 @@ class PokeBlitzTests {
 		Player player1 = playerService.savePlayer(new Player("Tony", "Bananananas", "vvv@hot.com"));
 		Pack pack = packService.savePack(new Pack(3,100,player1,1));
 
-		List<BattlePokemon> openedpack = packService.openPack(pack);
+		List<BattlePokemon> openedpack = packService.openPack(pack, player1);
 		for (int i = 0; i < openedpack.size(); i++) {
 			System.out.println(openedpack.get(i).getName());
 		}
 		assertEquals(3, openedpack.size());
+	}
+	@Test
+	public void openPackNoDoublesTest() {
+		Player player1 = playerService.savePlayer(new Player("Tony", "Bananananas", "vvv@hot.com"));
 
-
+		for (int i = 0; i < 10; i++) {
+			Pack pack = packService.savePack(new Pack(3,100,player1,1));
+			packService.openPackAndUpdateDB(pack.getId(), player1);
+		}
+		player1.getAllPokemon().forEach(battlePokemon -> System.out.println(battlePokemon.getName()));
 	}
 }

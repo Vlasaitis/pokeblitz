@@ -34,11 +34,22 @@ public class PackService {
     }
 
 
-    public List<BattlePokemon> openPack(Pack pack){
+    public List<BattlePokemon> openPack(Pack pack, Player player){
+        List<String> playersCurrentPokemonNames = new ArrayList<>();
+        player.getAllPokemon().forEach(battlePokemon -> playersCurrentPokemonNames.add(battlePokemon.getName()));
+
         List<BattlePokemon> tierPack = adjustListBasedOnTier(pack.getTier());
         List<BattlePokemon> packPokemon = new ArrayList<>();
        for (int i = 0; i < pack.getPokemonAmount(); i++) {
-            packPokemon.add(tierPack.get(random.nextInt(tierPack.size())));
+           while(true) {
+               BattlePokemon pulledPokemon = tierPack.get(random.nextInt(tierPack.size())); // pull random pokemon from tierPack
+               if (!(playersCurrentPokemonNames.contains(pulledPokemon.getName()))) { //if players current pokemon dont contain the pulledpokemon
+                   playersCurrentPokemonNames.add(pulledPokemon.getName()); // add the pulled pokemons name to our temp list tracking all current pokemon
+                   packPokemon.add(pulledPokemon); // add the pokemon object to the return list and break out of the loop and go to next iteration.
+                   break;
+               }
+           }
+
         }
        return packPokemon;
     }
@@ -82,7 +93,7 @@ public class PackService {
 
     public List<BattlePokemon> openPackAndUpdateDB(Long packId, Player player) {
         Pack packToBeOpened = getPackById(packId); // gets the pack object to be opened
-        List<BattlePokemon> openedPokemon = openPack(packToBeOpened); // opens, and extracts into variable
+        List<BattlePokemon> openedPokemon = openPack(packToBeOpened, player); // opens, and extracts into variable
         openedPokemon.stream().forEach(battlePokemon -> player.getAllPokemon().add(pokemonService.savePokemon(battlePokemon, player))); // add pkmn to db, add to player
 //        packRepository.save(packToBeOpened.setUsed());
         player.findPackInBackPack(packId).setUsed();
