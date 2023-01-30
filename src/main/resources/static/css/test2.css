@@ -2,7 +2,7 @@
 
 body {
     background-color: #EEE;
-    background-image: url("../images/pokemonBG.png");
+    /*background-image: url("../images/pokemonBG.png");*/
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
