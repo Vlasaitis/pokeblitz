@@ -5,10 +5,7 @@ import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Classes.Starters;
-import com.example.pokeblitz.Services.BattleService;
-import com.example.pokeblitz.Services.PackService;
-import com.example.pokeblitz.Services.PlayerService;
-import com.example.pokeblitz.Services.PokemonService;
+import com.example.pokeblitz.Services.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,8 @@ class PokeBlitzTests {
 	PokemonService pokemonService;
 	@Autowired
 	PackService packService;
+	@Autowired
+	ShopService shopService;
 
 
 	@Test
@@ -222,18 +221,18 @@ class PokeBlitzTests {
 	}
 	@Test void canPlayerAffordPurchaseTest() {
 		Player player = playerService.savePlayer(new Player("Tony", "Bananananas", "vvv@hot.com"));
-		boolean canAfford = playerService.canPlayerAffordPurchase(player, "epic", 1);
+		boolean canAfford = shopService.canPlayerAffordPurchase(player, "epic", 1);
 		assertEquals(false,canAfford);
 
 		player.setCoins(600);
-		canAfford = playerService.canPlayerAffordPurchase(player, "epic", 1);
+		canAfford = shopService.canPlayerAffordPurchase(player, "epic", 1);
 		assertEquals(true,canAfford);
 
 		player.setCoins(1000);
-		canAfford = playerService.canPlayerAffordPurchase(player, "rare", 2);
+		canAfford = shopService.canPlayerAffordPurchase(player, "rare", 2);
 		assertEquals(true,canAfford);
 
-		canAfford = playerService.canPlayerAffordPurchase(player, "rare", 3);
+		canAfford = shopService.canPlayerAffordPurchase(player, "rare", 3);
 		assertEquals(false,canAfford);
 	}
 }

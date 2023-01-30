@@ -32,10 +32,13 @@ public class PackService {
         Pack pack = packRepository.findById(id).get();
         return pack;
     }
-//    public void addPackToPlayerInventory(Player player, int pokemonAmount, int price, int tier) {
-//        Pack pack = packRepository.findById(id).get();
-//        return pack;
-//    }
+    public void addPackToPlayerInventoryAndDeductCoins(Player player, int pokemonAmount, int price, int tier) {
+        if (!(player.getAllPokemon().isEmpty() && player.getPacks().isEmpty())) { //om pokemon och packs INTE är tomt tar vi pengar. Annars: första packet, ej betalt.
+            player.deductCoins(price);
+        }
+        Pack pack = savePack(new Pack(pokemonAmount,price,player,tier));
+        playerService.savePlayer(player.addPurchasedPack(pack));
+    }
 
 
 
@@ -105,4 +108,17 @@ public class PackService {
         playerService.savePlayer(player);
         return openedPokemon;
     }
+
+
+    public int convertTierToInt(String packType) {
+            int tier = switch (packType) {
+                case "epic" -> 4;
+                case "rare" -> 3;
+                case "uncommon" -> 2;
+                case "common" -> 1;
+                default -> 100000;
+            };
+            return tier;
+    }
+
 }
