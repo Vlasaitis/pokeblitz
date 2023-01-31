@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:font-size="http://www.w3.org/1999/xhtml" xmlns:border=""
       xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:fragment="head">
+  <head th:fragment="head">
   <meta charset="UTF-8">
-  <title>Pokeblitz</title>
+  <title th:fragment="title">Pokeblitz</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" th:href="@{/css/test2.css}">
-  <!--  <link rel="icon" href="">-->
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
 
+  <link rel="icon" th:href="@{/images/pokemon-icon.svg}">
+
+  <script th:src="@{/js/checkboxes.js}"></script>
+
 </head>
+
 <body>
+
 <nav th:fragment="navigation" class="navbar sticky-top" style="background-color: #4CA9CE;" >
   <ul class="navbar nav">
     <a href="/"><img class="navLogo" style="height: 50px;" src="../images/logo2.png"></a>
-    <li  sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/" style="font-size: 2rem; solid Black;">Login</a></li>
-    <li  sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/register" style=" font-size: 2rem;">Register</a></li>
-    <li class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/about" style=" font-size: 2rem;">About</a></li>
+    <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/profile" style=" font-size: 2rem;">Dashboard</a></li>
+    <li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/" style="font-size: 2rem; solid Black;">Login</a></li>
+    <li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/register" style=" font-size: 2rem;">Register</a></li>
     <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/shop" style=" font-size: 2rem;">Shop</a></li>
     <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/battle" style=" font-size: 2rem;">Start battle</a></li>
-    <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/profile" style=" font-size: 2rem;">Profile</a></li>
     <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/ladder" style=" font-size: 2rem;">Ladder</a></li>
+    <li class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/about" style=" font-size: 2rem;">About</a></li>
     <li sec:authorize="isAuthenticated()" class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/logout" style=" font-size: 2rem; justify-content: right">Logout</a></li>
     <!-- <a sec:authorize="isAuthenticated()"  href="/profile"><img class="navLogo" style="height: 50px;" src="../images/gåtillprofil.jpg"></a> -->
   </ul>
 </nav>
+
 </body>
 </html>
 
