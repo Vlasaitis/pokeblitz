@@ -1,3 +1,13 @@
+.container{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.w-75{
+    width: 30% !important;
+    padding-bottom: 30px
+}
+
 .pack {
     padding: 5em 0 4em;
     position: relative;
@@ -5,26 +15,105 @@
     border-top-right-radius: 5px;
     width: 100%;
 }
-.blue .pricing-divider{
-    background: #2D5772;
 
-}
+/*COMMON PACK*/
+
 .common-pack .pack {
-    background: linear-gradient(-45deg, #7CD581, #7cd59e, #7cd5c9, #7cd2d5);
+   background: #f7db6e;
+}
+
+.common-pack-hl{
+    color: #f7db6e;
+    text-transform: uppercase;
+    font-size: 23px;
+    font-weight: 700;
+    font-family: sans-serif;
+}
+
+.common-pack-img{
+    width: 60%;
+    content:url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png);
+}
+
+.btn-common{
+    background: #f7db6e;
+    color: white;
+}
+
+/*UNCOMMON PACK*/
+
+.uncommon-pack .pack {
+    background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(210,148,233,1) 100%);
+}
+
+.uncommon-pack-hl{
+    text-transform: uppercase;
+    font-size: 23px;
+    font-weight: 700;
+    font-family: sans-serif;
+    color: #d698e4;
+}
+
+.uncommon-pack-img{
+    width: 60%;
+    content:url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/104.png);
+}
+
+.btn-uncommon{
+    background: #d698e4;
+    color: white;
+}
+
+/*RARE PACK*/
+
+.rare-pack .pack {
+    background: radial-gradient(circle, rgb(2, 0, 36) 0%, rgb(121, 9, 112) 35%, rgb(0, 212, 255) 100%);
+}
+
+.rare-pack-hl{
+    text-transform: uppercase;
+    font-size: 23px;
+    font-weight: 700;
+    font-family: sans-serif;
+    color: #2b8acb;
+}
+
+.rare-pack-img{
+    width: 60%;
+    content:url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/31.png);
+}
+
+.btn-rare{
+    background: #2b8acb;
+    color: white;
+}
+
+/*EPIC PACK*/
+
+.epic-pack-hl{
+    text-transform: uppercase;
+    color: #e8579b;
+    font-size: 23px;
+    font-weight: 700;
+    font-family: sans-serif;
+}
+
+.epic-pack-img{
+    width: 60%;
+    content:url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/151.png);
+}
+
+.btn-epic{
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
-    /*height: 100vh;*/
-    /*background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png");
-    background-position: center;
-    background-size: cover;*/
+    animation: gradient 10s ease-in-out infinite;
+    color: white;
 }
 
-.common-pack-text-hl{
-color: #55a875;
-}
-
-.card-pic{
-    width: 50%;
+.epic-pack .pack{
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 5s ease-in-out infinite;
 }
 
 @keyframes gradient {
@@ -39,15 +128,6 @@ color: #55a875;
 	}
 }
 
-.red b {
-  color:#C64545
-}
-.blue b {
-  color:#2D5772
-}
-.green b {
-  color:#1AA85C
-}
 .pricing-divider-img {
 	position: absolute;
 	bottom: -2px;
@@ -55,12 +135,9 @@ color: #55a875;
 	width: 100%;
 	height: 80px;
 }
-.deco-layer {
-	-webkit-transition: -webkit-transform 0.5s;
-	transition: transform 0.5s;
-}
+
 .btn-custom  {
-  background:#C64545; color:#fff; border-radius:20px
+
 }
 
 .img-float {
@@ -81,6 +158,10 @@ color: #55a875;
   -webkit-transform: translate3d(-15px, 0, 0);
   transform: translate3d(-15px, 0, 0);
 }
+.deco-layer {
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+}
 
 .col-4{
     max-width: none !important;
@@ -94,12 +175,23 @@ color: #55a875;
     width: 100% !important;
 }
 
-.btn-common{
-    background: #70ceb4
+.btn{
+    text-transform: uppercase !important;
+    font-size: 30px !important;
+    font-weight: bold !important;
 }
 
-.btn{
-text-transform: uppercase !important;
-font-size: 30px !important;
-font-weight: bold !important;
+/*GRADIENT BORDER*/
+
+.gradient-border {
+  border: 4px solid transparent;
+  border-image-source: linear-gradient(45deg, #1fddff, #2C7744, #F0CB35, #fc00ff);
+  border-image-slice: 1;
+}
+.gradient {
+  width: 50%;
+  padding: 1rem;
+  background: #d1d1d1;
+  font: 1rem sans-serif;
+  margin-bottom: 1rem;
 }

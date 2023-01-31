@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<title th:replace="fragments :: title"></title>
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: navigation"></nav>
+<head><link rel="stylesheet" th:href="@{/css/shop.css}"></head>
 
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/css/shop.css}">
-    <link rel="stylesheet" th:href="@{/css/test2.css}">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-</head>
-<nav th:replace="~{fragments :: navigation}"></nav>
 <body>
+<div class="card-coins" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-coins-title">Coins: </h5>
+        <p class="card-coins-text" th:text="${session.player.coins}"></p>
+    </div>
+</div>
 <div class="container-fluid d-flex h-100 justify-content-center">
     <div class="row justify-content-center align-self-center shop-container">
         <div class="col-2.5 m-1">
@@ -117,10 +117,10 @@
     <div class="col-2 m-2">
         <button class="btn btn-primary m-1">Items</button>
         <button class="btn btn-primary m-1">Pokemon</button>
-        <a class="btn btn-primary m-1" href="/packOpening">Pack opening</a>
+        <a class="btn btn-primary m-1" href="/packOpening">Open pack</a>
     </div>
-    <div th:text="'Coins: ' +${session.player.coins}"></div>
 </div>
+
 
 
 <script th:src="@{/js/shop.js}"></script><

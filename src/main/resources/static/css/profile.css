@@ -44,8 +44,7 @@ form{
 
 .row{
    display: flex;
-   margin-right: 0px !important;
-   margin-left: 0px !important;
+   margin: 0;
 }
 
 .rounded-pill{
@@ -66,10 +65,8 @@ form{
 }
 
 .profile-board{
-    margin-top: 40px;
-    margin-bottom: 40px;
     display: flex;
-    justify-content: center;
+    margin-top: 50px;
 }
 
 .starter-cards{
@@ -77,11 +74,11 @@ form{
 }
 
 .starter-container{
-
+    justify-content: space-around;
 }
 
-.vafan{
-
+.col-md-2{
+   max-width: 20.0%;
 }
 
 .table{
@@ -94,7 +91,7 @@ form{
 }
 
 .poke-table{
-
+    display: flex;
 }
 
 .table td{
@@ -103,7 +100,7 @@ form{
     text-align: none !important;
     background-color: #fd7380;
     color: #f0f0f0 !important;
-    border-top-color: #EC2626 !important
+    border-top-color: #EC2626 !important;
 }
 
 table td img{
@@ -122,13 +119,12 @@ th{
 
 input[type=checkbox]
 {
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  padding: 10px;
-  accent-color: #fff;
-  cursor: pointer
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  accent-color: #fd7380;
+  cursor: pointer;
 }
 
 .btn-secondary{
@@ -161,16 +157,16 @@ input[type=checkbox]
   }
 
   .starter-button {
-    width: 150px;
+    width: -moz-available;
     height: 50px;
     cursor: pointer;
-    font-size: 20px;
-    font-family: 'Staatliches', cursive;
-    letter-spacing: 5px;
-    background: #ffc421;
-    border: 2px solid black;
-    box-shadow: 0px 0px 0px rgba(0,0,0,0.4);
+    font-size: 15px;
+    background: #f2bf5f;
+    border: 1px solid #ec2626;
     transition: 500ms;
+    border-bottom-width: 0;
+    color: white;
+    text-shadow: #776d68 1px 1px 1px;
   }
 
   .starter-button:after {

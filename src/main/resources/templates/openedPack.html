@@ -1,18 +1,3 @@
-<!--<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div th:each="pkm : ${session.loot}">
-        <img th:src="${pkm.image}" alt="">
-        <div th:text="${pkm.name}"></div>
-    </div>
-    <button  role="button" onclick="location.href = '/profile';">Back to profile</button>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head th:replace="~{fragments :: head}"></head>
@@ -31,7 +16,6 @@
         <div class="flip-card-inner">
             <div class="flip-card-front">
                 <img class="front-img" src="/images/cardback.png">
-                <h1>Click to see starters! </h1>
             </div>
             <div class="flip-card-back">
                 <img class="back-img" th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + ${pokemon.pokemonNumber} + '.png'">

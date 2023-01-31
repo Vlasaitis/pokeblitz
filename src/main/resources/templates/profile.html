@@ -1,29 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <meta charset="UTF-8">
 <title>Pokeblitz</title>
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/test2.css}">
-    <link rel="stylesheet" th:href="@{/css/profile.css}">
+<title th:replace="fragments :: title"></title>
+<head th:replace="fragments :: head"></head>
+<head><link rel="stylesheet" th:href="@{/css/profile.css}"></head>
+<nav th:replace="fragments :: navigation"></nav>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script th:src="@{/js/checkboxes.js}"></script>
-    <script th:src="@{/js/bootstrap.js}"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
-    <link rel="icon" th:href="@{/images/pokemon-icon.svg}">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
-
-</head>
-<nav th:replace="~{fragments :: navigation}"></nav>
 <body>
 
-<div class="col container profile-board">
+<div class="container profile-board">
 
     <!--    PROFILE-->
     <div class="row profile-card">
@@ -126,8 +112,9 @@
     <!--STARTERS-->
 
     <div th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
-         class="row vafan">
+         class="row starter-container">
         <div th:each="pokemon : ${session.player.battleStarters}" class="col-md-5">
+
             <div class="card poke-card" style="width: 13rem;">
                 <!--IMAGE-->
                 <img th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + ${pokemon.pokemonNumber} + '.png'"
@@ -178,11 +165,12 @@
     <!--ALL POKEMONS-->
 
     <div th:unless="${session.player.allPokemon == null or session.player.allPokemon.isEmpty()}"
-         class="poke-table">
+         class="poke-table col-md-2">
         <form action="/addStartersToProfile" method="POST">
             <div class="d-flex justify-content-center">
-                <input type="submit" id="submit" value="Submit" disabled class="starter-button noselect">
+                <input type="submit" id="submit" value="SELECT YOUR BATTLE TEAM" disabled class="starter-button noselect">
             </div>
+
             <table class="table">
 
                 <tbody>

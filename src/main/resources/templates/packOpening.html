@@ -1,63 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" th:href="@{/css/test2.css}">
-  <link rel="stylesheet" th:href="@{/css/openpack.css}">
-  <!--  <link rel="icon" href="">-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title th:replace="fragments :: title"></title>
+<head th:replace="fragments :: head"></head>
+<head><link rel="stylesheet" th:href="@{/css/openpack.css}"></head>
+<nav th:replace="fragments :: navigation"></nav>
 
-</head>
-<nav th:replace="~{fragments :: navigation}"></nav>
 <body>
 
-<div class="container-fluid bg-gradient">
+<div class="container">
   <div th:each="pack : ${session.playerPacks}" class="row m-auto text-center w-75">
 
+    <form th:action="@{/packOpening}" method="POST">
 
-      <form th:action="@{/packOpening}" method="POST">
-
-        <div class="col-4 pack-item common-pack">
+        <div th:classappend = "${((pack.tier == 1) ? 'common-pack' : '') +
+                      ((pack.tier == 2) ? 'uncommon-pack' : '') +
+                      ((pack.tier == 3) ? 'rare-pack' : '') +
+                      ((pack.tier == 4) ? 'epic-pack' : '')
+                      }"
+             class="col-4 pack-item">
           <div class="pack">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
-                 alt="" class="card-pic">
+            <img th:classappend = "${((pack.tier == 1) ? 'common-pack-img' : '') +
+                      ((pack.tier == 2) ? 'uncommon-pack-img' : '') +
+                      ((pack.tier == 3) ? 'rare-pack-img' : '') +
+                      ((pack.tier == 4) ? 'epic-pack-img' : '')
+                      }"
+                 class="card-pic"/>
           </div>
           <div class="card-body bg-white mt-0 shadow">
             <ul class="list-unstyled mb-5 position-relative">
-              <li style="font-size: 25px;" th:if="${pack.tier == 1}"><b class="common-pack-text-hl">Common Pack</b></li>
-              <li th:if="${pack.tier == 2}"><b>Uncommon Pack</b></li>
-              <li th:if="${pack.tier == 3}"><b>Rare Pack</b></li>
-              <li th:if="${pack.tier == 4}"><b>Epic Pack</b></li>
-              <li><b class="common-pack-text-hl">Includes</b><p th:text="${pack.pokemonAmount} + ' pokemons'"></p></li>
+              <li th:if="${pack.tier == 1}"><b th:classappend = "${pack.tier == 1 ? 'common-pack-hl' : ''}">Common Pack</b></li>
+              <li th:if="${pack.tier == 2}"><b th:classappend = "${pack.tier == 2 ? 'uncommon-pack-hl' : ''}">Uncommon Pack</b></li>
+              <li th:if="${pack.tier == 3}"><b th:classappend = "${pack.tier == 3 ? 'rare-pack-hl' : ''}">Rare Pack</b></li>
+              <li th:if="${pack.tier == 4}"><b th:classappend = "${pack.tier == 4 ? 'epic-pack-hl' : ''}">Epic Pack</b></li>
+              <li>
+                <b class="common-pack-text-hl">Includes</b>
+                <p th:text="${pack.pokemonAmount} + ' pokemons'"></p>
+              </li>
             </ul>
             <input type="hidden" name="packId" th:value="${pack.id}"/>
-            <button type="submit" class="btn btn-lg btn-block btn-custom btn-common open-button">Open</button>
+            <button type="submit"
+                    th:classappend = "${((pack.tier == 1) ? 'btn-common' : '') +
+                      ((pack.tier == 2) ? 'btn-uncommon' : '') +
+                      ((pack.tier == 3) ? 'btn-rare' : '') +
+                      ((pack.tier == 4) ? 'btn-epic' : '')
+                      }"
+                    class="btn btn-lg btn-block btn-custom open-button">Open</button>
           </div>
         </div>
-      </form>
-
-<!--    <form th:action="@{/packOpening}" method="POST">-->
-
-<!--      <div class="col-4 princing-item green">-->
-<!--        <div class="pricing-divider ">-->
-<!--        </div>-->
-<!--        <div class="card-body bg-white mt-0 shadow">-->
-<!--          <ul class="list-unstyled mb-5 position-relative">-->
-<!--            <li style="font-size: 25px;" th:if="${pack.tier == 1}"><b>Common Pack</b></li>-->
-<!--            <li th:if="${pack.tier == 2}"><b>Uncommon Pack</b></li>-->
-<!--            <li th:if="${pack.tier == 3}"><b>Rare Pack</b></li>-->
-<!--            <li th:if="${pack.tier == 4}"><b>Epic Pack</b></li>-->
-<!--            <li><b>Includes</b><p th:text="${pack.pokemonAmount} + ' pokemons'"></p></li>-->
-<!--          </ul>-->
-<!--          <input type="hidden" name="packId" th:value="${pack.id}"/>-->
-<!--          <button type="submit" class="btn btn-lg btn-block btn-custom ">Open</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </form>-->
-
-
+      </canvas>
+    </form>
   </div>
 </div>
 

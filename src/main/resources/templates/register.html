@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:insert="~{fragments :: head}"></div>
-<div th:insert="~{fragments :: navigation}"></div>
+<meta charset="UTF-8">
+<title th:replace="fragments :: title"></title>
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: navigation"></nav>
+
 <body>
 <section class="vh-100">
     <div class="container py-5 h-100">
