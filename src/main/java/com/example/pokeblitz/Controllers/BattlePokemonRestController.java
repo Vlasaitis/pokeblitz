@@ -19,7 +19,7 @@ public class BattlePokemonRestController {
     // Get all BattlePokemons
     @GetMapping
     public List<BattlePokemon> getAllBtPokemons() {
-        return this.battlePokemonRepository.findAll();
+        return (List<BattlePokemon>) this.battlePokemonRepository.findAll();
     }
 
     // Get BattlePokemon by ID

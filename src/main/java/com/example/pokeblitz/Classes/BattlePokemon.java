@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "battle_pokemon")
@@ -28,6 +29,8 @@ public class BattlePokemon {
     private Boolean hasTurn = true;
     private int damageDone = 0;
     private int pokemonNumber;
+
+    private int price;
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
@@ -42,6 +45,19 @@ public class BattlePokemon {
     // player class here
 
     public BattlePokemon() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BattlePokemon that = (BattlePokemon) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public BattlePokemon(String name, Player player) {
@@ -61,6 +77,7 @@ public class BattlePokemon {
         this.damageDone = 0;
         this.player = player;
         this.pokemonNumber = poke.getId();
+        this.price = this.powerLevel/2;
     }
 
     public BattlePokemon(String name) { //// alt constructor. create a pokemon without having to create a player object. Mostly for tests. Don't have to create player obj to run test.
@@ -80,6 +97,7 @@ public class BattlePokemon {
         this.damageDone = 0;
         this.player = new Player();
         this.pokemonNumber = poke.getId();
+        this.price = this.powerLevel/2;
     }
 
     public void setPowerLevel(int powerLevel) {
@@ -223,6 +241,14 @@ public class BattlePokemon {
 
     public void setPokemonNumber(int pokemonNumber) {
         this.pokemonNumber = pokemonNumber;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
 

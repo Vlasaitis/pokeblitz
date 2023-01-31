@@ -234,11 +234,19 @@
                         <!--                        </td>-->
 
                     <td><input type="checkbox" th:name="pokemonIds" th:value="${pokemon.id}" onchange="checkCheckboxes()"></td>
+
+                    <!-- Sell pokemon columns -->
+                    <td th:text="'Value: ' + ${pokemon.price}"></td>
+                    <td>
+                        <a class="sale-button" th:href="'/sellPokemon/' + ${pokemon.id}">Sell</a>
+                    </td>
+
                 </tr>
                 </tbody>
             </table>
 
         </form>
+
     </div>
 
 </div>
@@ -249,5 +257,7 @@
 <h1 th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}">
     <a href="/packOpening">PACK OPENING</a></h1>
 
+
+<script th:src="@{/js/profile.js}"></script>
 </body>
 </html>

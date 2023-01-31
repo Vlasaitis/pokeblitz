@@ -26,6 +26,9 @@ public class PokemonService {
         pokemon.setPlayer(player);
         return pokemonRepository.save(pokemon);
     }
+    public void deletePokemon(BattlePokemon pokemon) {
+        pokemonRepository.deleteById(pokemon.getId());
+    }
     public void levelUp(BattlePokemon poke) {
         poke.setAttack(poke.getAttack()+1);
         poke.setDefense(poke.getDefense()+1);

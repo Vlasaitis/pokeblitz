@@ -1,10 +1,17 @@
 package com.example.pokeblitz.Services;
 
+import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ShopService {
+
+    @Autowired
+    PokemonService pokemonService;
+    @Autowired
+    PlayerService playerService;
 
 
     public boolean canPlayerAffordPurchase(Player player, String packType, int amount) {
@@ -24,5 +31,16 @@ public class ShopService {
         };
         totalPrice = totalPrice*amount;
         return totalPrice;
+    }
+
+    public void attemptSale(Player player, Long pokemonId) {
+        if (player.getAllPokemon().size() >= 4) {
+            BattlePokemon pokemonToSell = pokemonService.findById(pokemonId);
+            player.addCoins(pokemonToSell.getPrice());
+            player.getAllPokemon().remove(pokemonToSell);
+            playerService.savePlayer(player);
+            System.out.println(player.getAllPokemon().size());
+            pokemonService.deletePokemon(pokemonToSell);
+        }
     }
 }
