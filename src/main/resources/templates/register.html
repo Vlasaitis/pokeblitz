@@ -33,12 +33,12 @@
                                          </div>-->
                                         <div class="form-outline mb-4">
                                             <label>Username</label>
-                                            <p th:if="${#fields.hasErrors('username')}">Incorrect value in username!</p>
+                                            <p th:if="${#fields.hasErrors('username')}">Username must be between 1-20 characters long. </p>
                                             <input type="text" name="username" class="form-control form-control-lg" th:classappend="${#fields.hasErrors('username')}?'is-invalid':''" th:value="${player.username}" th:field="*{username}">
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label>Password</label>
-                                            <p th:if="${#fields.hasErrors('password')}">Incorrect value in password!</p>
+                                            <p th:if="${#fields.hasErrors('password')}">Password must be at least 6 characters long.</p>
                                             <input type="password" name="password" class="form-control form-control-lg" th:classappend="${#fields.hasErrors('password')}?'is-invalid':''" th:value="${player.password}" th:field="*{password}">
                                         </div>
                                         <!--

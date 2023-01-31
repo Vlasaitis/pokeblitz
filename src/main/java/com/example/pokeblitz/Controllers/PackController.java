@@ -50,7 +50,7 @@ public class PackController {
         List<BattlePokemon> openedPokemon = packService.openPackAndUpdateDB(packId, player);
         if (starterPack) {
             startersService.updateStartersEntryOrCreateItAndUpdateBattleStarters(player, openedPokemon);// if first ever pack, immediately sets this pack pokemon as starters
-            player.setCoins(400);
+            player.setCoins(40000);
         }
         session.setAttribute("loot", openedPokemon);
         return "redirect:/openedPack";
