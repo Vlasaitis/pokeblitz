@@ -237,8 +237,11 @@
                     <!-- Sell pokemon columns -->
                     <td th:text="'Value: ' + ${pokemon.price}"></td>
                     <td>
-                        <a class="sale-button" th:href="'/sellPokemon/' + ${pokemon.id}">Sell</a>
+                        <a th:name="${pokemon.id}" class="sale-button" th:href="'/sellPokemon/' + ${pokemon.id}">Sell</a>
                     </td>
+                    <div th:each="pokemon : ${session.player.battleStarters}">
+                        <div th:text="${pokemon.id}" th:class="starterPokemon" th:style="'display:none;'"></div>
+                    </div>
 
                 </tr>
                 </tbody>
