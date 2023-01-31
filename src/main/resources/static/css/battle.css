@@ -47,6 +47,10 @@
 .inner-row.bottom-inner {
   border-bottom: 1px solid yellow;
 }
+.player-title {
+  color: white;
+  font-size: 120%;
+}
 
 .main-row {
   margin: 1%;

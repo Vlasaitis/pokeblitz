@@ -33,6 +33,7 @@
 
             <!-- ATTACKER POKEMON BOX -->
             <div class="col-5 d-flex flex-column align-items-end pokemon-box">
+                <div class="player-title" th:text="${session.player.username}">Attacker</div>
                 <div class="row inner-row top-inner">
                     <div class="col-2.5">
                         <div th:text=" 'HP: ' + ${session.attackerStarters.battlePokemon1.currentHp}" >HP: 50/50</div>
@@ -64,6 +65,7 @@
 
             <!-- ENEMY POKEMON BOX -->
             <div class="col-5 d-flex flex-column align-items-start pokemon-box">
+                <div class="player-title" th:text="${session.defenderName}">Defender</div>
                 <div class="row inner-row top-inner">
                     <img th:src="${session.defenderStarters.battlePokemon1.image}" class="img-fluid col-2.5">
                     <div class="col-2.5">
