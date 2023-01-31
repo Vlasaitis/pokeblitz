@@ -33,62 +33,62 @@
 
             <!-- ATTACKER POKEMON BOX -->
             <div class="col-5 d-flex flex-column align-items-end pokemon-box">
-                <div class="row inner-row">
-                    <div class="col-6">
+                <div class="row inner-row top-inner">
+                    <div class="col-2.5">
                         <div th:text=" 'HP: ' + ${session.attackerStarters.battlePokemon1.currentHp}" >HP: 50/50</div>
                         <div th:text=" 'ATK: ' + ${session.attackerStarters.battlePokemon1.attack}">ATK: 50/50</div>
                         <div th:text=" 'DEF: ' + ${session.attackerStarters.battlePokemon1.defense}">DEF: 50/50</div>
-                        <div th:text=" 'SPEED: ' + ${session.attackerStarters.battlePokemon1.speed}">SPEED: 50/50</div>
+                        <div th:text=" 'SPD: ' + ${session.attackerStarters.battlePokemon1.speed}">SPEED: 50/50</div>
                     </div>
-                    <img th:src="${session.attackerStarters.battlePokemon1.image}" class="img-fluid col-6">
+                    <img th:src="${session.attackerStarters.battlePokemon1.image}" class="img-fluid col-2.5">
                 </div>
-                <div class="row inner-row">
-                    <div class="col-6">
+                <div class="row inner-row middle-inner">
+                    <div class="col-2.5">
                         <div th:text=" 'HP: ' + ${session.attackerStarters.battlePokemon2.currentHp}" >HP: 50/50</div>
                         <div th:text=" 'ATK: ' + ${session.attackerStarters.battlePokemon2.attack}">ATK: 50/50</div>
                         <div th:text=" 'DEF: ' + ${session.attackerStarters.battlePokemon2.defense}">DEF: 50/50</div>
-                        <div th:text=" 'SPEED: ' + ${session.attackerStarters.battlePokemon2.speed}">SPEED: 50/50</div>
+                        <div th:text=" 'SPD: ' + ${session.attackerStarters.battlePokemon2.speed}">SPEED: 50/50</div>
                     </div>
-                    <img th:src="${session.attackerStarters.battlePokemon2.image}" class="img-fluid col-6">
+                    <img th:src="${session.attackerStarters.battlePokemon2.image}" class="img-fluid col-2.5">
                 </div>
-                <div class="row inner-row">
-                    <div class="col-6">
+                <div class="row inner-row bottom-inner">
+                    <div class="col-2.5">
                         <div th:text=" 'HP: ' + ${session.attackerStarters.battlePokemon3.currentHp}" >HP: 50/50</div>
                         <div th:text=" 'ATK: ' + ${session.attackerStarters.battlePokemon3.attack}">ATK: 50/50</div>
                         <div th:text=" 'DEF: ' + ${session.attackerStarters.battlePokemon3.defense}">DEF: 50/50</div>
-                        <div th:text=" 'SPEED: ' + ${session.attackerStarters.battlePokemon3.speed}">SPEED: 50/50</div>
+                        <div th:text=" 'SPD: ' + ${session.attackerStarters.battlePokemon3.speed}">SPEED: 50/50</div>
                     </div>
-                    <img  th:src="${session.attackerStarters.battlePokemon3.image}" class="img-fluid col-6">
+                    <img  th:src="${session.attackerStarters.battlePokemon3.image}" class="img-fluid col-2.5">
                 </div>
             </div>
 
             <!-- ENEMY POKEMON BOX -->
             <div class="col-5 d-flex flex-column align-items-start pokemon-box">
-                <div class="row inner-row">
-                    <img th:src="${session.defenderStarters.battlePokemon1.image}" class="img-fluid col-6">
-                    <div class="col-6">
+                <div class="row inner-row top-inner">
+                    <img th:src="${session.defenderStarters.battlePokemon1.image}" class="img-fluid col-2.5">
+                    <div class="col-2.5">
                         <div th:text=" 'HP: ' + ${session.defenderStarters.battlePokemon1.currentHp}" >HP: 50/50</div>
                         <div th:text=" 'ATK: ' + ${session.defenderStarters.battlePokemon1.attack}">ATK: 50/50</div>
                         <div th:text=" 'DEF: ' + ${session.defenderStarters.battlePokemon1.defense}">DEF: 50/50</div>
-                        <div th:text=" 'SPEED: ' + ${session.defenderStarters.battlePokemon1.speed}">SPEED: 50/50</div>
+                        <div th:text=" 'SPD: ' + ${session.defenderStarters.battlePokemon1.speed}">SPEED: 50/50</div>
                     </div>
                 </div>
-                <div class="row inner-row">
-                    <img th:src="${session.defenderStarters.battlePokemon2.image}" class="img-fluid col-6">
-                    <div class="col-6">
+                <div class="row inner-row middle-inner">
+                    <img th:src="${session.defenderStarters.battlePokemon2.image}" class="img-fluid col-2.5">
+                    <div class="col-2.5">
                         <div th:text=" 'HP: ' + ${session.defenderStarters.battlePokemon2.currentHp}" >HP: 50/50</div>
                         <div th:text=" 'ATK: ' + ${session.defenderStarters.battlePokemon2.attack}">ATK: 50/50</div>
                         <div th:text=" 'DEF: ' + ${session.defenderStarters.battlePokemon2.defense}">DEF: 50/50</div>
-                        <div th:text=" 'SPEED: ' + ${session.defenderStarters.battlePokemon2.speed}">SPEED: 50/50</div>
+                        <div th:text=" 'SPD: ' + ${session.defenderStarters.battlePokemon2.speed}">SPEED: 50/50</div>
                     </div>
                 </div>
-                <div class="row inner-row">
-                    <img th:src="${session.defenderStarters.battlePokemon3.image}" class="img-fluid col-6">
-                    <div class="col-6">
+                <div class="row inner-row bottom-inner">
+                    <img th:src="${session.defenderStarters.battlePokemon3.image}" class="img-fluid col-2.5">
+                    <div class="col-2.5">
                         <div th:text=" 'HP: ' + ${session.defenderStarters.battlePokemon3.currentHp}" >HP: 50/50</div>
                         <div th:text=" 'ATK: ' + ${session.defenderStarters.battlePokemon3.attack}">ATK: 50/50</div>
                         <div th:text=" 'DEF: ' + ${session.defenderStarters.battlePokemon3.defense}">DEF: 50/50</div>
-                        <div th:text=" 'SPEED: ' + ${session.defenderStarters.battlePokemon3.speed}">SPEED: 50/50</div>
+                        <div th:text=" 'SPD: ' + ${session.defenderStarters.battlePokemon3.speed}">SPEED: 50/50</div>
                     </div>
                 </div>
             </div>

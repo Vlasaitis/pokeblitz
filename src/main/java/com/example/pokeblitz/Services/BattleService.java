@@ -30,21 +30,22 @@ public class BattleService {
         defender.setBattleStarters(defender.getStarters().returnStarters());
 
         Random random = new Random();
-        boolean gameNotOver = true;
-        List<String> battleLog = new ArrayList<>();
-        boolean attackerTurn = doesAttackerStart(attacker, defender);
-        while (gameNotOver) {
-            if (attackerTurn) {
+        boolean gameNotOver = true; // will change to false when one battle team is fully KOd
+        List<String> battleLog = new ArrayList<>(); // empty Log that will update after each turn, dynamically describing what happened
+        boolean attackerTurn = doesAttackerStart(attacker, defender); // does player who initiated battle have the fastest pokemon
+        while (gameNotOver) { // infinite loop until one team fully KOd
+            if (attackerTurn) { // players take turn attacking
                 simulateAttack(attacker, defender, random, battleLog); // first pokemon argument attacks, second defends
                 attackerTurn = false;
             } else {
                 simulateAttack(defender, attacker, random, battleLog);
                 attackerTurn = true;
             }
-            gameNotOver = shouldGameContinue(attacker, defender);
+            gameNotOver = shouldGameContinue(attacker, defender); // checks if both players till have pokemon that are not KOD
         }
-        addBattleSummaryToLogChangeEloGiveCoins(attacker, defender, battleLog);
-        healAllPokemonAndResetDamageDone(attacker, defender);
+        // we get here when a winner has been determined
+        addBattleSummaryToLogChangeEloGiveCoins(attacker, defender, battleLog); // self-explanatory method
+        healAllPokemonAndResetDamageDone(attacker, defender); // also self-explanatory
 
         return battleLog;
     }
@@ -63,8 +64,6 @@ public class BattleService {
             adjustEloAndWinLoss(attacker, defender);
             attacker.addCoins(100);
         }
-//        playerService.savePlayer(defender);
-//        playerService.savePlayer(attacker);
         battleLog.add(defender.getUsername() + "'s Pokemon:");
         defender.getBattleStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
         defender.getKo().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
@@ -73,9 +72,6 @@ public class BattleService {
         attacker.getBattleStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
         attacker.getKo().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));
         battleLog.add("-------------------");
-//        for (int i = 0; i < defender.getStarters().size(); i++) {
-////            battleLog.add(String.format("%s's %s (HP:%d/%d): Total damage: %d", defender.getUsername(),defender.getStarters().get(i).getName(), defender.getStarters().get(i).getCurrentHp(), defender.getStarters().get(i).getMaxHp(), defender.getStarters().get(i).getDamageDone()));
-//        }
     }
 
     private void adjustEloAndWinLoss(Player winner, Player loser) {

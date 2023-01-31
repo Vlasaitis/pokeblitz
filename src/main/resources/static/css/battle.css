@@ -34,8 +34,22 @@
 
 /* where pokemon sit */
 .inner-row {
-    border: 1px solid white;
     color: white;
+}
+.inner-row.top-inner {
+  border-top: 1px solid yellow;
+}
+.inner-row.middle-inner {
+    border-top: 1px solid yellow;
+    border-bottom: 1px solid yellow;
+}
+
+.inner-row.bottom-inner {
+  border-bottom: 1px solid yellow;
+}
+
+.main-row {
+  margin: 1%;
 }
 .logEntry {
   font-weight: bold;
