@@ -7,6 +7,7 @@ VALUES (3, 400, 1000, '', 0, '', 'Kalle', 0);
 INSERT INTO player (ID, COINS, ELO, EMAIL, LOSSES, PASSWORD, USERNAME, WINS)
 VALUES (4, 200, 1000,'' , 0, '', 'Torbjörn', 0);
 
+
 --INSERT INTO battle_pokemon (ID, ATTACK, CURRENT_HP, DAMAGE_DONE, DEFENSE, DOUBLE_DAMAGE, HALF_DAMAGE, HAS_TURN, IMAGE, MAX_HP, NAME, POWER_LEVEL, SPEED, TYPES, PLAYER_ID) VALUES (21, 55, 55,0, 50, '', 'rock, steel', 'TRUE', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png', 55, 'EEVEE', 215, 55, 'normal', 2);
 --INSERT INTO battle_pokemon (ID, ATTACK, CURRENT_HP, DAMAGE_DONE, DEFENSE, DOUBLE_DAMAGE, HALF_DAMAGE, HAS_TURN, IMAGE, MAX_HP, NAME, POWER_LEVEL, SPEED, TYPES, PLAYER_ID) VALUES (22, 75, 50,0, 35, 'ground, rock, water, grass, fairy', 'flying, poison, bug, steel, fire, grass, dragon, poison, ground, rock, ghost', TRUE, 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/69.png', 50, 'BELLSPROUT', 200, 40, 'grass, poison', 2);
 --INSERT INTO battle_pokemon (ID, ATTACK, CURRENT_HP, DAMAGE_DONE, DEFENSE, DOUBLE_DAMAGE, HALF_DAMAGE, HAS_TURN, IMAGE, MAX_HP, NAME, POWER_LEVEL, SPEED, TYPES, PLAYER_ID) VALUES (23, 55, 60, 0, 50, 'grass, psychic, dark, grass, fairy', 'fighting, flying, poison, ghost, steel, fire, fairy, poison, ground, rock, ghost', TRUE, 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/48.png', 60, 'VENONAT', 210, 45, 'bug, poison', 2);
