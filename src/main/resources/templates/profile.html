@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
-<meta charset="UTF-8">
-<title>Pokeblitz</title>
-<title th:replace="fragments :: title"></title>
-<head th:replace="fragments :: head"></head>
+<head th:replace="~{fragments :: head}"></head>
 <head><link rel="stylesheet" th:href="@{/css/profile.css}"></head>
-<nav th:replace="fragments :: navigation"></nav>
+<meta charset="UTF-8">
+<title th:replace="~{fragments :: title}"></title>
+<nav th:replace="~{fragments :: navigation}"></nav>
 
 <body>
 
