@@ -36,6 +36,7 @@ public class BattleController {
 
         session.setAttribute("attackerStarters", attacker.getStarters());
         session.setAttribute("defenderStarters", defender.getStarters());
+        session.setAttribute("defenderName", defender.getUsername());
         session.setAttribute("battleLog", battleLog);
         return "battleSimulation";
     }

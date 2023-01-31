@@ -13,12 +13,10 @@
 .pokemon-box {
     margin-right: 1%;
 }
+/* .content-screen {
+    zoom:120%;
+} */
 
-/*
-.content-screen {
-    zoom: 80%;
-}
-*/
 .fight-screen {
     border: 5px solid black;
 	--x: 50%;
@@ -38,6 +36,9 @@
 .inner-row {
     border: 1px solid white;
     color: white;
+}
+.logEntry {
+  font-weight: bold;
 }
 
 
