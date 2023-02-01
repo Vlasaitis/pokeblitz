@@ -7,6 +7,9 @@
 
 <head><link rel="stylesheet" th:href="@{/css/shop.css}"></head>
 
+
+
+
 <body>
 <div class="card-coins" style="width: 18rem;">
     <div class="card-body">
@@ -35,7 +38,74 @@
                             <label for="common-price">Price:</label>
                             <span id="common-price">100</span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Buy</button>
+                        <!-- info -->
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#commonModal">Info</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="commonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Common Pack Info</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li>Bulbasaur</li>
+                                            <li>Charmander</li>
+                                            <li>Squirtle</li>
+                                            <li>Caterpie</li>
+                                            <li>Metapod</li>
+                                            <li>Weedle</li>
+                                            <li>kakuna </li>
+                                            <li>Pidgey </li>
+                                            <li>Rattata </li>
+                                            <li>Spearow </li>
+                                            <li>Ekans </li>
+                                            <li>Pikachu </li>
+                                            <li>Nidoran-F</li>
+                                            <li>Nidoran-M</li>
+                                            <li>Clefairy </li>
+                                            <li>Vulpix </li>
+                                            <li>Jigglypuff </li>
+                                            <li>Zubat </li>
+                                            <li>Oddish </li>
+                                            <li>Paras </li>
+                                            <li>Venonat </li>
+                                            <li>Diglett </li>
+                                            <li>Meowth </li>
+                                            <li>Psyduck </li>
+                                            <li>Poliwag </li>
+                                            <li>Abra </li>
+                                            <li>Kadabra </li>
+                                            <li>Bellsprout </li>
+                                            <li>Tentacool </li>
+                                            <li>Magnemite </li>
+                                            <li>Seel </li>
+                                            <li>Gastly </li>
+                                            <li>Drowzee </li>
+                                            <li>Voltorb </li>
+                                            <li>Exeggcute </li>
+                                            <li>Horsea </li>
+                                            <li>Staryu </li>
+                                            <li>Magikarp </li>
+                                            <li>Ditto </li>
+                                            <li>Eevee </li>
+                                            <li>Omanyte </li>
+                                            <li>Dratini </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                       <!--  <ul class="content-list" style="display: none;">
+                            <li>Innehåll 1</li>
+                            <li>Innehåll 2</li>
+                             mer innehåll -->
+                        </ul>           <!-- info -->
                     </form>
                 </div>
             </div>
@@ -59,7 +129,72 @@
                                 <span id="uncommon-price">200</span>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Buy</button>
+                        <!-- info -->
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UcommonModal">Info</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="UcommonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel2">Uncommon Pack Info</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li>Ivysaur </li>
+                                            <li>Charmeleon </li>
+                                            <li>Wartortle </li>
+                                            <li>Butterfree </li>
+                                            <li>Beedrill </li>
+                                            <li>Pidgeotto </li>
+                                            <li>Raticate  </li>
+                                            <li>Sandshrew  </li>
+                                            <li>Nidorina  </li>
+                                            <li>Nidorino  </li>
+                                            <li>Clefable  </li>
+                                            <li>Gloom  </li>
+                                            <li>Vileplume </li>
+                                            <li>Parasect </li>
+                                            <li>Venomoth  </li>
+                                            <li>Mankey  </li>
+                                            <li>Growlithe  </li>
+                                            <li>Poliwhirl  </li>
+                                            <li>Alakazam  </li>
+                                            <li>Machop  </li>
+                                            <li>Machoke  </li>
+                                            <li>Weepinbell  </li>
+                                            <li>Geodude  </li>
+                                            <li>Ponyta  </li>
+                                            <li>Slowpoke  </li>
+                                            <li>Magneton  </li>
+                                            <li>Farfetchd  </li>
+                                            <li>Doduo  </li>
+                                            <li>Grimer  </li>
+                                            <li>Shellder  </li>
+                                            <li>Haunter  </li>
+                                            <li>Gengar  </li>
+                                            <li>Hypno  </li>
+                                            <li>Krabby  </li>
+                                            <li>Cubone  </li>
+                                            <li>Marowak  </li>
+                                            <li>Lickitung  </li>
+                                            <li>Koffing  </li>
+                                            <li>Rhyhorn  </li>
+                                            <li>Tangela  </li>
+                                            <li>Goldeen  </li>
+                                            <li>Mr-Mime </li>
+                                            <li>Jynx  </li>
+                                            <li>Porygon  </li>
+                                            <li>Kabuto  </li>
+                                            <li>Dragonair  </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>       <!-- info -->
                     </form>
                 </div>
             </div>
@@ -83,7 +218,65 @@
                             <label for="rare-price">Price:</label>
                             <span id="rare-price">400</span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Buy</button>
+                        <!-- info -->
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Rare">Info</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="Rare" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel3">Rare Pack Info</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li>Venusaur  </li>
+                                            <li>Charizard  </li>
+                                            <li>Blastoise  </li>
+                                            <li>Pidgeot  </li>
+                                            <li>Fearow  </li>
+                                            <li>Arbok  </li>
+                                            <li>Raichu   </li>
+                                            <li>Nidoqueen   </li>
+                                            <li>Nidoking   </li>
+                                            <li>Ninetales   </li>
+                                            <li>Wigglytuff   </li>
+                                            <li>Golbat   </li>
+                                            <li>Dugtrio  </li>
+                                            <li>Persian  </li>
+                                            <li>Golduck   </li>
+                                            <li>Primeape   </li>
+                                            <li>Victreebel   </li>
+                                            <li>Tentacruel   </li>
+                                            <li>Graveler   </li>
+                                            <li>Rapidash   </li>
+                                            <li>Slowbro   </li>
+                                            <li>Dewgong   </li>
+                                            <li>Muk   </li>
+                                            <li>Onix   </li>
+                                            <li>Electrode   </li>
+                                            <li>Exeggutor   </li>
+                                            <li>Hitmonlee   </li>
+                                            <li>Hitmonchan   </li>
+                                            <li>Weezing   </li>
+                                            <li>Chansey   </li>
+                                            <li>Seadra   </li>
+                                            <li>Seaking   </li>
+                                            <li>Starmie   </li>
+                                            <li>Electabuzz   </li>
+                                            <li>Magmar   </li>
+                                            <li>Vaporeon   </li>
+                                            <li>Jolteon   </li>
+                                            <li>Flareon   </li>
+                                            <li>Omastar   </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    <!-- info -->
                     </form>
                 </div>
             </div>
@@ -107,7 +300,50 @@
                                 <span id="epic-price">600</span>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Buy</button>
+                        <!-- info -->
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Epic">Info</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="Epic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel4">Epic Pack Info</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li>Sandslash  </li>
+                                            <li>Arcanine  </li>
+                                            <li>Poliwrath  </li>
+                                            <li>Machamp  </li>
+                                            <li>Golem  </li>
+                                            <li>Dodrio  </li>
+                                            <li>Cloyster   </li>
+                                            <li>Kingler   </li>
+                                            <li>Rhydon   </li>
+                                            <li>Kangaskhan   </li>
+                                            <li>Scyther   </li>
+                                            <li>Pinsir   </li>
+                                            <li>Tauros  </li>
+                                            <li>Gyarados  </li>
+                                            <li>Lapras   </li>
+                                            <li>Kabutops   </li>
+                                            <li>Aerodactyl   </li>
+                                            <li>Snorlax   </li>
+                                            <li>Articuno   </li>
+                                            <li>Zapdos   </li>
+                                            <li>Moltres   </li>
+                                            <li>Dragonite   </li>
+                                            <li>Mewtwo   </li>
+                                            <li>Mew   </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>     <!-- info -->
                     </form>
                 </div>
             </div>

@@ -257,7 +257,8 @@
     <a href="/packOpening">GET STARTED AND OPEN YOUR FREE PACK AND 400 COINS!</a></h1>
 
 <h1 th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}">
-    <a href="/packOpening">PACK OPENING</a></h1>
+    <a type="submit" class="button-battle" href="/battle">BATTLE</a>
+    <a class="button-bottom" href="/packOpening">PACK OPENING</a></h1>
 
 
 <script th:src="@{/js/profile.js}"></script>

@@ -326,3 +326,31 @@ h1 a{
    text-align: none !important;
    border-top-color: #EC2626 !important;
 }
+
+.button-bottom {
+    width: -moz-available;
+    height: auto;
+    cursor: pointer;
+    font-size: 25px;
+    background: #f2bf5f;
+    border: 1px solid #ec2626;
+    padding: 10px 10px 10px 10px;
+    transition: 500ms;
+    border-bottom-width: 1;
+    color: white;
+    text-shadow: #776d68 1px 1px 1px;
+  }
+
+  .button-battle {
+      width: -moz-available;
+      height: auto;
+      cursor: pointer;
+      font-size: 25px;
+      background: #f2bf5f;
+      border: 1px solid #ec2626;
+      padding: 13px 13px 13px 13px;
+      transition: 500ms;
+      border-bottom-width: 1;
+      color: white;
+      text-shadow: #776d68 1px 1px 1px;
+    }

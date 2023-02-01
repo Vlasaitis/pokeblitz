@@ -1,6 +1,6 @@
 
 .poke-card {
-    background: #9EDE73;
+    background: #f2bf5f;
     border: 1px solid #dd2476;
     color: rgba(250, 250, 250, 0.8);
     margin-bottom: 2rem;
@@ -195,3 +195,35 @@ th{
 
 }
 
+.button-dashboard {
+    width: -moz-available;
+    height: auto;
+    cursor: pointer;
+    font-size: 25px;
+    background: #f2bf5f;
+    border: 1px solid #ec2626;
+    padding: 10px 10px 10px 10px;
+    transition: 500ms;
+    border-bottom-width: 1;
+    color: white;
+    text-shadow: #776d68 1px 1px 1px;
+  }
+
+  .button-battle {
+      width: -moz-available;
+      height: auto;
+      cursor: pointer;
+      font-size: 25px;
+      background: #f2bf5f;
+      border: 1px solid #ec2626;
+      padding: 10px 10px 10px 10px;
+      transition: 500ms;
+      border-bottom-width: 1;
+      color: white;
+      text-shadow: #776d68 1px 1px 1px;
+    }
+
+.starter-stats{
+  margin-top: 1em !important;
+  color: #8a8688 !important;
+}

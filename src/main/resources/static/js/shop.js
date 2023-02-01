@@ -13,3 +13,14 @@ $(document).ready(function() {
       $("#epic-price").text($(this).val() * 600);
     });
   });
+
+  <script>
+  function toggleList(element) {
+      const list = element.nextElementSibling;
+      if (list.style.display === "none") {
+          list.style.display = "block";
+      } else {
+          list.style.display = "none";
+      }
+  }
+  </script>
