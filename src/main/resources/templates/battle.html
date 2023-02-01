@@ -1,11 +1,124 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head th:replace="~{fragments :: head}"></head>
+<head><link rel="stylesheet" th:href="@{/css/beforebattle.css}"></head>
+<meta charset="UTF-8">
+<title th:replace="~{fragments :: title}"></title>
 <nav th:replace="~{fragments :: navigation}"></nav>
+
 <body>
 
-<button onclick="location.href = '/battleSimulation';">Find Opponent</button>
-<button onclick="location.href = '/profile';">Back To Profile</button>
+<div class="container profile-board">
+    <div class="row profile-card">
+        <div class="lg-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <img src="/images/profilbattle.ico" alt="avatar"
+                         class="img-fluid" style="width: 150px;">
+                    <h5>Battle Team</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!--DEFAULT STARTERS-->
+
+    <div th:if="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
+         class="row">
+        <div class="col-md-5">
+            <div class="card poke-card" style="width: 13rem;">
+                <!--IMAGE-->
+                <img src="/images/pikachu-shadow.png"
+                     class="card-img-top"/>
+                <div class="card-body">
+                    <!--NAME-->
+                    <h5 class="card-title">Choose your battle team in profile</h5>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card poke-card" style="width: 13rem;">
+                <!--IMAGE-->
+                <img src="/images/pikachu-shadow.png"
+                     class="card-img-top"/>
+                <div class="card-body">
+                    <!--NAME-->
+                    <h5 class="card-title">Choose your battle team in profile</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card poke-card" style="width: 13rem;">
+                <!--IMAGE-->
+                <img src="/images/pikachu-shadow.png"
+                     class="card-img-top"/>
+                <div class="card-body">
+                    <!--NAME-->
+                    <h5 class="card-title">Choose your battle team in profile</h5>
+
+                </div>
+            </div>
+        </div>
+        <a class="knappbattle" href="/profile">Dashboard</a></h1>
+    </div>
+
+    <!--STARTERS-->
+
+    <div th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
+         class="row starter-container">
+        <div th:each="pokemon : ${session.player.battleStarters}" class="col-md-5">
+
+            <div class="card poke-card" style="width: 13rem;">
+                <!--IMAGE-->
+                <img th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + ${pokemon.pokemonNumber} + '.png'"
+                     class="card-img-top"/>
+                <div class="card-body">
+                    <!--NAME-->
+                    <h5 th:text="${pokemon.name}" class="card-title"></h5>
+                    <!--TYPES-->
+                    <span th:each="type : ${pokemon.types}">
+                <span th:text="${type}" class="badge d-inline"
+                      th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +
+                      ((type == 'fire') ? 'badge-fire' : '') +
+                      ((type == 'water') ? 'badge-water' : '') +
+                      ((type == 'psychic') ? 'badge-psychic' : '') +
+                      ((type == 'dragon') ? 'badge-dragon' : '') +
+                      ((type == 'electric') ? 'badge-electric' : '') +
+                      ((type == 'ice') ? 'badge-ice' : '') +
+                      ((type == 'ghost') ? 'badge-ghost' : '') +
+                      ((type == 'normal') ? 'badge-normal' : '') +
+                      ((type == 'rock') ? 'badge-rock' : '') +
+                      ((type == 'ground') ? 'badge-ground' : '') +
+                      ((type == 'fighting') ? 'badge-fighting' : '') +
+                      ((type == 'bug') ? 'badge-bug' : '') +
+                      ((type == 'poison') ? 'badge-poison' : '') +
+                      ((type == 'flying') ? 'badge-flying' : '') +
+                      ((type == 'steel') ? 'badge-steel' : '') +
+                      ((type == 'shadow') ? 'badge-shadow' : '') +
+                      ((type == 'fairy') ? 'badge-fairy' : '') +
+                      ((type == 'dark') ? 'badge-dark' : '')
+                      }">
+                </span>
+                        </span>
+                    <!--HP-->
+                    <h6 th:text="'HP: ' + ${pokemon.currentHp + '/' + pokemon.maxHp}"
+                        class="starter-stats">Card subtitle</h6>
+                    <h6 th:text="'ATT: ' + ${pokemon.attack}"
+                        class="starter-stats">Card subtitle</h6>
+                    <h6 th:text="'DEF: ' + ${pokemon.defense}"
+                        class="starter-stats">Card subtitle</h6>
+                    <h6 th:text="'SPD: ' + ${pokemon.speed}"
+                        class="starter-stats">Card subtitle</h6>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+        <div class="center-content">
+            <a class="knappbattle" href="/profile">Back to Profile</a>
+            <a class="knappbattle" href="/battleSimulation">Find Opponent</a></h1>
+        </div>
 </body>
 </html>
