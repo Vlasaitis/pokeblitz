@@ -12,6 +12,10 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.navLogo {
+padding: 0.9rem;
+}
+
 label {
     font-size: 1.5rem;
     font-weight: bold;

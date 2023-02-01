@@ -12,7 +12,7 @@ position: relative;
 }
 
 .btn {
-padding: 1rem 1.5rem;
+padding: 0.75rem 1.5rem;
 font-size: 1rem;
 color: #fff;
 border-radius: 10px;
@@ -76,3 +76,26 @@ display: flex;
 justify-content: flex-start;
 align-items: center;
 }
+
+.btn btn-info{
+ padding: 0.75rem 1.5rem;
+ font-size: 1rem;
+ color: #fff;
+ border-radius: 10px;
+ text-align: center;
+}
+
+.button-bottom {
+      width: -moz-available;
+      height: auto;
+      cursor: pointer;
+      font-size: 25px;
+      background: #f2bf5f;
+      border: 1px solid #ec2626;
+      padding: 13px 13px 13px 13px;
+      transition: 500ms;
+      border-bottom-width: 1;
+      color: white;
+      text-shadow: #776d68 1px 1px 1px;
+      margin: 10px;
+    }
