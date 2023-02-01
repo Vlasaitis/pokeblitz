@@ -16,6 +16,10 @@ body {
 padding: 0.9rem;
 }
 
+nav {
+  background: linear-gradient(to right, #4CA9CE, #184d72);
+}
+
 .profie-button{
 width: -moz-available;
       height: auto;
