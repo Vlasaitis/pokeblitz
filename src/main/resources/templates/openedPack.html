@@ -9,7 +9,7 @@
 
     <link rel="icon" th:href="@{/images/pokemon-icon.svg}">
 
-
+</head>
 <body>
 <div class="container">
     <div class="flip-card" th:each="pokemon : ${session.loot}" onclick="this.classList.toggle('flip');">
@@ -24,7 +24,9 @@
         </div>
     </div>
 </div>
-
+</div>
+</div>
+</div>
 <button role="button" class="profie-button" onclick="location.href = '/profile';">Back to profile</button>
 </body>
 </html>

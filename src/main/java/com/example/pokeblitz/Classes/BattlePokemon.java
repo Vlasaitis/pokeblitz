@@ -33,7 +33,7 @@ public class BattlePokemon {
     public int level = 1;
     public int exp = 0;
     private int price;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id")
     private Player player;
 

@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name="starters")
 public class Starters {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id")
     private Player player;
     @ManyToOne
@@ -98,5 +99,6 @@ public class Starters {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
 
 }
