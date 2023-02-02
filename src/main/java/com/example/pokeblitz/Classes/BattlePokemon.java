@@ -45,7 +45,9 @@ public class BattlePokemon {
     }
 
     public void setExp(int exp) {
-        if(exp >= 100){
+        if(level == 100){
+            this.exp = 0;
+        }else if(exp >= 100){
             this.exp = exp - 100;
         } else
         this.exp = exp;
