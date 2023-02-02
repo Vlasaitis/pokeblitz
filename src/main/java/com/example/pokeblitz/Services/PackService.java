@@ -100,6 +100,7 @@ public class PackService {
 
 
     public List<BattlePokemon> openPackAndUpdateDB(Long packId, Player player) {
+
         Pack packToBeOpened = getPackById(packId); // gets the pack object to be opened
         List<BattlePokemon> openedPokemon = openPack(packToBeOpened, player); // opens, and extracts into variable
         openedPokemon.stream().forEach(battlePokemon -> player.getAllPokemon().add(pokemonService.savePokemon(battlePokemon, player))); // add pkmn to db, add to player

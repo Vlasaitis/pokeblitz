@@ -30,11 +30,15 @@ public class PokemonService {
         pokemonRepository.deleteById(pokemon.getId());
     }
     public void levelUp(BattlePokemon poke) {
-        poke.setAttack(poke.getAttack()+1);
-        poke.setDefense(poke.getDefense()+1);
-        poke.setMaxHp(poke.getMaxHp()+1);
-        poke.setSpeed(poke.getSpeed()+1);
-        poke.setPowerLevel(poke.getPowerLevel()+4);
+        if(poke.exp == 0){
+            poke.setAttack(poke.getAttack()+1);
+            poke.setDefense(poke.getDefense()+1);
+            poke.setMaxHp(poke.getMaxHp()+1);
+            poke.setSpeed(poke.getSpeed()+1);
+            poke.setPowerLevel(poke.getPowerLevel()+4);
+            poke.setLevel(poke.getLevel() + 1);
+        }
+
     }
     public BattlePokemon findById(Long id) {
         return pokemonRepository.findById(id).get();

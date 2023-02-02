@@ -209,6 +209,11 @@ th{
     text-shadow: #000 1px 1px 1px;
   }
 
+.center-content {
+justify-content: center;
+display: flex;
+}
+
   .button-battle {
       width: -moz-available;
       height: auto;
