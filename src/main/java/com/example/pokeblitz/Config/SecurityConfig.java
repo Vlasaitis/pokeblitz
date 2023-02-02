@@ -25,7 +25,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/login", "/register", "/css/**","/images/**").permitAll()
+                .requestMatchers("/", "/login", "/register", "/css/**","/images/**", "/about").permitAll()
                 .anyRequest().authenticated().and().csrf().disable();
         http.headers().frameOptions().disable();
 
@@ -33,8 +33,6 @@ public class SecurityConfig {
                 .loginPage("/login")
                 .defaultSuccessUrl("/landingPage", true)
                 .permitAll();
-
-
 
         http.logout().logoutSuccessUrl("/");
 
@@ -58,6 +56,8 @@ public class SecurityConfig {
         UserDetailsService userDetailsService = userDetailsService();
         ((InMemoryUserDetailsManager) userDetailsService).createUser(User.withUsername(username).password(encodedPassword).roles("USER").build());
     }
+
+
 
 
 }

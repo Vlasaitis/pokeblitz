@@ -1,8 +1,9 @@
 package com.example.pokeblitz.Controllers;
 
-import com.example.pokeblitz.Classes.Pack;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Config.SecurityConfig;
+import com.example.pokeblitz.Repositories.PlayerRepository;
+import com.example.pokeblitz.Repositories.StartersRepository;
 import com.example.pokeblitz.Services.PackService;
 import com.example.pokeblitz.Services.PlayerService;
 import jakarta.servlet.http.HttpSession;
@@ -16,7 +17,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,6 +29,10 @@ public class PlayerController {
 
     @Autowired
     SecurityConfig securityConfig;
+    @Autowired
+    private PlayerRepository playerRepository;
+    @Autowired
+    private StartersRepository startersRepository;
 
     @GetMapping("/")
     public String home(HttpSession session) {
@@ -107,6 +111,8 @@ public class PlayerController {
         String currentPrincipalName = authentication.getName();
         Player player = playerService.findUser(currentPrincipalName);
 //        System.out.println(player.getUsername());
+        player = playerRepository.findById(player.getId()).get();
+        player.setStarters(startersRepository.findByPlayerId(player.getId()));
 //        player.getStarters().stream().forEach(battlePokemon -> System.out.println(battlePokemon.getName()));
         if (!player.getAllPokemon().isEmpty() && player.getStarters() != null) {
             player.setBattleStarters(player.getStarters().returnStarters());

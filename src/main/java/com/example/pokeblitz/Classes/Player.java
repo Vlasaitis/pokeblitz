@@ -31,7 +31,7 @@ public class Player {
     @Column
     private int elo = 1000;
     @Column
-    private int coins = 0;
+    private int coins = 50000;
 
     @Column
     private int wins = 0;

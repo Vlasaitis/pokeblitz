@@ -11,9 +11,9 @@ public class Battle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Player winner;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Player loser;
 
     @Transient

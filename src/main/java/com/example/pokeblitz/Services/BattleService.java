@@ -20,6 +20,8 @@ public class BattleService {
     BattleRepository battleRepository;
     @Autowired
     PlayerService playerService;
+    @Autowired
+    PokemonService pokemonService;
 
     public void createNewBattle(Player winner, Player loser, List<String> battleLog) {
         battleRepository.save(new Battle(winner, loser, battleLog));
@@ -44,9 +46,9 @@ public class BattleService {
             }
             gameNotOver = shouldGameContinue(attacker, defender); // checks if both players till have pokemon that are not KOD
         }
-        // we get here when a winner has been determined
-        addBattleSummaryToLogChangeEloGiveCoins(attacker, defender, battleLog); // self-explanatory method
-        healAllPokemonAndResetDamageDone(attacker, defender); // also self-explanatory
+        // we get here when a winner has been determinedat
+        addBattleSummaryToLogChangeEloGiveCoinsPokeGainExpAndLvlUp(attacker, defender, battleLog); // self-explanatory method
+        healAllPokemonAndResetDamageDone(attacker, defender); // also self-explanatoryz
 
         return battleLog;
     }
@@ -76,18 +78,28 @@ public class BattleService {
     }
 
 
-    public void addBattleSummaryToLogChangeEloGiveCoins(Player attacker, Player defender, List<String> battleLog) {
+    public void addBattleSummaryToLogChangeEloGiveCoinsPokeGainExpAndLvlUp(Player attacker, Player defender, List<String> battleLog) {
         battleLog.add("-------------------");
         if (attacker.getBattleStarters().isEmpty()) { // means defender won
             battleLog.add(defender.getUsername() + " won the battle and stole 10 ELO! Fight summary below:");
             battleLog.add("-------------------");
             adjustEloAndWinLoss(defender,attacker);
-            defender.addCoins(100);
+            attacker.addCoins(25);
+            defender.addCoins(50);
+            attacker.getStarters().returnStarters().stream().forEach(poke -> poke.setExp(poke.getExp()+25));
+            defender.getStarters().returnStarters().stream().forEach(poke -> poke.setExp(poke.getExp()+50));
+            attacker.getStarters().returnStarters().stream().forEach(poke -> pokemonService.levelUp(poke));
+            defender.getStarters().returnStarters().stream().forEach(poke -> pokemonService.levelUp(poke));
         } else {
             battleLog.add(attacker.getUsername() + " won the battle and stole 10 ELO! Fight summary:");
             battleLog.add("-------------------");
             adjustEloAndWinLoss(attacker, defender);
-            attacker.addCoins(100);
+            attacker.addCoins(50);
+            defender.addCoins(25);
+            attacker.getStarters().returnStarters().stream().forEach(poke ->poke.setExp(poke.getExp()+50));
+            defender.getStarters().returnStarters().stream().forEach(poke -> poke.setExp(poke.getExp()+25));
+            attacker.getStarters().returnStarters().stream().forEach(poke -> pokemonService.levelUp(poke));
+            defender.getStarters().returnStarters().stream().forEach(poke -> pokemonService.levelUp(poke));
         }
         battleLog.add(defender.getUsername() + "'s Pokemon:");
         defender.getBattleStarters().stream().forEach(battlePokemon -> battleLog.add(String.format("%s (HP:%d/%d): Total damage: %d", battlePokemon.getName(), battlePokemon.getCurrentHp(), battlePokemon.getMaxHp(), battlePokemon.getDamageDone())));

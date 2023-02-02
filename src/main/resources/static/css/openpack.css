@@ -1,6 +1,10 @@
 .container{
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
+    background: rgba(5, 5, 5, 0.5);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
 }
 
 .w-75{
@@ -105,8 +109,9 @@
 
 .btn-epic{
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: auto;
     background-size: 400% 400%;
-    animation: gradient 10s ease-in-out infinite;
+    animation: gradient 3s cubic-bezier(.45,.05,.55,.95) infinite;
     color: white;
 }
 
@@ -146,6 +151,7 @@
 
 .pack-item {
   transition: all 150ms ease-out;
+  margin-top: 50px
 }
 .pack-item:hover {
   transform: scale(1.05);

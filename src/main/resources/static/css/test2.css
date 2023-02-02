@@ -16,6 +16,24 @@ body {
 padding: 0.9rem;
 }
 
+nav {
+  background: linear-gradient(to right, #4CA9CE, #184d72);
+}
+
+.profie-button{
+width: -moz-available;
+      height: auto;
+      cursor: pointer;
+      font-size: 25px;
+      background: #f2bf5f;
+      border: 1px solid #ec2626;
+      padding: 13px 13px 13px 13px;
+      transition: 500ms;
+      border-bottom-width: 1;
+      color: white;
+      text-shadow: #000 1px 1px 1px;
+}
+
 label {
     font-size: 1.5rem;
     font-weight: bold;

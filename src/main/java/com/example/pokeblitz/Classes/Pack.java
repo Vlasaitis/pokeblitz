@@ -12,7 +12,7 @@ public class Pack {
     private String name;
     private int pokemonAmount;
     private int price;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id")
     private Player player;
     private boolean used;

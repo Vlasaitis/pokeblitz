@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:font-size="http://www.w3.org/1999/xhtml" xmlns:border=""
       xmlns:sec="http://www.w3.org/1999/xhtml">
-  <head th:fragment="head">
+<head th:fragment="head">
   <meta charset="UTF-8">
   <title th:fragment="title">Pokeblitz</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,7 +25,8 @@
 
 <nav th:fragment="navigation" class="navbar sticky-top" style="background-color: #4CA9CE; display: flex; justify-content: space-between;">
   <ul class="navbar nav">
-    <a href="/"><img class="navLogo" style="height: 80px;" src="../images/pokeblitzball2.png"></a>
+    <a sec:authorize="!isAuthenticated()" href="/"><img class="navLogo" style="height: 80px;" src="../images/pokeblitzball3.png"></a>
+    <a sec:authorize="isAuthenticated()" href="/profile"><img class="navLogo" style="height: 80px;" src="../images/pokeblitzball3.png"></a>
     <li sec:authorize="isAuthenticated()"  class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/profile" style=" font-size: 2rem;">Dashboard</a></li>
     <li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/" style="font-size: 2rem; solid Black;">Login</a></li>
     <li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link nav-link-grow-up big-text" href="/register" style=" font-size: 2rem;">Register</a></li>
@@ -35,11 +36,11 @@
     <li class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/about" style=" font-size: 2rem;">About</a></li>
     <li sec:authorize="isAuthenticated()" class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text" href="/logout" style=" font-size: 2rem; justify-content: right">Logout</a></li>
   </ul>
-    <ul class="navbar-nav navbar-right">
-      <li class="dropdown">
-      <li sec:authorize="isAuthenticated()" class="nav-item align-right"><a class="nav-link nav-link-grow-up big-text"
-       style=" font-size: 2rem; justify-content: flex-end; color: #ffc107;"> WELCOME <strong th:text="${session.player.username}"></strong></a></li>
-      </li>
+  <ul class="navbar-nav navbar-right">
+    <li class="dropdown">
+    <li sec:authorize="isAuthenticated()" class="nav-item align-right"><a class="nav-link disabled nav-link-grow-up big-text"
+                                                                          style=" font-size: 2rem; justify-content: flex-end; color: #ffc107;"> WELCOME <strong th:text="${session.player.username}"></strong></a></li>
+    </li>
   </ul>
 </nav>
 
