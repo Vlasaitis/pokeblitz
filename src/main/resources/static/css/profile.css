@@ -14,7 +14,7 @@ form{
     align-items: center;
     text-align: center;
     text-transform: capitalize;
-    height: 24rem;
+    height: 25rem;
   }
 
 .poke-card img{
@@ -357,4 +357,13 @@ h1 a{
 
     .shield-pic {
     size: 10%;
+    }
+
+
+    .button-changetank {
+        text-transform: none;
+         background-color: #fd7380;
+         color: white;
+         height: auto;
+         font-size: 25px;
     }
