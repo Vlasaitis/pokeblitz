@@ -1,187 +1,187 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments :: head}"></head>
-<nav th:replace="~{fragments :: navigation}"></nav>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:replace="~{fragments :: head}"></head>-->
+<!--<nav th:replace="~{fragments :: navigation}"></nav>-->
+<!--<body>-->
 
-<a href="/packOpening">pack opening</a>
-<a href="/setStarters">set starters</a>
-<a href="/test123">test123</a>
+<!--<a href="/packOpening">pack opening</a>-->
+<!--<a href="/setStarters">set starters</a>-->
+<!--<a href="/test123">test123</a>-->
 
-<div class="container mx-auto mt-4">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card poke-card" style="width: 18rem;">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text"></p>
-                    <a href="#" class="btn mr-2"><i class="fas fa-link"></i> Visit Site</a>
-                    <a href="#" class="btn "><i class="fab fa-github"></i> Github</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="container mx-auto mt-4">-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-4">-->
+<!--            <div class="card poke-card" style="width: 18rem;">-->
+<!--                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png"-->
+<!--                     class="card-img-top" alt="...">-->
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title">Card title</h5>-->
+<!--                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+<!--                    <p class="card-text"></p>-->
+<!--                    <a href="#" class="btn mr-2"><i class="fas fa-link"></i> Visit Site</a>-->
+<!--                    <a href="#" class="btn "><i class="fab fa-github"></i> Github</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
-<!--STARTERS-->
-<table th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
-       class="table align-middle mb-0 bg-white">
+<!--&lt;!&ndash;STARTERS&ndash;&gt;-->
+<!--<table th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"-->
+<!--       class="table align-middle mb-0 bg-white">-->
 
-    <thead class="bg-light">
-    <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Type(s)</th>
-        <th>Hp</th>
-        <th>Attack</th>
-        <th>Defense</th>
-        <th>Speed</th>
-    </tr>
-    </thead>
+<!--    <thead class="bg-light">-->
+<!--    <tr>-->
+<!--        <th></th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Type(s)</th>-->
+<!--        <th>Hp</th>-->
+<!--        <th>Attack</th>-->
+<!--        <th>Defense</th>-->
+<!--        <th>Speed</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
 
-    <tbody>
-    <tr th:each="pokemon : ${session.player.battleStarters}">
-        <!--IMAGE-->
-        <td >
-            <img th:src="${pokemon.image}" style="width: 96px; height: 96px"/>
-        </td>
-        <!--        <td >-->
-        <!--            <img th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + ${pokemon.pokemonNumber} + '.svg'" style="width: 45px; height: 45px" class="rounded-circle"/>-->
-        <!--        </td>-->
-        <!--NAME-->
-        <td>
-            <p th:text="${pokemon.name}" class="fw-normal mb-1 poke-name"></p>
-        </td>
-        <!--TYPE-->
-        <td>
-            <div th:each="type : ${pokemon.types}">
-                <span th:text="${type}" class="badge rounded-pill d-inline"
-                      th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +
-                      ((type == 'fire') ? 'badge-fire' : '') +
-                      ((type == 'water') ? 'badge-water' : '') +
-                      ((type == 'psychic') ? 'badge-psychic' : '') +
-                      ((type == 'dragon') ? 'badge-dragon' : '') +
-                      ((type == 'electric') ? 'badge-electric' : '') +
-                      ((type == 'ice') ? 'badge-ice' : '') +
-                      ((type == 'ghost') ? 'badge-ghost' : '') +
-                      ((type == 'normal') ? 'badge-normal' : '') +
-                      ((type == 'rock') ? 'badge-rock' : '') +
-                      ((type == 'ground') ? 'badge-ground' : '') +
-                      ((type == 'fighting') ? 'badge-fighting' : '') +
-                      ((type == 'bug') ? 'badge-bug' : '') +
-                      ((type == 'poison') ? 'badge-poison' : '') +
-                      ((type == 'flying') ? 'badge-flying' : '') +
-                      ((type == 'steel') ? 'badge-steel' : '') +
-                      ((type == 'shadow') ? 'badge-shadow' : '') +
-                      ((type == 'fairy') ? 'badge-fairy' : '') +
-                      ((type == 'dark') ? 'badge-dark' : '')
-                      }">
-                </span>
-                <br>
-            </div>
-        </td>
-        <!--HP-->
-        <td>
-            <p th:text="${pokemon.currentHp + '/' + pokemon.maxHp}" class="fw-normal mb-1 poke-name"></p>
-        </td>
-        <!--ATTACK-->
-        <td>
-            <p th:text="${pokemon.attack}" class="fw-normal mb-1"></p>
-        </td>
-        <!--DEFENSE-->
-        <td>
-            <p th:text="${pokemon.defense}" class="fw-normal mb-1"></p>
-        </td>
-        <!--SPEED-->
-        <td>
-            <p th:text="${pokemon.speed}" class="fw-normal mb-1"></p>
-        </td>
-    </tr>
-    </tbody>
+<!--    <tbody>-->
+<!--    <tr th:each="pokemon : ${session.player.battleStarters}">-->
+<!--        &lt;!&ndash;IMAGE&ndash;&gt;-->
+<!--        <td >-->
+<!--            <img th:src="${pokemon.image}" style="width: 96px; height: 96px"/>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;        <td >&ndash;&gt;-->
+<!--        &lt;!&ndash;            <img th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + ${pokemon.pokemonNumber} + '.svg'" style="width: 45px; height: 45px" class="rounded-circle"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </td>&ndash;&gt;-->
+<!--        &lt;!&ndash;NAME&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.name}" class="fw-normal mb-1 poke-name"></p>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;TYPE&ndash;&gt;-->
+<!--        <td>-->
+<!--            <div th:each="type : ${pokemon.types}">-->
+<!--                <span th:text="${type}" class="badge rounded-pill d-inline"-->
+<!--                      th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +-->
+<!--                      ((type == 'fire') ? 'badge-fire' : '') +-->
+<!--                      ((type == 'water') ? 'badge-water' : '') +-->
+<!--                      ((type == 'psychic') ? 'badge-psychic' : '') +-->
+<!--                      ((type == 'dragon') ? 'badge-dragon' : '') +-->
+<!--                      ((type == 'electric') ? 'badge-electric' : '') +-->
+<!--                      ((type == 'ice') ? 'badge-ice' : '') +-->
+<!--                      ((type == 'ghost') ? 'badge-ghost' : '') +-->
+<!--                      ((type == 'normal') ? 'badge-normal' : '') +-->
+<!--                      ((type == 'rock') ? 'badge-rock' : '') +-->
+<!--                      ((type == 'ground') ? 'badge-ground' : '') +-->
+<!--                      ((type == 'fighting') ? 'badge-fighting' : '') +-->
+<!--                      ((type == 'bug') ? 'badge-bug' : '') +-->
+<!--                      ((type == 'poison') ? 'badge-poison' : '') +-->
+<!--                      ((type == 'flying') ? 'badge-flying' : '') +-->
+<!--                      ((type == 'steel') ? 'badge-steel' : '') +-->
+<!--                      ((type == 'shadow') ? 'badge-shadow' : '') +-->
+<!--                      ((type == 'fairy') ? 'badge-fairy' : '') +-->
+<!--                      ((type == 'dark') ? 'badge-dark' : '')-->
+<!--                      }">-->
+<!--                </span>-->
+<!--                <br>-->
+<!--            </div>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;HP&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.currentHp + '/' + pokemon.maxHp}" class="fw-normal mb-1 poke-name"></p>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;ATTACK&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.attack}" class="fw-normal mb-1"></p>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;DEFENSE&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.defense}" class="fw-normal mb-1"></p>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;SPEED&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.speed}" class="fw-normal mb-1"></p>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
 
-</table>
+<!--</table>-->
 
-<!--ALL POKEMONS-->
-<table th:unless="${session.player.allPokemon == null or session.player.allPokemon.isEmpty()}"
-       class="table align-middle mb-0 bg-white">
+<!--&lt;!&ndash;ALL POKEMONS&ndash;&gt;-->
+<!--<table th:unless="${session.player.allPokemon == null or session.player.allPokemon.isEmpty()}"-->
+<!--       class="table align-middle mb-0 bg-white">-->
 
-    <thead class="bg-light">
-    <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Type(s)</th>
-        <th>Hp</th>
-        <th>Attack</th>
-        <th>Defense</th>
-        <th>Speed</th>
-    </tr>
-    </thead>
+<!--    <thead class="bg-light">-->
+<!--    <tr>-->
+<!--        <th></th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Type(s)</th>-->
+<!--        <th>Hp</th>-->
+<!--        <th>Attack</th>-->
+<!--        <th>Defense</th>-->
+<!--        <th>Speed</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
 
-    <tbody>
-    <tr th:each="pokemon : ${session.player.allPokemon}">
-        <!--IMAGE-->
-        <td >
-            <img th:src="${pokemon.image}" style="width: 96px; height: 96px"/>
-        </td>
-        <!--        <td >-->
-        <!--            <img th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + ${pokemon.pokemonNumber} + '.svg'" style="width: 45px; height: 45px" class="rounded-circle"/>-->
-        <!--        </td>-->
-        <!--NAME-->
-        <td>
-            <p th:text="${pokemon.name}" class="fw-normal mb-1 poke-name"></p>
-        </td>
-        <!--TYPE-->
-        <td>
-            <div th:each="type : ${pokemon.types}">
-                <span th:text="${type}" class="badge rounded-pill d-inline"
-                      th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +
-                      ((type == 'fire') ? 'badge-fire' : '') +
-                      ((type == 'water') ? 'badge-water' : '') +
-                      ((type == 'psychic') ? 'badge-psychic' : '') +
-                      ((type == 'dragon') ? 'badge-dragon' : '') +
-                      ((type == 'electric') ? 'badge-electric' : '') +
-                      ((type == 'ice') ? 'badge-ice' : '') +
-                      ((type == 'ghost') ? 'badge-ghost' : '') +
-                      ((type == 'normal') ? 'badge-normal' : '') +
-                      ((type == 'rock') ? 'badge-rock' : '') +
-                      ((type == 'ground') ? 'badge-ground' : '') +
-                      ((type == 'fighting') ? 'badge-fighting' : '') +
-                      ((type == 'bug') ? 'badge-bug' : '') +
-                      ((type == 'poison') ? 'badge-poison' : '') +
-                      ((type == 'flying') ? 'badge-flying' : '') +
-                      ((type == 'steel') ? 'badge-steel' : '') +
-                      ((type == 'shadow') ? 'badge-shadow' : '') +
-                      ((type == 'fairy') ? 'badge-fairy' : '') +
-                      ((type == 'dark') ? 'badge-dark' : '')
-                      }">
-                </span>
-                <br>
-            </div>
-        </td>
-        <!--HP-->
-        <td>
-            <p th:text="${pokemon.currentHp + '/' + pokemon.maxHp}" class="fw-normal mb-1 poke-name"></p>
-        </td>
-        <!--ATTACK-->
-        <td>
-            <p th:text="${pokemon.attack}" class="fw-normal mb-1"></p>
-        </td>
-        <!--DEFENSE-->
-        <td>
-            <p th:text="${pokemon.defense}" class="fw-normal mb-1"></p>
-        </td>
-        <!--SPEED-->
-        <td>
-            <p th:text="${pokemon.speed}" class="fw-normal mb-1"></p>
-        </td>
-    </tr>
-    </tbody>
+<!--    <tbody>-->
+<!--    <tr th:each="pokemon : ${session.player.allPokemon}">-->
+<!--        &lt;!&ndash;IMAGE&ndash;&gt;-->
+<!--        <td >-->
+<!--            <img th:src="${pokemon.image}" style="width: 96px; height: 96px"/>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;        <td >&ndash;&gt;-->
+<!--        &lt;!&ndash;            <img th:src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + ${pokemon.pokemonNumber} + '.svg'" style="width: 45px; height: 45px" class="rounded-circle"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </td>&ndash;&gt;-->
+<!--        &lt;!&ndash;NAME&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.name}" class="fw-normal mb-1 poke-name"></p>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;TYPE&ndash;&gt;-->
+<!--        <td>-->
+<!--            <div th:each="type : ${pokemon.types}">-->
+<!--                <span th:text="${type}" class="badge rounded-pill d-inline"-->
+<!--                      th:classappend = "${((type == 'grass') ? 'badge-grass' : '') +-->
+<!--                      ((type == 'fire') ? 'badge-fire' : '') +-->
+<!--                      ((type == 'water') ? 'badge-water' : '') +-->
+<!--                      ((type == 'psychic') ? 'badge-psychic' : '') +-->
+<!--                      ((type == 'dragon') ? 'badge-dragon' : '') +-->
+<!--                      ((type == 'electric') ? 'badge-electric' : '') +-->
+<!--                      ((type == 'ice') ? 'badge-ice' : '') +-->
+<!--                      ((type == 'ghost') ? 'badge-ghost' : '') +-->
+<!--                      ((type == 'normal') ? 'badge-normal' : '') +-->
+<!--                      ((type == 'rock') ? 'badge-rock' : '') +-->
+<!--                      ((type == 'ground') ? 'badge-ground' : '') +-->
+<!--                      ((type == 'fighting') ? 'badge-fighting' : '') +-->
+<!--                      ((type == 'bug') ? 'badge-bug' : '') +-->
+<!--                      ((type == 'poison') ? 'badge-poison' : '') +-->
+<!--                      ((type == 'flying') ? 'badge-flying' : '') +-->
+<!--                      ((type == 'steel') ? 'badge-steel' : '') +-->
+<!--                      ((type == 'shadow') ? 'badge-shadow' : '') +-->
+<!--                      ((type == 'fairy') ? 'badge-fairy' : '') +-->
+<!--                      ((type == 'dark') ? 'badge-dark' : '')-->
+<!--                      }">-->
+<!--                </span>-->
+<!--                <br>-->
+<!--            </div>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;HP&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.currentHp + '/' + pokemon.maxHp}" class="fw-normal mb-1 poke-name"></p>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;ATTACK&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.attack}" class="fw-normal mb-1"></p>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;DEFENSE&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.defense}" class="fw-normal mb-1"></p>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;SPEED&ndash;&gt;-->
+<!--        <td>-->
+<!--            <p th:text="${pokemon.speed}" class="fw-normal mb-1"></p>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
 
-</table>
+<!--</table>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

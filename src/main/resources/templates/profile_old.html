@@ -1,65 +1,65 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments :: head}"></head>
-<nav th:replace="~{fragments :: navigation}"></nav>
-<body class="backgroundImage">
-<div class="d-flex bd-highlight mb-3">
-    <div>
-        <div style="text-align: center;">
-            <div style="margin: 0 auto;">
-                <div th:if="${session.player.allPokemon == null || session.player.allPokemon.isEmpty()}">
-                    <div class="starter-container">
-                        <div class="coolText">You've not yet picked your starters! Open your starter pack now!</div>
-                        <button class="button-73" role="button" onclick="location.href = '/packOpening';">Open starter pack</button>
-                    </div>
-                </div>
-                <div th:unless="${session.player.allPokemon == null || session.player.allPokemon.isEmpty()}">
-                    <div th:if="${session.player.starters == null or session.player.starters.isEmpty()}">
-                        <div class="starter-container">
-                            <div class="coolText">You've not yet selected your starters! Select them now!</div>
-                            <button class="button-73" role="button" onclick="location.href = '/setStarters';">Set starters</button>
-                        </div>
-                    </div>
-                    <div th:unless="${session.player.starters == null or session.player.starters.isEmpty()}">
-                        <div class="starter-container">
-                            <div th:each="pokemon : ${session.player.starters}">
-                                <img th:src="${pokemon.image}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:replace="~{fragments :: head}"></head>-->
+<!--<nav th:replace="~{fragments :: navigation}"></nav>-->
+<!--<body class="backgroundImage">-->
+<!--<div class="d-flex bd-highlight mb-3">-->
+<!--    <div>-->
+<!--        <div style="text-align: center;">-->
+<!--            <div style="margin: 0 auto;">-->
+<!--                <div th:if="${session.player.allPokemon == null || session.player.allPokemon.isEmpty()}">-->
+<!--                    <div class="starter-container">-->
+<!--                        <div class="coolText">You've not yet picked your starters! Open your starter pack now!</div>-->
+<!--                        <button class="button-73" role="button" onclick="location.href = '/packOpening';">Open starter pack</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div th:unless="${session.player.allPokemon == null || session.player.allPokemon.isEmpty()}">-->
+<!--                    <div th:if="${session.player.starters == null or session.player.starters.isEmpty()}">-->
+<!--                        <div class="starter-container">-->
+<!--                            <div class="coolText">You've not yet selected your starters! Select them now!</div>-->
+<!--                            <button class="button-73" role="button" onclick="location.href = '/setStarters';">Set starters</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div th:unless="${session.player.starters == null or session.player.starters.isEmpty()}">-->
+<!--                        <div class="starter-container">-->
+<!--                            <div th:each="pokemon : ${session.player.starters}">-->
+<!--                                <img th:src="${pokemon.image}" alt="">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <div class="backgroundContainerProfile">
-        <div style="text-align: center;">
-            <div style="margin: 0 auto;">
-                <div width="150px">
-                    <img class = "img-responsive" src="../images/profilbild.png" width="300px" alt="...">
-                    <h1 th:text=" 'Welcome ' + ${session.player.username}"></h1>
-                    <h2 th:text=" 'ELO: ' + ${session.player.elo}"></h2>
-                    <h2 th:text=" 'WINS: ' + ${session.player.wins}"></h2>
-                    <h2 th:text=" 'LOSSES: ' + ${session.player.losses}"></h2>
-                    <!--                <div th:each="pack : ${packss}">-->
-                    <!--                    <div th:text="${pack.name}"></div>-->
-                    <!--                </div>-->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="backgroundContainerProfile">
-        <div style="text-align: center;">
-            <div style="margin: 0 auto;">
-                <div width="150px">
+<!--    <div class="backgroundContainerProfile">-->
+<!--        <div style="text-align: center;">-->
+<!--            <div style="margin: 0 auto;">-->
+<!--                <div width="150px">-->
+<!--                    <img class = "img-responsive" src="../images/profilbild.png" width="300px" alt="...">-->
+<!--                    <h1 th:text=" 'Welcome ' + ${session.player.username}"></h1>-->
+<!--                    <h2 th:text=" 'ELO: ' + ${session.player.elo}"></h2>-->
+<!--                    <h2 th:text=" 'WINS: ' + ${session.player.wins}"></h2>-->
+<!--                    <h2 th:text=" 'LOSSES: ' + ${session.player.losses}"></h2>-->
+<!--                    &lt;!&ndash;                <div th:each="pack : ${packss}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <div th:text="${pack.name}"></div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="backgroundContainerProfile">-->
+<!--        <div style="text-align: center;">-->
+<!--            <div style="margin: 0 auto;">-->
+<!--                <div width="150px">-->
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
