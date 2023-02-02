@@ -12,6 +12,7 @@
 <div class="container profile-board">
 
     <!--    PROFILE-->
+  <div>
     <div class="row profile-card">
         <div class="lg-4">
             <div class="card mb-4">
@@ -27,7 +28,11 @@
             </div>
         </div>
     </div>
-
+    <select id="tankSelect" class="button-changetank" >
+        <option>Change Tank</option>
+        <option th:each="pokemon : ${session.player.battleStarters}"  name="tankName" th:value="${pokemon.name}" th:text="${pokemon.name}"></option>
+    </select>
+  </div>
     <!--DEFAULT STARTERS-->
 
     <div th:if="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}"
@@ -158,7 +163,8 @@
                         class="starter-stats">Card subtitle</h6>
                     <h6 th:text="'SPD: ' + ${pokemon.speed}"
                         class="starter-stats">Card subtitle</h6>
-                    <img class="shield-pic" th:if="${pokemon.isTank}" src="/images/tank-icon.png" alt="">
+                    <img class="shield-pic" th:if="${pokemon.isTank}" src="/images/shield2.png" alt="">
+                    <img class="sword-pic" th:unless="${pokemon.isTank}" src="/images/swords.png" alt="">
                     <p class="card-text"></p>
 
                 </div>
@@ -261,17 +267,10 @@
 </div>
 
 <!--TANK SELECTOR-->
-<div>
-    <select id="tankSelect" >
-        <option>Change Tank</option>
-        <option th:each="pokemon : ${session.player.battleStarters}"  name="tankName" th:value="${pokemon.name}" th:text="${pokemon.name}"></option>
-    </select>
-
-
-</div>
 
 <h1 th:if="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}">
     <a href="/packOpening">GET STARTED AND OPEN YOUR FREE PACK AND 400 COINS!</a></h1>
+
 
 <h1 th:unless="${session.player.battleStarters == null or session.player.battleStarters.isEmpty()}">
     <a type="submit" class="button-battle" href="/battle">BATTLE</a>
