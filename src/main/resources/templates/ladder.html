@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: head}"></head>
+<head><link rel="stylesheet" th:href="@{/css/ladder.css}">
 <nav th:replace="~{fragments :: navigation}"></nav>
 <body>
 
-<table class="table table-dark">
+<table class="table table-striped table-dark">
 
   <thead>
   <tr>
@@ -12,13 +13,14 @@
     <th scope="col">Username</th>
     <th scope="col">ELO</th>
     <th scope="col">W/L</th>
+
   </tr>
   </thead>
 
   <tbody>
   <tr th:each="player, iter : ${ladder}">
     <th scope="row" th:text="${iter.index + 1}"></th>
-    <td th:text="${player.username}"></td>
+    <td th:classappend = "${session.player.username} ? 'td-name'" th:text="${player.username}"></td>
     <td th:text="${player.elo}"></td>
     <td th:text="${player.wins + '/' + player.losses}"></td>
   </tr>
