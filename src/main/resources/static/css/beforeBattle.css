@@ -206,7 +206,7 @@ th{
     transition: 500ms;
     border-bottom-width: 1;
     color: white;
-    text-shadow: #776d68 1px 1px 1px;
+    text-shadow: #000 1px 1px 1px;
   }
 
 .center-content {
@@ -225,7 +225,7 @@ display: flex;
       transition: 500ms;
       border-bottom-width: 1;
       color: white;
-      text-shadow: #776d68 1px 1px 1px;
+      text-shadow: #000 1px 1px 1px;
     }
 
 .starter-stats{
