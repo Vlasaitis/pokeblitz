@@ -36,7 +36,7 @@ public class BattlePokemon {
     private boolean isTank;
 
     private int price;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "player_id")
     private Player player;
 
