@@ -45,12 +45,11 @@ public class BattlePokemon {
     }
 
     public void setExp(int exp) {
-        if(level == 100){
-            this.exp = 0;
-        }else if(exp >= 100){
+        if(exp >= 100){
             this.exp = exp - 100;
+            levelUp();
         } else
-        this.exp = exp;
+          this.exp = exp;
     }
 
     public int getLevel() {
@@ -288,6 +287,15 @@ public class BattlePokemon {
 
     public void setTank(boolean tank) {
         isTank = tank;
+    }
+    public void levelUp() {
+        this.attack = getAttack()+1;
+        this.defense = getDefense()+1;
+        this.maxHp = getMaxHp()+1;
+        this.speed = getSpeed()+1;
+        this.powerLevel = getPowerLevel()+4;
+        this.level = getLevel()+1;
+
     }
 }
 
