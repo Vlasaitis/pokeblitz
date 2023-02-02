@@ -119,7 +119,7 @@ public class PlayerController {
         }
 //        session.setAttribute("starters", player.getStarters());
         session.setAttribute("player", player);
-        return "profile";
+        return "redirect:/profile";
     }
 
     @GetMapping("/profile")
