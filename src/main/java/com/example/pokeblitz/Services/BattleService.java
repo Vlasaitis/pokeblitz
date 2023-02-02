@@ -30,6 +30,7 @@ public class BattleService {
     public List<String> simulateBattle(Player attacker, Player defender) {
         attacker.setBattleStarters(attacker.getStarters().returnStarters()); // temp transient property for memory
         defender.setBattleStarters(defender.getStarters().returnStarters());
+        putTankFirst(attacker, defender); // reorders the list to the tank is in the 0 index position
 
         Random random = new Random();
         boolean gameNotOver = true; // will change to false when one battle team is fully KOd
@@ -50,6 +51,30 @@ public class BattleService {
         healAllPokemonAndResetDamageDone(attacker, defender); // also self-explanatoryz
 
         return battleLog;
+    }
+
+    public void putTankFirst(Player attacker, Player defender) {
+        List<BattlePokemon> attackerStarters = attacker.getBattleStarters();
+        List<BattlePokemon> defenderStarters = defender.getBattleStarters();
+
+        List<BattlePokemon> newAttackerStarters = new ArrayList<>(); // new lists where we will put the tank first
+        List<BattlePokemon> newDefenderStarters = new ArrayList<>();
+        for (int i = 0; i <= 2; i++) { //looks for a tank and puts it on position 0 in new list, does nothing else
+            if (attackerStarters.get(i).isTank()) {
+                newAttackerStarters.add(0, attackerStarters.get(i));
+            }
+            if (defenderStarters.get(i).isTank()) {
+                newDefenderStarters.add(0, defenderStarters.get(i));
+            }
+        }
+        //these methods loop old starters list, and if the tank isnt already in the new list, that pokemon gets added
+        attackerStarters.forEach(battlePokemon -> {
+            if(!(newAttackerStarters.contains(battlePokemon))) { newAttackerStarters.add(battlePokemon);}});
+        defenderStarters.forEach(battlePokemon -> {
+            if(!(newDefenderStarters.contains(battlePokemon))) { newDefenderStarters.add(battlePokemon);}});
+
+        attacker.setBattleStarters(newAttackerStarters);
+        defender.setBattleStarters(newDefenderStarters);
     }
 
 
@@ -104,8 +129,8 @@ public class BattleService {
         attacker.getKo().clear();
         defender.getKo().clear();
 
-        attacker.getStarters().returnStarters().stream().forEach(battlePokemon -> battlePokemon.setHasTurn(true));
-        defender.getStarters().returnStarters().stream().forEach(battlePokemon -> battlePokemon.setHasTurn(true));
+        attacker.getStarters().returnStarters().stream().forEach(battlePokemon -> {battlePokemon.setHasTurn(true); });
+        defender.getStarters().returnStarters().stream().forEach(battlePokemon -> {battlePokemon.setHasTurn(true); });
 
 
         playerService.savePlayer(attacker);
@@ -125,8 +150,11 @@ public class BattleService {
 
     public void simulateAttack(Player attacker, Player defender, Random random, List<String> battleLog) {
         BattlePokemon attackingPokemon = fastestWithTurn(attacker.getBattleStarters());
-        int randomIndex = random.nextInt(defender.getBattleStarters().size());
-        BattlePokemon offer = defender.getBattleStarters().get(randomIndex);
+        BattlePokemon offer = defender.getBattleStarters().get(0);
+        if (!(isTankAlive(defender))) {
+            int randomIndex = random.nextInt(defender.getBattleStarters().size());
+            offer = defender.getBattleStarters().get(randomIndex);
+        }
         dealAndLogDamage(attackingPokemon, offer, battleLog, attacker);
 
         if (offer.getCurrentHp() <= 0) {
@@ -135,6 +163,13 @@ public class BattleService {
             defender.getBattleStarters().remove(offer);
         }
 
+    }
+
+    private boolean isTankAlive(Player defender) {
+        if (defender.getBattleStarters().get(0).isTank()) {
+            return true;
+        }
+        return false;
     }
 
     public void dealAndLogDamage (BattlePokemon attackingPokemon, BattlePokemon offer, List <String> battleLog, Player attacker){

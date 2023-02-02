@@ -22,6 +22,11 @@ public class BattleController {
 
     @GetMapping("/battle")
     String setUpBattle(HttpSession session) {
+        Player player = (Player) session.getAttribute("player");
+        player.setBattleStarters(player.getStarters().returnStarters());
+        session.setAttribute("player", player);
+//        playerService.savePlayer(player);
+//        session.setAttribute("player", playerService.findUser(player.getUsername()));
         if (session.getAttribute("battleLog") != null) {
             session.removeAttribute("battleLog");
         }
