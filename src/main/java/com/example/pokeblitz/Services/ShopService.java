@@ -40,7 +40,8 @@ public class ShopService {
             player.getAllPokemon().remove(pokemonToSell);
             playerService.savePlayer(player);
             System.out.println(player.getAllPokemon().size());
-            pokemonService.deletePokemon(pokemonToSell);
+//            pokemonService.deletePokemon(pokemonToSell);
+//            playerService.savePlayer(player);
         }
     }
 }
