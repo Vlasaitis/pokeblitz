@@ -43,7 +43,8 @@ public class ShopController {
     public String sellPokemon(HttpSession session, @PathVariable Long pokemonId) {
         Player player = (Player) session.getAttribute("player");
         shopService.attemptSale(player, pokemonId);
-        return "profile";
+        session.setAttribute("player", playerService.findUser(player.getUsername()));
+        return "redirect:/profile";
     }
 
 }
