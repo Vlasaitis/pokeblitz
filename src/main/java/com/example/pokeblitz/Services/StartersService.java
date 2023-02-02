@@ -3,6 +3,7 @@ package com.example.pokeblitz.Services;
 import com.example.pokeblitz.Classes.BattlePokemon;
 import com.example.pokeblitz.Classes.Player;
 import com.example.pokeblitz.Classes.Starters;
+import com.example.pokeblitz.Repositories.BattlePokemonRepository;
 import com.example.pokeblitz.Repositories.StartersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class StartersService {
     StartersRepository startersRepository;
     @Autowired
     PlayerService playerService;
+    @Autowired
+    private BattlePokemonRepository battlePokemonRepository;
 
     public Starters saveStarters(Starters starters) {
         return startersRepository.save(starters);
@@ -44,5 +47,25 @@ public class StartersService {
             starterPack = true;
         }
         return starterPack;
+    }
+
+    public void changeTank(Player player, String tankName) {
+
+        // remove old tank:
+        cleanTanks(player);
+
+//        List<BattlePokemon> currentStarters = player.getStarters().returnStarters();
+        player.getAllPokemon().forEach(battlePokemon -> {
+            if (battlePokemon.getName().equals(tankName)) {
+                battlePokemon.setTank(true);
+            }
+        });
+        player.setBattleStarters(player.getStarters().returnStarters());
+        playerService.savePlayer(player);
+
+    }
+
+    public void cleanTanks(Player player) {
+        player.getAllPokemon().forEach(battlePokemon -> battlePokemon.setTank(false));
     }
 }

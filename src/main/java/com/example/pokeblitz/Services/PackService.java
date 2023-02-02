@@ -22,6 +22,7 @@ public class PackService {
     PokemonService pokemonService;
     @Autowired
     PlayerService playerService;
+
     private Random random = new Random();
 
     public Pack savePack(Pack pack) {
