@@ -34,8 +34,6 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/landingPage", true)
                 .permitAll();
 
-
-
         http.logout().logoutSuccessUrl("/");
 
         return http.build();
@@ -58,6 +56,8 @@ public class SecurityConfig {
         UserDetailsService userDetailsService = userDetailsService();
         ((InMemoryUserDetailsManager) userDetailsService).createUser(User.withUsername(username).password(encodedPassword).roles("USER").build());
     }
+
+
 
 
 }
