@@ -137,7 +137,7 @@ class PokeBlitzTests {
 
 //		List<BattlePokemon> pokemons1 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("pikachu", player1)) , pokemonService.savePokemon(new BattlePokemon("wartortle", player1)), pokemonService.savePokemon(new BattlePokemon("butterfree", player1))));
 //		List<BattlePokemon> pokemons2 = new ArrayList<>(Arrays.asList(pokemonService.savePokemon(new BattlePokemon("blastoise", player2)) , pokemonService.savePokemon(new BattlePokemon("caterpie", player2)), pokemonService.savePokemon(new BattlePokemon("mew", player2))));
-
+		assertEquals(1, mew.getLevel());
 		player1.setStarters(new Starters(player1, pokemons1));
 		player2.setStarters(new Starters(player2, pokemons2));
 

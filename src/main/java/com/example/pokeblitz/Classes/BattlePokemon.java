@@ -12,6 +12,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "battle_pokemon")
 public class BattlePokemon {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -29,11 +30,34 @@ public class BattlePokemon {
     private Boolean hasTurn = true;
     private int damageDone = 0;
     private int pokemonNumber;
-
+    public int level = 1;
+    public int exp = 0;
     private int price;
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        if(exp >= 100){
+            this.exp = exp - 100;
+        } else
+        this.exp = exp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+            if(level >= 100){
+                this.level = 100;
+            } else
+                this.level = level;
+    }
 
     public Player getPlayer() {
         return player;
