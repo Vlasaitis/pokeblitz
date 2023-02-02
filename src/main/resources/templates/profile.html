@@ -158,7 +158,8 @@
                         class="starter-stats">Card subtitle</h6>
                     <h6 th:text="'SPD: ' + ${pokemon.speed}"
                         class="starter-stats">Card subtitle</h6>
-                    <img class="shield-pic" th:if="${pokemon.isTank}" src="/images/tank-icon.png" alt="">
+                    <img class="shield-pic" th:if="${pokemon.isTank}" src="/images/shield2.png" alt="">
+                    <img class="sword-pic" th:unless="${pokemon.isTank}" src="/images/swords.png" alt="">
                     <p class="card-text"></p>
 
                 </div>
