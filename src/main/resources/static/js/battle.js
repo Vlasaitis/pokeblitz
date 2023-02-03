@@ -13,8 +13,13 @@ document.addEventListener('DOMContentLoaded', (e)=>{
         console.log("splash element not found")
     }
     setTimeout(()=> {
+                splash.classList.add('display-none');
+                document.querySelector('.content-screen').classList.remove('hidden');
+            }, 1500);
+    setTimeout(()=> {
         splash.classList.add('display-none');
     }, 2000);
+
 })
 
 

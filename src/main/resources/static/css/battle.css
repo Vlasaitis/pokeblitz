@@ -10,6 +10,11 @@
     font-family: 'Poppins', sans-serif;
 } */
 
+
+.hidden {
+  visibility: hidden;
+}
+
 .pokemon-box {
     margin-right: 1%;
 }
