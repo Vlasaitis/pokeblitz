@@ -294,7 +294,7 @@ public class BattlePokemon {
         this.maxHp = getMaxHp()+1;
         this.speed = getSpeed()+1;
         this.powerLevel = getPowerLevel()+4;
-        this.level = getLevel()+1;
+        setLevel(getLevel()+1);
 
     }
 }
